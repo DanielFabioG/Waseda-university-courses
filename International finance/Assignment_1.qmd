@@ -181,11 +181,12 @@ data <- data %>%
 
 ```{r}
 # Calculate the average openness of the 20 largest and 20 smallest countries in 2011
-data %>%
+sjekk_3 <-data %>%
   arrange(desc(Population_2011)) %>%
   slice_head(n = 20) %>%
   summarise(Average_openness_largest = mean(Openness_2011))
 
+round(sjekk_3,2)
 ```
 
 ```{r}
@@ -201,17 +202,21 @@ The smallest countries are more open than the largest countries in 2011.
 
 ```{r}
 # Calculate the average openness of the 20 richest and 20 poorest countries in 2011
-data %>%
+sjekk_1 <- data %>%
   arrange(desc(GDP_per_capita_2011)) %>%
   slice_head(n = 20) %>%
   summarise(Average_openness_richest = mean(Openness_2011))
+
+round(sjekk_1,2)
 ```
 
 ```{r}
-data %>%
+sjekk <-data %>%
   arrange(GDP_per_capita_2011) %>%
   slice_head(n = 20) %>%
   summarise(Average_openness_poorest = mean(Openness_2011))
+
+round(sjekk,2)
 ```
 The richest countries are more open than the poorest countries in 2011.
 
