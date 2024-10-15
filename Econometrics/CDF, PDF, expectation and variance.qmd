@@ -1,0 +1,92 @@
+---
+title: "Econometrics lecture 2"
+format: html
+editor: visual
+---
+
+## CDF and PDF (Cumulative Distribution Function and Probability Density Function)
+
+
+```{r}
+# Loading the libraries
+library(extraDistr)
+library(tidyverse)
+curve(pnorm(x), xlim = c(-5,5))
+
+
+```
+
+```{r}
+ curve(pdunif(x, 1, 6), xlim = c(-1,8))
+
+
+```
+
+```{r}
+#PDF of a normal distributions
+ curve(dnorm(x, mean = 0, sd = 1), xlim = c(-6,6), ylim = c(0, 0.4), col = 1)
+ par(new = TRUE)
+ curve(dnorm(x, mean = 1, sd = 1), xlim = c(-6,6), ylim = c(0, 0.4), col = 2)
+ par(new = TRUE)
+ curve(dnorm(x, mean = 1, sd = 2), xlim = c(-6,6), ylim = c(0, 0.4), col = 3) # add legend
+ legend("topright", legend = c("N(0,1)", "N(1,1)", "N(1,2^2)"), col = 1:3, lty = 1, cex = 0.8)
+
+```
+
+```{r}
+#CDF and PDF of continuous Uniform[0, 1].
+
+curve(punif(x), xlim = c(-1,2))
+curve(dunif(x), xlim = c(-1,2))
+```
+
+```{r}
+# Probability density, standard normal CDF
+pnorm(1)
+
+```
+
+```{r}
+integrate(dnorm, -Inf, 1)
+
+```
+
+```{r}
+punif(0.2) #Uniform[0,1] CDF F(0.2) = integral from 0 to 0.2 of 1 dx = 0.2
+
+
+
+```
+
+```{r}
+integrate(dunif, -Inf, 0.2)
+
+```
+
+## Expectation and Variance
+
+
+```{r}
+# x calculates the density of the normal distribution at x, -2 is min and 4 is max
+h <- function(x) x * dunif(x, -2, 4) # X ~ Uniform[-2, 4]
+integrate(h, -Inf, Inf) # E(X)
+
+```
+
+
+```{r}
+h <- function(x) x * dnorm(x, mean = 2, sd = 1) # X ~ Normal(2, 1)
+integrate(h, -Inf, Inf) # E(X)
+
+```
+
+
+```{r}
+g <- function(x) ifelse(x <= 1, 1, 0) # 1{x <= 1}
+f <- function(x) g(x)*dnorm(x)
+integrate(f, -Inf, Inf) # E(g(x))
+```
+
+```{r}
+pnorm(1)
+```
