@@ -134,8 +134,8 @@ fig_openness<-data %>%
         axis.title.x = element_text(size = 20),
         axis.title.y = element_text(size = 20))
 
-ggsave("documentobjects/figures/openness.png", plot = fig_openness, width = 10, height = 6, dpi = 300)
-
+#ggsave("documentobjects/figures/openness.png", plot = fig_openness, width = 10, height = 6, dpi = 300)
+fig_openness
 ```
 
 
