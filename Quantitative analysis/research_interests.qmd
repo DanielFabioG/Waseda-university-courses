@@ -1,0 +1,49 @@
+---
+format: 
+  pdf:
+    geometry:
+      - top=20mm
+      - left=20mm
+      - heightrounded
+    fontsize: 12pt
+    documentclass: scrartcl
+    papersize: a4
+    toccolor: black
+echo: false
+warning: false
+bibliography: documentobjects/texstuff/references.bib
+csl: documentobjects/texstuff/apa.csl
+header-includes:
+  - \usepackage{wrapfig}
+  - \usepackage{subcaption}
+  - \usepackage{amsmath}
+  - \usepackage{cancel}
+  - \usepackage{hyperref}
+  - \usepackage{tikz}
+  - \usepackage{tabularx}
+  - \usepackage{colortbl}
+  - \usepackage{xcolor}
+  - \renewcommand{\maketitle}{}
+  - \definecolor{cornflowerblue}{RGB}{100,149,237}
+  - \definecolor{darkgrey}{RGB}{220,220,220}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{} 
+  - \fancyhead[L]{\rightmark}
+  - \fancyhead[R]{\thepage}
+  - \fancyfoot[C]{\thepage}
+nocite: |
+  @*
+---
+
+## Research interest
+
+I would like to research topics around finance.
+
+Things around finance that interest me are:
+
+- Financial markets
+- Cryptocurrencies 
+- Behavioral finance 
+
+I am interested in the stock market, bond market, and cryptocurrencies and it is what got me into studying economics. Last year I had a course in behavioural economics and that got me interested in how people make financial decisions and how they can be influenced by psychological factors, which I found interesting.
