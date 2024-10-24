@@ -1,0 +1,262 @@
+---
+title: "Conditional distribution function"
+format: pdf
+editor: visual
+---
+
+```{r}
+# F_y|x (y|X=x) = Pr(Y <_ yy(X = x))
+
+# Example with numbers, Y = annual inc in mil jpy, X= education in years
+
+# F_Y|X(3|X = 9) = Pr(anninc < 3 mil jpy | jr high graduate)
+
+
+```
+
+```{r}
+# Conditional density function
+# Is the derivative of the conditional distribution function and it is denoted by f_Y|X(y|X = x)
+
+# which makes f_Y|X(y|X = x) = d/Fy Y_X|X(y|X = x)/dy
+
+# This is just the PDF of Y for a sub-population satisfying X = x
+
+# Example 
+
+
+# f_Y|X(3|X = 9) = how many jr high graduates have an annual income of 3 mil jpy
+
+# f_Y|X(3|X = 16) = how many college graduates have an annual income of 3 mil jpy
+
+```
+
+```{r}
+# package for applied econometrics with R
+library(AER)
+library(tidyverse)
+data(PhDPublications)
+head(PhDPublications,3)
+```
+
+
+```{r}
+# computes the empirical distribution function of a variable and here it is X
+F <- ecdf(PhDPublications$articles)
+# compute the kernel (smoothed) density of a variable and here it is X
+f <- density(PhDPublications$articles)
+# pars the two plots side by side
+par(mfrow = c(1,2))
+plot(F, xlim = c(0,20), main = "F(phD pubs")
+plot(f, xlim = c(0,20), main = "F(phD pubs")
+```
+
+
+
+
+
+```{r}
+# Filtering for more than 6 mentors
+data1 <- PhDPublications %>%
+  filter(mentor >= 6)
+# Filtering for less than 6 mentors
+data2 <- PhDPublications %>%
+  filter(mentor < 6)
+
+```
+
+```{r}
+F1 <- ecdf(data1$articles)
+F2 <- ecdf(data2$articles)
+f1 <- density(data1$articles)
+f2 <- density(data2$articles)
+par(mfrow = c(1,2))
+fig_title <- "red: mentor >= 6, blue: mentor < 6"
+plot(F1,col="red", xlim = c(0,20), main = fig_title)
+par(new = TRUE)
+plot(F2, col = "blue", xlim = c(0,20), main = fig_title)
+plot(f1, col = "red", xlim = c(0,20), main = fig_title)
+par(new = TRUE)
+plot(f2, col = "blue", xlim = c(0,20), main = fig_title)
+#  we can see that the students with more mentors have more publications/producitivity
+```
+
+
+```{r}
+# Conditional expectation
+# Let Y|X(y|X = x) be the conditional density function of Y given X = x
+
+# E(Y|X = x) = integral of y*f_Y|X(y|X = x)dy
+
+# is called the conditional expectation of Y given X = x
+
+# This is the expected value of Y for a sub-population satisfying X = x
+
+# Example
+
+# E(Y|X = 9) = expected annual income of jr high graduates
+# E(Y|X = 16) = expected annual income of college graduates
+# Normally, E(Y|X = 9) < E(Y|X = 16) is expected
+
+#E(Y|X = x) is the value obtained by plugging x into the conditional expectation function.
+```
+
+
+
+```{r}
+# E(Y|X = x) can be estimated by the average of Y for the sub-population satisfying X = x
+quant <- quantile(PhDPublications$mentor, probs = c(0.25, 0.5, 0.75))
+quant
+```
+
+```{r}
+# cut discretize the variable following the given break points
+# what we do is E[Y|L], E[Y|M],E[Y|M2], E[Y|H]
+pubdata <- PhDPublications %>%
+  mutate(mentorpub = cut(mentor,
+                         breaks = c(-Inf,quant, Inf), 
+                         labels = c("low", "medium","medium2", "high")))
+
+pubdata <- pubdata %>%
+  group_by(mentorpub) %>%
+  summarize(AvgPubs = mean(articles))
+```
+
+```{r}
+plot(pubdata$mentorpub, pubdata$AvgPubs, type = "b", xlab = "Mentorship", ylab = "Average Publications", main = "E[PhD pubs|mentor pubs]")
+
+```
+
+```{r}
+# Joint distribution function, joint density function
+
+# For random variables (Y,X), the probability of {Y <_ y, X <_ x} is called the joint distribution function and is denoted by F_YX(y,x)
+
+# F_YX(y,x) = Pr(Y <_ y, X <_ x)
+
+# In addition, ,by taking the partial derivative of the joint distribution function, we can obtain the joint density function f_YX(y,x)
+
+# f_YX(y,x) = d^2/F_YX(y,x)/dydx ( F_yx(a,b) = integral of integral of f_YX(y,x)dydx)
+
+# Expacatition of a product of random variables
+
+# The expactation of the product of random variables Y and X is given by
+
+# E(YX) = integral of integral of yxf_YX(y,x)dxdy
+
+```
+
+```{r}  
+library(MASS)
+
+xy <- mvrnorm(5000, c(1,-1), Sigma = diag(2))
+x <- xy[,1] 
+y <- xy[,2]
+dnsty <- kde2d(x, y)
+persp(dnsty, theta = 120, phi = 20, expand = 0.5, ticktype = "detailed")
+```
+```{r}
+# Joint distrbution and joint density
+x <- log(PhDPublications$articles + 1)
+y <- log(PhDPublications$mentor + 1)
+
+dnsty <- kde2d(x, y)
+
+persp(dnsty, theta = 60, phi = 20, expand = 0.5, ticktype = "detailed")
+
+
+```
+
+```{r}
+# Marginal distribution and marginal density
+
+# Given a joint distribution of random variables, the distribution and density function of each random variable are called the marginal distribution and marginal density function, respectively.
+
+# The marginal distribution function of Y is given by F_Y(y) can be derived from the joint distribution function F_YX(y,x) as follows:
+
+# F_Y(y) = Pr(Y < y) = Pr(Y < y, X < Inf) = F_YX(y, Inf)
+
+# namefor, for any a,
+
+# F_Y(a) = integral of F_YX(a,x)dx = integral of integral of f_YX(y,x)dydx
+
+# Which further implies that
+
+# f_Y(y) = dF_Y(y)/dy = integral of f_YX(y,x)dx
+
+
+# Obtaining the marginal density by integrating the joint density is called marginalization.
+
+
+
+```
+
+
+```{r}
+# Conditional density and joint density
+
+# The following relationshop between the joint probability Pr(A,B) and the conditional probability Pr(A|B) holds:
+
+# Pr(A,B) = Pr(A|B)/Pr(B)
+
+# The same relationship holds for the joint density and the conditional density:
+
+# f_AB(a,b) = f_A|B(a|b)f_x(x)
+
+```
+
+```{r}
+# Covariance and correlation
+
+# For two random variables X and Y, the covariance is defined as
+
+# Cov(X,Y) = E[(X - E(X))(Y - E(Y))] = E(XY) - E(X)E(Y)
+
+# In particular, if either X or Y has mean zero, the covariance is equal to the expectation of the product of X and Y.
+
+# The correlation is defined as (pearsons)
+
+# Corr(X,Y) = Cov(X,Y)/sqrt(Var(X)Var(Y))
+
+# The correlation is a normalized value that ranges from -1 to 1. A value of 1 indicates a perfect positive linear relationship, a value of -1 indicates a perfect negative linear relationship, and a value of 0 indicates no linear relationship.
+
+
+
+```
+
+```{r}
+# Independence of random variables
+
+# For two events {Y < y} and {X < x}, if
+
+# Pr(Y < y, X < x) = Pr(Y < Y) * Pr(X < x)
+
+# in other words, FYX(y,x) = FY(y)FX(x), then X and Y are independent.
+
+# Let FXY(x,y) be the joint distribution function of X and Y, and let FX(x) and FY(y) be the marginal distribution functions of X and Y, respectively. We say that X and Y are independent if
+
+# FXY(x,y) = FX(x) * FY(y) holds for any (x,y).
+
+# When two random variables Y and X are independent, we also have
+
+# fXY(x,y) = fX(x) * fY(y)
+
+#because
+
+# fXY(x,y) = d^2/FXY(x,y)/dxdy = d/dx * d/dy(FX(x)FY(y)) = d/dx(FX(x)) * d/dy(FY(y)) = fX(x)fY(y)
+
+# Property of indepent random variables
+
+# E(XY) = E(X)E(Y)
+
+
+```
+
+
+```{r}
+
+
+
+
+```
+
