@@ -1,0 +1,294 @@
+---
+title: "Lecture 3 - Some repetetion and law of large numbers"
+format: pdf
+editor: visual
+---
+
+# Cont of lecture 2
+
+Assignment 1 will be 15 points out of 60 total points.
+
+Clarify your answers when submitting your paper.
+
+```{r}
+x <- rnorm(1000,1,1)
+y <- rnorm(1000,1,1)
+
+mean(x*y); mean(x)*mean(y); cor(x,y)
+```
+
+```{r}
+x <- rnorm(1000,1,1)
+y <- sin(x)*rnorm(1000,1,1)
+
+mean(x*y); mean(x)*mean(y); cor(x,y)
+```
+Recalling the definition of COV(X,Y), if Y and X are independent, we obtain:
+
+$$ Cov(Y,X) = 0$$
+
+However, Cov(Y,X) = 0 does not imply that Y and X are independent.
+
+The independence of Y and X means that they are "irrelevant" to each other.
+
+Suppose that the joint density of Y and X isgiven by:
+
+$$ f(x,y) = 1/2, 0 < x < 1, 0 < y < 1$$
+
+Then, we have:
+
+
+```{r}
+x <- runif(1000,0,1)
+y <- runif(1000,0,1)
+
+# plot it
+
+plot(x,y, xlim = c(-1,1.5), ylim = c(-1,1.5), col = "blue", pch = 19, cex = 0.5)
+
+```
+
+```{r}
+x <- rnorm(10000)
+y <- x^2
+cov(x,y)
+```
+
+x and y are clearly dependent but...
+
+
+```{r}
+
+cor(x,y)
+
+
+```
+The above result is due to the fact $E[X^3] = 0$ when X is a standard normal random variable.
+
+If Y and X are independent, the conditional expectation of Y given X coincides with Y's unconditional expectation.
+
+Note that if Y and X are independent:
+
+$$fY|X(y|X = x) = \frac{fYX(y,x)}{fx(x)} = \frac{fY(y)fX(x)}{fX(x)} = fY(y)$$
+ 
+Lecture 3: 
+
+Population and sample
+
+
+Statistical inference
+
+The entire set of objects we are interested in analyzing is called the population.
+
+Since the size of a population is often huge (or even infinite), we usually cannot analyze the entire population, we have to use a small subset of the population, called a sample, for statistical analysis.
+
+Sampling: obtain a finite sample from the population of intereset.
+
+Statistical inference: from the results on the sample, we can infer the population.
+
+
+
+
+There are two types of population concept:
+
+- Finite population: the population is finite and the size is known. (e.g. countries, number of students in a class)
+
+- super-population = all the observations following a population distribution. (treat the underllying data dist as the target populations itself)
+
+The observed finite-population can be regarded as a "sample" from a super-population.
+
+
+
+Throughout the lectures, we adopt the super-population concept framework (because of its analytical convenience).
+
+# The law of large numbers: Introduction
+
+LLN: Informal statement.
+
+Suppose that we have data {X1, X2, ..., Xn} of sample size n randomly drawn from the same population. Let population mean of $ X: \mu = E[X]$ and Sample average of X: $\bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i$
+
+Then, the law of large numbers states that as the sample size n increases, the sample average $\bar{X}$ converges to the population mean $\mu$ in probability.
+
+When one considers a finite-population framework, n is fixed and cannot trend to infinity.
+
+
+If n is sufficiently large, the sample average $\bar{X}$ is a good estimate of the population mean $\mu$.
+
+A simulation of dice rolling with R
+
+For example, if you want to simulate 10 dice rolls, you can use the following code:
+
+
+```{r}
+library(extraDistr)
+
+Dice10 <- rdunif(10,1,6)
+Dice10
+
+```
+```{r}
+mean(Dice10)
+```
+
+
+The numbers are randomly generated so we need to set a seed to get results that can be replicated. The function for that is set.seed.
+
+
+Now we create dice20000.
+
+```{r}
+Dice20000 <- rdunif(20000,1,6)
+
+
+mean(Dice20000)
+```
+The sample average of Dice20000 is roughly equal to 3.5
+
+Recall that the expected average is 3.5
+
+Lets visualize it:
+
+```{r}
+Dice <- function(n){
+  Dicerolls <- rdunif(n,1,6)
+  mean(Dicerolls)
+}
+
+Dice(10)
+```
+
+
+```{r}
+Dice(100)
+```
+
+```{r}
+Dice(1000)
+```
+Next, using the avoe created function Dice(), we repeat the dice rolling experiment for different n values.
+
+Such calculation can be performed using the for-loop command:
+
+for(i in sequence)  statement
+
+Here, "sequence" is a vector, where i takes on each of its value during the loop.
+
+In each iteration, the statement is executed.
+
+The iteration stops when i reaches the final element of "sequence".
+
+
+```{r}
+N <- 1000
+
+R <- numeric(N) # Nx1 vector or zeros
+
+for(i in 1:N) R[i] <- Dice(i)
+
+```
+
+Then, the i-th element of R contains the average value of i dice rolls.
+
+```{r}
+#library(tidyverse)
+data <- data.frame(n = 1:N, R = R)
+ggplot(data, aes(x = n, y = R))+
+  geom_line()+
+  geom_hline(yintercept = 3.5, col = "red", size = 1)+
+  xlab("Number of dice rolls")
+```
+
+
+```{r}
+sim <- function(n) {
+  X <- runif(1, -1, 1)
+  for (i in 2:n) {
+    X <- c(X, X[i-1] + runif(1, -1, 1))
+  }
+  mean(X)
+}
+
+N <- 1000
+R <- numeric(N-1)
+
+for (i in 2:N) {
+  R[i-1] <- sim(i)
+}
+
+
+```
+
+
+```{r}
+data <- data.frame(n = 2:N, R = R)
+ggplot(data, aes(x = n, y = R))+
+  geom_line()+
+  geom_hline(yintercept = 0, col = "red", size = 1)+
+  xlab("Number of dice rolls")
+
+```
+
+Larger n values lead to a smaller variance of the sample average.
+
+In what sense does the sample average converge to the population mean mathematically?
+
+=> Convergence in probability
+
+Under what conditions does LLN hold true?
+
+=> An important condition is that the sample is drawn from the same population.
+
+Convergence in probability
+
+Let {X1, X2, ..., Xn} be a sequence of random variables.
+
+Example (i):
+
+$$a_1 = 1, a_2 = 1.4, a_3 = 1.41, a_4 = 1.414, a_5 = 1.4142, ...$$
+
+$a_n$ converges to $a = \sqrt{2}$ as n approaches infinity.
+
+Example (ii):
+
+$$a_1 = 3, a_2 = 3.1, a_3 = 3.14, a_4 = 3.141, a_5 = 3.1415, ...$$
+
+$a_n$ converges to $a = \pi$ as n approaches infinity.
+
+The number a is called the limit of the sequence {an}. And we write $a_n \rightarrow a$ as $n \rightarrow \infty$ or $\lim_{n \rightarrow \infty} a_n = a$.
+
+Further, these are equivalent to:
+
+$$lim_{n \rightarrow \infty} |a_n - a| = 0 and |a_n - a| \rightarrow 0 (n \rightarrow \infty).$$
+
+Note: a sequence does not always have a limit:
+
+$$a_1 = 1, a_2 = 2, a_3 = 1, a_4 = 2, a_5 = 1, ...$$
+
+This sequence alternates between 1 and 2 and does not converge to a single value.
+
+Now, suppose $(v_n)_{n=1}^{\infty}$ is a sequence of random variables.
+
+Then, since whether the sequence $(v_n)_{n=1}^{\infty}$ converges to $a$ random, we its probability.
+
+A sequence of random variables $(v_n)_{n=1}^{\infty}$ converges to a constant $a$ in probability if for any $\epsilon > 0$,
+
+Interpretation: $v_n$ converges to $a$ in probability if the probability that $v_n$ is close to $a$ becomes close to 1 as n approaches infinity.
+
+
+
+The most important point is this definition that $_epsilon$ can be chosen arbitrarily small. Say $\epsilon = 0.01$ or $\epsilon = 0.0001$ or even smaller.
+
+However small $\epsilon$ is, we can observe ${|v_n - a| < \epsilon}$ with a high probability if n is sufficiently large.
+
+When $(v_n)_{n=1}^{\infty}$ converges to $a$ in probability, we write $v_n \xrightarrow{p} a$ as $n \rightarrow \infty$.
+
+LLN: Formal statement
+
+Suppose we have data ${X_1,...,X_N}$ of sample size n independently drawn from the same population. Let population mean of X be $\mu$.
+
+Then, the sample average $\bar{X}$ converges to the population mean $\mu$ in probability as n approaches infinity.
+
+$$\bar{X} \xrightarrow{p} \mu  (n \rightarrow \infty)$$
+
+This result is known as the Law of Large Numbers (LLN).
+
