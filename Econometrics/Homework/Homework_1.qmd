@@ -1,0 +1,43 @@
+---
+format: 
+  pdf:
+    geometry:
+      - top=20mm
+      - left=20mm
+      - heightrounded
+    fontsize: 12pt
+    documentclass: scrartcl
+    papersize: a4
+    toccolor: black
+echo: false
+warning: false
+toc: true
+lof: true
+bibliography: documentobjects/texstuff/references.bib
+csl: documentobjects/texstuff/apa.csl
+header-includes:
+  - \usepackage{wrapfig}
+  - \usepackage{subcaption}
+  - \usepackage{amsmath}
+  - \usepackage{cancel}
+  - \usepackage{hyperref}
+  - \usepackage{tikz}
+  - \usepackage{tabularx}
+  - \usepackage{colortbl}
+  - \usepackage{xcolor}
+  - \renewcommand{\maketitle}{}
+  - \definecolor{cornflowerblue}{RGB}{100,149,237}
+  - \definecolor{darkgrey}{RGB}{220,220,220}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{} 
+  - \fancyhead[L]{\rightmark}
+  - \fancyhead[R]{\thepage}
+  - \fancyfoot[C]{\thepage}
+nocite: |
+  @*
+---
+
+• To obtain the full points, the processes to obtain the answers should be given.
+• Points: 3 × 5 points
+Problems: Exercise 1,7, 18, 19, 26 from Problem Set 1.
