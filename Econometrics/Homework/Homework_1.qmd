@@ -270,6 +270,50 @@ Calculating $E[(XY)^2]$ using independence will look like this:
 
 $$ E[(XY)^2] = 3 \cdot 5 = 15 $$
 
+2. E[Z]
+
+The expected value of Z is given by:
+
+$$ E[Z] = E[DX + (1-D)Y] = E[D]E[X] + E[1-D]E[Y] $$
+
+Calculating E[Z] will look like this:
+
+$$ E[Z] = 0.6 \cdot 0 + (1-0.6) \cdot 0 = 0 $$
+
+```{r}
+# 2. E[Z]
+
+E_Z <- 0.6 * 0 + (1-0.6) * 0
+E_Z
+```
+3. V[Z]
+
+
+Calculating V[Z] will look like this:
+
+$$ V[Z] = E[Z^2] =2.4 + 1 = 3.4 $$
+
+```{r}
+# 3. V[Z]
+p_D1 <- 0.8  # Probability that D = 1
+p_D0 <- 0.2  # Probability that D = 0 (since D is binary with P(D=1) = 0.8)
+var_X <- 3   # Variance of X ~ N(0, 3)
+var_Y <- 5   # Variance of Y ~ N(0, 5)
+
+# Calculate E[D^2 * X^2]
+E_DX2 <- p_D1 * var_X
+
+# Calculate E[(1 - D)^2 * Y^2]
+E_1mDY2 <- p_D0 * var_Y
+
+# Calculate Var(Z)
+var_Z <- E_DX2 + E_1mDY2
+
+var_Z
+
+```
+
+
 \newpage
 
 # **Exercise 26**
