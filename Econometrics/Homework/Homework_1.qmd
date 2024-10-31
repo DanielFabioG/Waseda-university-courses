@@ -411,5 +411,19 @@ Dice_2_diff <- 1:6
 E_Y_diff <- mean(Dice_1_diff) + mean(Dice_2_diff)
 E_Y_diff
 ```
+\newpage
 
+# Usage of AI
+
+## Copilot
+
+As I am writing this document in Rstudio, there is an integration of copilot which sometimes automatically suggests code snippets. Sometimes it works great and my latex math gets written perfectly, and other times it just gives me a bunch of random unrelevant latex math or code.
+
+Here is a [Link to copilot](https://copilot.microsoft.com/) if you want to read about it, but I assume you already know of it.
+
+## ChatGPT
+
+Here is the link to the conversation where I asked questions:
+
+[Homework 1 ChatGPT conversation](https://chatgpt.com/share/672397a8-0294-8001-984b-fd7d7875d5d3)
 
