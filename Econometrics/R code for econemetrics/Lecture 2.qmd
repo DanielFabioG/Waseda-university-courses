@@ -39,7 +39,6 @@ data(PhDPublications)
 head(PhDPublications,3)
 ```
 
-
 ```{r}
 # computes the empirical distribution function of a variable and here it is X
 F <- ecdf(PhDPublications$articles)
@@ -50,10 +49,6 @@ par(mfrow = c(1,2))
 plot(F, xlim = c(0,20), main = "F(phD pubs")
 plot(f, xlim = c(0,20), main = "F(phD pubs")
 ```
-
-
-
-
 
 ```{r}
 # Filtering for more than 6 mentors
@@ -81,7 +76,6 @@ plot(f2, col = "blue", xlim = c(0,20), main = fig_title)
 #  we can see that the students with more mentors have more publications/producitivity
 ```
 
-
 ```{r}
 # Conditional expectation
 # Let Y|X(y|X = x) be the conditional density function of Y given X = x
@@ -100,8 +94,6 @@ plot(f2, col = "blue", xlim = c(0,20), main = fig_title)
 
 #E(Y|X = x) is the value obtained by plugging x into the conditional expectation function.
 ```
-
-
 
 ```{r}
 # E(Y|X = x) can be estimated by the average of Y for the sub-population satisfying X = x
@@ -146,7 +138,7 @@ plot(pubdata$mentorpub, pubdata$AvgPubs, type = "b", xlab = "Mentorship", ylab =
 
 ```
 
-```{r}  
+```{r}
 library(MASS)
 
 xy <- mvrnorm(5000, c(1,-1), Sigma = diag(2))
@@ -155,6 +147,7 @@ y <- xy[,2]
 dnsty <- kde2d(x, y)
 persp(dnsty, theta = 120, phi = 20, expand = 0.5, ticktype = "detailed")
 ```
+
 ```{r}
 # Joint distrbution and joint density
 x <- log(PhDPublications$articles + 1)
@@ -190,7 +183,6 @@ persp(dnsty, theta = 60, phi = 20, expand = 0.5, ticktype = "detailed")
 
 
 ```
-
 
 ```{r}
 # Conditional density and joint density
@@ -252,11 +244,9 @@ persp(dnsty, theta = 60, phi = 20, expand = 0.5, ticktype = "detailed")
 
 ```
 
-
 ```{r}
 
 
 
 
 ```
-

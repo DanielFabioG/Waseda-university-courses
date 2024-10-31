@@ -6,7 +6,6 @@ editor: visual
 
 ## CDF and PDF (Cumulative Distribution Function and Probability Density Function)
 
-
 ```{r}
 # Loading the libraries
 library(extraDistr)
@@ -65,7 +64,6 @@ integrate(dunif, -Inf, 0.2)
 
 ## Expectation and Variance
 
-
 ```{r}
 # x calculates the density of the normal distribution at x, -2 is min and 4 is max
 h <- function(x) x * dunif(x, -2, 4) # X ~ Uniform[-2, 4]
@@ -73,13 +71,11 @@ integrate(h, -Inf, Inf) # E(X)
 
 ```
 
-
 ```{r}
 h <- function(x) x * dnorm(x, mean = 2, sd = 1) # X ~ Normal(2, 1)
 integrate(h, -Inf, Inf) # E(X)
 
 ```
-
 
 ```{r}
 g <- function(x) ifelse(x <= 1, 1, 0) # 1{x <= 1}
