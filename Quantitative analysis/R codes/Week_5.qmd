@@ -27,7 +27,7 @@ But what if I only measure 10 randomly chosen people from each class of 40 peopl
 
 The sample means I can calculate from this data will be different from the population means.
 
-- Even if sample Mean A is higher than sample Mean B, this could be due to random variation in the sample data. It doesnt necessarily mean that the population means are different.
+-   Even if sample Mean A is higher than sample Mean B, this could be due to random variation in the sample data. It doesnt necessarily mean that the population means are different.
 
 Sample vs Population Means
 
@@ -80,9 +80,7 @@ summary(height.data)
 
 Of course, we won't actually be looking at the entire population datafor these groups - we need to take a sample.
 
-Tidyverse has a function slice_sample() which will do exactly that for
-us - it will randomly select the required number of samples from a
-larger data set.
+Tidyverse has a function slice_sample() which will do exactly that for us - it will randomly select the required number of samples from a larger data set.
 
 Since we need 8 samples from each class, we do two sampling operations, and combine them into a single data frame with the bind_rows() function.
 
@@ -94,10 +92,7 @@ height.samples <- bind_rows(slice_sample(subset(height.data, class == "classA"),
 summary(height.samples)
 ```
 
-We can check out the summary statistics for our samples. Note that because
-sample() picks a random set of observations, the results from now on will
-be slightly different for each of you, because we are all working with
-different random samples from the population.
+We can check out the summary statistics for our samples. Note that because sample() picks a random set of observations, the results from now on will be slightly different for each of you, because we are all working with different random samples from the population.
 
 ```{r}
 ggplot(data = height.samples, mapping = aes(x = class, y = height)) +
@@ -107,24 +102,13 @@ ggplot(data = height.samples, mapping = aes(x = class, y = height)) +
 
 # BOX PLOT
 
-# Arguably the simplest visualisation for a set of sample data, the box plot is
-# also very easy to create.
+Arguably the simplest visualisation for a set of sample data, the box plot is also very easy to create.
 
-# In the ggplot2 package, which is the most popular and flexible way to create
-# graphs in R, we first create a plot with the ggplot() function, giving it an
-# aesthetics object aes() that tells it which data we want to use for the parts
-# of the graph. Then, we can add different kinds of charts to the plot using
-# various functions, or alter things like the axis labels, colour themes, and so
-# on by using other commands. We string these commands together similarly to
-# the piped functions in Tidyverse, but in ggplot2 we use the plus symbol + to
-# add new elements to a plot.
+In the ggplot2 package, which is the most popular and flexible way to create graphs in R, we first create a plot with the ggplot() function, giving it an aesthetics object aes() that tells it which data we want to use for the parts of the graph. Then, we can add different kinds of charts to the plot using various functions, or alter things like the axis labels, colour themes, and so on by using other commands. We string these commands together similarly to the piped functions in Tidyverse, but in ggplot2 we use the plus symbol + to add new elements to a plot.
 
-# To create a box plot, we give ggplot() the data we want to use, and then specify
-# the mapping - an aes() object telling it which columns to use for the axes. In
-# this case, we want a vertical box plot, so the "class" column (categorical) is
-# on the X-axis, and the "height" column (continuous) is on the Y-axis.
+To create a box plot, we give ggplot() the data we want to use, and then specify the mapping - an aes() object telling it which columns to use for the axes. In this case, we want a vertical box plot, so the "class" column (categorical) is on the X-axis, and the "height" column (continuous) is on the Y-axis.
 
-# Try swapping the mappings of the x and y axes here, and see what happens?
+Try swapping the mappings of the x and y axes here, and see what happens?
 
 ```{r}
 
@@ -135,16 +119,11 @@ ggplot(data = height.samples, mapping = aes(x = class, y = height)) +
   ggtitle("Sample Distributions (n = 8)")
 ```
 
+There are tons of other settings you can change or elements you can add in ggplot - we'll see a few more of them as we create different plots in future.
 
-# There are tons of other settings you can change or elements you can add in
-# ggplot - we'll see a few more of them as we create different plots in future.
-# One really useful one that's worth knowing from the start is that there are a
-# set of theme_ functions which apply a consistent theme to your charts.
+One really useful one that's worth knowing from the start is that there are a set of theme\_ functions which apply a consistent theme to your charts.
 
-# The default one being used right now is theme_grey(), and others include
-# theme_classic(), theme_dark(), theme_bw(), and theme_light(). I like the
-# theme_minimal() version personally, but try playing with the others and see
-# which one appeals to you or (more importantly) looks good with your data.
+The default one being used right now is theme_grey(), and others include theme_classic(), theme_dark(), theme_bw(), and theme_light(). I like the theme_minimal() version personally, but try playing with the others and see which one appeals to you or (more importantly) looks good with your data.
 
 ```{r}
 
@@ -156,12 +135,9 @@ ggplot(data = height.samples, mapping = aes(x = class, y = height)) +
   theme_minimal()
 ```
 
-
 # HISTOGRAM
 
-# Another really simple and effective way to look at our data is with a
-# histogram that shows the density of observations across the scale of the
-# data.
+Another really simple and effective way to look at our data is with a histogram that shows the density of observations across the scale of the data.
 
 ```{r}
 ggplot(data = height.samples, mapping = aes(x = height)) +
@@ -169,30 +145,20 @@ ggplot(data = height.samples, mapping = aes(x = height)) +
 
 ```
 
-# That doesn't look great. The warning message from R hints at the reason;
-# the default setting for histograms is to have 30 "bins", i.e. to divide up
-# the range of the variable into 30 slices and use those as histogram columns.
-# Since we only have 8 observations of each group, that isn't ideal. We can
-# manually set the number of bins to something more sensible - let's try 10.
+That doesn't look great. The warning message from R hints at the reason; the default setting for histograms is to have 30 "bins", i.e. to divide up the range of the variable into 30 slices and use those as histogram columns.
 
-# Also, ggplot has a special function called ..density.. which will calculate
-# the histogram's scale as proportional density of observations, rather than
-# count of observations. This is usually preferable. We can specify it in
-# another aesthetic aes() object, which this time we give specifically to the
-# geom_histogram() function rather than applying it to the whole ggplot().
+Since we only have 8 observations of each group, that isn't ideal. We can manually set the number of bins to something more sensible - let's try 10.
+
+Also, ggplot has a special function called ..density.. which will calculate the histogram's scale as proportional density of observations, rather than count of observations. This is usually preferable. We can specify it in another aesthetic aes() object, which this time we give specifically to the geom_histogram() function rather than applying it to the whole ggplot().
 
 ```{r}
 ggplot(data = height.samples, mapping = aes(x = height)) +
   geom_histogram(aes(y = ..density..), bins = 8)
 ```
 
-# That's better, and we can see the normal distribution a bit more clearly
-# now. However, there's a problem: we have made a histogram for our entire
-# data set, including both Class A and Class B, rather than for the two 
-# classes seperately.
+That's better, and we can see the normal distribution a bit more clearly now. However, there's a problem: we have made a histogram for our entire data set, including both Class A and Class B, rather than for the two classes seperately.
 
-# We could fix that problem by using Tidyverse to make a subset of the data
-# before passing it on to ggplot:
+We could fix that problem by using Tidyverse to make a subset of the data before passing it on to ggplot:
 
 ```{r}
 height.samples %>%
@@ -202,17 +168,9 @@ height.samples %>%
   labs(title = "Sample Distribution for Class A")
 ```
 
-# Note that the pipe symbol %>% changes to a + when we enter the ggplot part
-# of this chain! It's easy to confuse these when you're mixing tidyverse and
-# ggplot commands, and it will cause an error.
+Note that the pipe symbol %\>% changes to a + when we enter the ggplot part of this chain! It's easy to confuse these when you're mixing tidyverse and ggplot commands, and it will cause an error.
 
-# A more elegant way to handle this situation would be to tell ggplot how to
-# divide up the two samples. Here, we tell ggplot that it should set the 
-# "fill" of the histogram (i.e. the colour to fill the bars with) according to
-# the class column in the data. Then, when we plot the geom_histogram() object,
-# we tell it to position the two histograms on top of each other by setting the
-# position parameter to "identity", and make each of them 30% transparent so
-# we can see both data sets by setting the alpha parameter to 0.7.
+A more elegant way to handle this situation would be to tell ggplot how to divide up the two samples. Here, we tell ggplot that it should set the "fill" of the histogram (i.e. the colour to fill the bars with) according to the class column in the data. Then, when we plot the geom_histogram() object, we tell it to position the two histograms on top of each other by setting the position parameter to "identity", and make each of them 30% transparent so we can see both data sets by setting the alpha parameter to 0.7.
 
 ```{r}
 ggplot(data = height.samples, mapping = aes(x = height, fill = class)) +
@@ -221,67 +179,37 @@ ggplot(data = height.samples, mapping = aes(x = height, fill = class)) +
   theme_minimal()
 ```
 
-# The other options for the position parameter are "stack", which is the default
-# and will stack the values on top of each other vertically, and "dodge" which
-# will print columns from each sample side by side. Try changing the position to
-# "dodge" in the above example and see what difference it makes.
+The other options for the position parameter are "stack", which is the default and will stack the values on top of each other vertically, and "dodge" which will print columns from each sample side by side. Try changing the position to "dodge" in the above example and see what difference it makes.
 
+To check the probability that these two samples came from the same population distribution, we use the Two Sample t Test. R has a simple function called t.test() which performs this test.
 
-
-#-----------------------------------------------------------------------------#
-
-# To check the probability that these two samples came from the same 
-# population distribution, we use the Two Sample t Test.
-
-# R has a simple function called t.test() which performs this test.
-# After all that complicated explanation, it's actually very simple
-# to use - you just show it the samples you want to compare by
-# telling it which column in the data frame has the observations,
-# and which has the category showing which sample they came from.
+After all that complicated explanation, it's actually very simple to use - you just show it the samples you want to compare by telling it which column in the data frame has the observations, and which has the category showing which sample they came from.
 
 ```{r}
 t.test(height ~ class, data = height.samples)
 ```
 
-# The main value we are interested in here is the p-value.
-# A high p-value means that we cannot reject the null hypothesis, which
-# is that the two samples are from the same distribution, and thus the
-# real, unobserved difference between the population means is 0.
+The main value we are interested in here is the p-value.
 
-# A low p-value - below the significance levels of 0.05 for 95% confidence,
-# or 0.01 for 99% confidence - would indicate that we can reject the null
-# hypothesis, meaning that we are confident our samples are actually
-# different from each other.
+A high p-value means that we cannot reject the null hypothesis, which is that the two samples are from the same distribution, and thus the real, unobserved difference between the population means is 0.
 
-# In this case, you probably got a high p-value, indicating that
-# the samples really are from the same population.
+A low p-value - below the significance levels of 0.05 for 95% confidence, or 0.01 for 99% confidence - would indicate that we can reject the null hypothesis, meaning that we are confident our samples are actually different from each other.
 
-# Note also the 95% Confidence Interval values. This is essentially saying
-# that statistically, there is a 95% probability based on these samples that
-# the true difference in means between the two populations is between these
-# two values. Generally, if the confidence interval includes 0, that means we
-# retain the null hypothesis, because we haven't been able to exclude the
-# possibility that the real difference is zero.
+In this case, you probably got a high p-value, indicating that the samples really are from the same population.
 
+Note also the 95% Confidence Interval values. This is essentially saying that statistically, there is a 95% probability based on these samples that the true difference in means between the two populations is between these two values. Generally, if the confidence interval includes 0, that means we retain the null hypothesis, because we haven't been able to exclude the possibility that the real difference is zero.
 
-#-----------------------------------------------------------------------------#
+There are two other forms of t test to introduce here.
 
-# There are two other forms of t test to introduce here.
+Firstly, the ONE SAMPLE T TEST.
 
-# Firstly, the ONE SAMPLE T TEST.
+Up until now, we've been talking about comparing two samples to see if they are significantly different (i.e. from different populations).
 
-# Up until now, we've been talking about comparing two samples to see if they
-# are significantly different (i.e. from different populations).
+What if we instead want to compare one sample against a prior expectation; for example, we have some new survey data, and want to see if it differs significantly from the findings of previous surveys?
 
-# What if we instead want to compare one sample against a prior expectation;
-# for example, we have some new survey data, and want to see if it differs
-# significantly from the findings of previous surveys?
+In that case, we can t test the sample against an expected mean value, instead of another sample.
 
-# In that case, we can t test the sample against an expected mean value,
-# instead of another sample.
-
-# Let's say we have been told the average height of students in this
-# faculty is 170 centimetres. Does our sample fit with that expectation?
+Let's say we have been told the average height of students in this faculty is 170 centimetres. Does our sample fit with that expectation?
 
 ```{r}
 # Let's test the class A samples...
@@ -295,74 +223,43 @@ height.samples %>%
   t.test(mu = 170.0)
 ```
 
-# Depending on your samples, you probably got some pretty low p-values for 
-# those tests - perhaps even lower than 0.05 (95% confidence) or 0.01 (99%
-# confidence). It seems like our samples contradict the expected mean value!
+Depending on your samples, you probably got some pretty low p-values for those tests - perhaps even lower than 0.05 (95% confidence) or 0.01 (99% confidence). It seems like our samples contradict the expected mean value!
 
-# Remember: the t-test is sensitive to the number of observations you have 
-# of your variables, and gets more confident with larger sample sizes.
+Remember: the t-test is sensitive to the number of observations you have of your variables, and gets more confident with larger sample sizes.
 
-# Let's try combining the observed samples for class A and class B (since
-# they're both valid samples for the faculty overall) and see what happens.
+Let's try combining the observed samples for class A and class B (since they're both valid samples for the faculty overall) and see what happens.
 
 ```{r}
 t.test(height.samples$height, mu = 170.0)
 ```
 
-# Again, the result will depend on your sample - but you probably got
-# a really, really small p-value, meaning that it's extremely unlikely
-# that these samples came from a population with a mean of 170cm. 
+Again, the result will depend on your sample - but you probably got a really, really small p-value, meaning that it's extremely unlikely that these samples came from a population with a mean of 170cm.
 
-# Can we really say that the 170cm figure for the faculty is wrong, just
-# on the basis of 8 or 16 observations?
+Can we really say that the 170cm figure for the faculty is wrong, just on the basis of 8 or 16 observations?
 
-# If the samples truly were randomly chosen then yes, we can. The t-test
-# and other tests based on population distributions are very powerful 
-# tools for this reason: by calculating probabilities that specific sets
-# of observations would appear by chance from a certain population, they
-# allow us to make inferences about large populations from relatively
-# small sets of randomly selected data.
+If the samples truly were randomly chosen then yes, we can. The t-test and other tests based on population distributions are very powerful tools for this reason: by calculating probabilities that specific sets of observations would appear by chance from a certain population, they allow us to make inferences about large populations from relatively small sets of randomly selected data.
 
+The second variation on the t-test is the PAIRED SAMPLES T TEST.
 
-#-----------------------------------------------------------------------------#
+This is a special case, because it assumes that the two samples you are testing are two observations of the same units / cases.
 
-# The second variation on the t-test is the PAIRED SAMPLES T TEST.
+For example, if you ran an experiment where you measured people's views on a certain topic, then showed them a video, then measured their views again - you would have two observations for each person. Similarly, if you did a panel survey with the same people answering the survey before and after an election, you would have paired samples before and after the election.
 
-# This is a special case, because it assumes that the two samples you are
-# testing are two observations of the same units / cases.
+In this case, you would use a paired sample t test to see if there is a statistically significant difference between the sample means before and after the "treatment".
 
-# For example, if you ran an experiment where you measured people's views
-# on a certain topic, then showed them a video, then measured their views
-# again - you would have two observations for each person. Similarly, if
-# you did a panel survey with the same people answering the survey before
-# and after an election, you would have paired samples before and after
-# the election.
-
-# In this case, you would use a paired sample t test to see if there is
-# a statistically significant difference between the sample means before
-# and after the "treatment".
-
-# For this, we'll need some paired-samples data. Let's load in a dataset
-# of survey data showing respondents' attitudes to a certain political
-# party before and after being shown a campaign ad.
+For this, we'll need some paired-samples data. Let's load in a dataset of survey data showing respondents' attitudes to a certain political party before and after being shown a campaign ad.
 
 ```{r}
 
-  survey_scores <- read_csv(file = "survey_experiment.csv")
+survey_scores <- read_csv(file = "survey_experiment.csv")
 
 glimpse(survey_scores)
 summary(survey_scores)
 ```
 
-# We can see that there are certainly some differences in the samples, but
-# to understand if the treatment actually made a meaningful difference, we
-# have to test for differences on a pairwise basis. 
+We can see that there are certainly some differences in the samples, but to understand if the treatment actually made a meaningful difference, we have to test for differences on a pairwise basis.
 
-# For a paired t-test, we need to have two samples of data - x and y - which are
-# in exactly the same order, so that the observation of case N in x corresponds
-# to the observation of case N in y. This is done easily in R by using the
-# pivot_wider() function from the Tidyverse, which will take a long-form data
-# and turn it into a wide-form data frame with the two samples side by side.
+For a paired t-test, we need to have two samples of data - x and y - which are in exactly the same order, so that the observation of case N in x corresponds to the observation of case N in y. This is done easily in R by using the pivot_wider() function from the Tidyverse, which will take a long-form data and turn it into a wide-form data frame with the two samples side by side.
 
 ```{r}
 survey_scores.wide <- survey_scores %>%
@@ -371,34 +268,22 @@ survey_scores.wide <- survey_scores %>%
 t.test(survey_scores.wide$Before, survey_scores.wide$After, paired = TRUE)
 ```
 
-# Here we can see that the p-value is high - well above the 0.05 
-# significance level, meaning that we cannot reject the null hypothesis
-# that these samples are not notably different. It would appear that
-# the treatment did not have a significant effect.
+Here we can see that the p-value is high - well above the 0.05 significance level, meaning that we cannot reject the null hypothesis that these samples are not notably different. It would appear that the treatment did not have a significant effect.
 
+Another Visualisation - PAIRED DATA BOXPLOT
 
-#-----------------------------------------------------------------------------#
-# Another Visualisation - PAIRED DATA BOXPLOT
+While we're on the topic of paired data, there is a variation of the box plot that is really useful for viewing the change in a population between two observations of the same subjects. This is also a good opportunity to look at how adding elements to a ggplot can gradually build up a complex data visualisation.
 
-# While we're on the topic of paired data, there is a variation of the box plot
-# that is really useful for viewing the change in a population between two
-# observations of the same subjects. This is also a good opportunity to look
-# at how adding elements to a ggplot can gradually build up a complex data
-# visualisation.
+Our objective is to create a box plot which also shows lines displaying the change in each data point between the two waves of the survey.
 
-# Our objective is to create a box plot which also shows lines displaying the
-# change in each data point between the two waves of the survey.
-
-# Let's start with a regular box plot:
+Let's start with a regular box plot:
 
 ```{r}
   ggplot(data = survey_scores, aes(x = survey_wave, y = sentiment)) +
   geom_boxplot()
 ```
 
-# First problem: we want the Before plot on the left, since most people will
-# naturally read the plot left to right. We can use the fct_rev() function 
-# ("factor reverse") to turn around the order of this category / factor variable.
+First problem: we want the Before plot on the left, since most people willnaturally read the plot left to right. We can use the fct_rev() function("factor reverse") to turn around the order of this category / factor variable.
 
 ```{r}
 ggplot(data = survey_scores, aes(x = fct_rev(survey_wave), y = sentiment)) +
@@ -417,12 +302,8 @@ ggplot(data = survey_scores, aes(x = fct_rev(survey_wave), y = sentiment)) +
   geom_point() +
   geom_line(mapping = aes(group = subject_id))
 ```
-# You can see how by putting together three different types of chart - a 
-# box plot, a scatter / point graph, and a line graph - we have created a
-# more complex visualisation. The next step would be to play with aspects
-# like theme, colours, and transparency to make the graph readable and
-# attractive. Here's my attempt at it.
 
+You can see how by putting together three different types of chart - a box plot, a scatter / point graph, and a line graph - we have created a more complex visualisation. The next step would be to play with aspects like theme, colours, and transparency to make the graph readable and attractive. Here's my attempt at it.
 
 ```{r}
 ggplot(data = survey_scores, aes(x = fct_rev(survey_wave), y = sentiment)) +
@@ -433,9 +314,4 @@ ggplot(data = survey_scores, aes(x = fct_rev(survey_wave), y = sentiment)) +
   theme_minimal()
 ```
 
-
-# Something you can see clearly from this graph, which might not have been so
-# easy to understand just from the statistical test, is that the treatment
-# seems to have been very polarising - it did improve sentiment among most
-# users, but there were a substantial minority of users whose sentiment
-# dropped dramatically after seeing the campaign ad.
+Something you can see clearly from this graph, which might not have been so easy to understand just from the statistical test, is that the treatment seems to have been very polarising - it did improve sentiment among most users, but there were a substantial minority of users whose sentiment dropped dramatically after seeing the campaign ad.
