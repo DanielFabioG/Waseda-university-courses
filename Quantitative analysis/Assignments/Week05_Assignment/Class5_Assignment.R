@@ -8,8 +8,13 @@
 
 # Load this file into R, and then write code to perform the following
 # analyses.
+
+# Loading tidyverse and the data from csv
 library(tidyverse)
-df <-read.csv("reported_income.csv")
+
+# To make the data reproducible I will download it from github instead of reading it from a local file
+url <- "https://raw.githubusercontent.com/DanielFabioG/Waseda-university-courses/refs/heads/main/Quantitative%20analysis/Assignments/Week05_Assignment/reported_income.csv"
+income_df <- read_csv(url)
 
 
 # 1) Create a boxplot and a histogram which display this data. You
