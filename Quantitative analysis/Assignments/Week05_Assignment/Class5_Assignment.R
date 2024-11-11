@@ -9,12 +9,13 @@
 # Load this file into R, and then write code to perform the following
 # analyses.
 
-# Loading tidyverse and the data from csv file
+# Loading tidyverse and the data from csv file, also removing old memory
+rm(list = ls())
 library(tidyverse)
 
 # To make the data reproducible I will download it from github instead of reading it from a local file
-url <- "https://raw.githubusercontent.com/DanielFabioG/Waseda-university-courses/refs/heads/main/Quantitative%20analysis/Assignments/Week05_Assignment/reported_income.csv"
-income_df <- read_csv(url)
+url <- "https://raw.githubusercontent.com/DanielFabioG/data/refs/heads/main/reported_income.csv"
+income_df <- read_csv(url, col_types = cols())
 
 # Removing scientific notation, since I am a human and I like to read numbers that my brain can understand
 # honestly this is just for the low p-value to be more readable
