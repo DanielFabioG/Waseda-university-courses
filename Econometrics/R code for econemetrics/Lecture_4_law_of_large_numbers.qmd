@@ -11,6 +11,9 @@ Assignment 1 will be 15 points out of 60 total points.
 Clarify your answers when submitting your paper.
 
 ```{r}
+rm(list = ls())
+library(tidyverse)
+library(extraDistr)
 x <- rnorm(1000,1,1)
 y <- rnorm(1000,1,1)
 
@@ -112,7 +115,6 @@ A simulation of dice rolling with R
 For example, if you want to simulate 10 dice rolls, you can use the following code:
 
 ```{r}
-library(extraDistr)
 
 Dice10 <- rdunif(10,1,6)
 Dice10
@@ -141,6 +143,9 @@ Recall that the expected average is 3.5
 Lets visualize it:
 
 ```{r}
+# setting seed makes it replicable
+set.seed(90)
+
 Dice <- function(n){
   Dicerolls <- rdunif(n,1,6)
   mean(Dicerolls)
@@ -150,6 +155,7 @@ Dice(10)
 ```
 
 ```{r}
+
 Dice(100)
 ```
 
@@ -174,19 +180,24 @@ N <- 1000
 
 R <- numeric(N) # Nx1 vector or zeros
 
-for(i in 1:N) R[i] <- Dice(i)
+for(i in 1:N) {
+  R[i] <- Dice(i)
+}
+
+
 
 ```
 
 Then, the i-th element of R contains the average value of i dice rolls.
 
 ```{r}
-#library(tidyverse)
-data <- data.frame(n = 1:N, R = R)
-ggplot(data, aes(x = n, y = R))+
+
+data <- data.frame(n = 1:N, mean = R)
+ggplot(data, aes(x = n, y = mean))+
   geom_line()+
-  geom_hline(yintercept = 3.5, col = "red", size = 1)+
-  xlab("Number of dice rolls")
+  geom_abline(intercept = 3.5, slope = 0, col = "red", linewidth = 1)+
+  labs(x="Number of dice rolls",
+       y="Mean value of dice rolls")
 ```
 
 ```{r}
@@ -278,3 +289,89 @@ Then, the sample average $\bar{X}$ converges to the population mean $\mu$ in pro
 $$\bar{X} \xrightarrow{p} \mu  (n \rightarrow \infty)$$
 
 This result is known as the Law of Large Numbers (LLN).
+
+Proof of LLN
+
+Suppose that we have data ${X_1,...,X_N}$ of sample size n independently drawn from the same population. Let population mean of X be $\mu$.
+
+Let $\mu = E[X]$ and $\bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i$.
+
+Then, we have:
+
+$$E[\bar{X}] = E[\frac{1}{n} \sum_{i=1}^{n} X_i] = \frac{1}{n} \sum_{i=1}^{n} E[X_i] = \frac{1}{n} \sum_{i=1}^{n} \mu = \mu$$
+
+$$Var[\bar{X}] = Var[\frac{1}{n} \sum_{i=1}^{n} X_i] = \frac{1}{n^2} \sum_{i=1}^{n} Var[X_i] = \frac{1}{n^2} \sum_{i=1}^{n} \sigma^2 = \frac{\sigma^2}{n}$$
+
+By Chebyshev's inequality, we have:
+
+$$P(|\bar{X} - \mu| \geq \epsilon) \leq \frac{Var[\bar{X}]}{\epsilon^2} = \frac{\sigma^2}{n \epsilon^2}$$
+
+Therefore, we have:
+
+$$\lim_{n \rightarrow \infty} P(|\bar{X} - \mu| \geq \epsilon) \leq 0$$
+
+This implies that $\bar{X} \xrightarrow{p} \mu$ as $n \rightarrow \infty$.
+
+LLN: Example
+
+```{r}
+sim <- function(n) {
+  X <- rnorm(1)
+  for (i in 2:n) {
+    X <- c(X, X[i-1] + rnorm(1))
+  }
+  mean(X)
+}
+N <- 1000
+R <- numeric(N-1)
+for(i in 2:N) R[i-1] <- sim(i)
+
+data <- data.frame(n = 2:N, mean = R)
+ggplot(data, aes(x = n, y = mean)) +
+  geom_line() +
+  geom_hline(yintercept = 0, col = "red", size = 1) +
+  xlab("N")
+```
+
+Dependent data 
+
+```{r}
+
+sim <- function(n) {
+  X <- rnorm(1)
+  for (i in 2:n) {
+    X <- c(X, 0.3*X[i-1] + rnorm(1))
+  }
+  mean(X)
+}
+N <- 1000
+R <- numeric(N-1)
+
+for(i in 2:N) R[i-1] <- sim(i)
+
+data <- data.frame(n = 2:N, mean = R)
+
+ggplot(data, aes(x = n, y = mean)) +
+  geom_line() +
+  geom_hline(yintercept = 0, col = "red", size = 1) +
+  xlab("N")
+
+```
+
+Estimation of conditional expectation
+
+Consider a randomized setup: for example, Y = blood pressure, X = 1 (new drug), X = 0 (placebo).
+
+The average treatment effect of the drug is measured by:
+
+$$E[Y|X=1] - E[Y|X=0]$$
+
+We can estimate $E[Y|X=1]$ and $E[Y|X=0]$ by the sample averages of Y for the treated and untreated groups.
+
+$$\hat{E}[Y|X=1] = \frac{1}{n_1} \sum_{i=1}^{n_1} Y_i1$$
+
+and
+
+$$\hat{E}[Y|X=0] = \frac{1}{n_0} \sum_{i=1}^{n_0} Y_i0$$
+
+where $n_1$ and $n_0$ are the sample sizes of the treated and untreated groups.

@@ -1,0 +1,144 @@
+---
+title: "Central limit theorem"
+format: pdf
+editor: visual
+---
+
+## Central limit theorem
+
+```{r}
+rm(list = ls())
+library(tidyverse)
+library(extraDistr)
+```
+
+In this simulation, we repeatedly compute the average of 100 dice
+rolls 10000 times, and plot the results in a histogram.
+
+Run the following R code:
+
+
+```{r}
+Dice <- function(n) rdunif(n, 1, 6) %>% mean()
+R1 <- numeric(10000)
+for(i in 1:10000) R1[i] <- Dice(100)
+hist(R1, freq = FALSE)
+```
+
+The histogram looks almost symmetric and unimodal with its peak
+at 𝔼(𝑋) = 3.5.
+
+Next, we perform a coin flipping experiment: head = 1, tail = 0.
+
+Similarly as above, compute the average of 100 coin flipping results
+10000 times, and plot them in a histogram.
+
+```{r}
+Coin <- function(n) rdunif(n, 0, 1) %>% mean()
+R2 <- numeric(10000)
+for(i in 1:10000) R2[i] <- Coin(100)
+hist(R2, freq = FALSE)
+```
+
+
+Again, the histogram looks almost symmetric and unimodal with its
+peak at 𝔼(𝑋) = 0.5.
+
+The most important probability distribution in the entire field of statistics is the normal distribution.
+
+The normal distribution is symmetric and unimodal.
+The shape of the normal distribution is fully characterized by two parameters: the mean 𝜇 and the standard deviation 𝜎.
+The mean 𝜇 determines the center of the distribution, and the standard deviation 𝜎 determines the width of the curve.
+
+
+```{r}
+par(mfrow = c(1,3)) # split the graphic window into (1,3)
+curve(dnorm(x, mean = 0, sd = 1), xlim = c(-4,10), ylim = c(0,0.6))
+curve(dnorm(x, mean = 2, sd = 0.7), xlim = c(-4,10), ylim = c(0,0.6))
+curve(dnorm(x, mean = 3, sd = 2), xlim = c(-4,10), ylim = c(0,0.6))
+```
+The normal distribution with mean 𝜇 and standard deviation 𝜎 is
+denoted as 𝑁(𝜇, 𝜎2), and its PDF is given by:
+
+$$f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$$
+
+If X follows the normal distribution N (𝜇, 𝜎2), the probability that X is less than or equal to $\alpha$ is given by the CDF of the normal distribution:
+
+$$F(\alpha) = \int_{-\infty}^{\alpha} f(x)dx = \int_{-\infty}^{\alpha} \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}dx$$
+
+where $F(\alpha)$ is the CDF of the normal distribution. $N(\sigma, \mu^2)$.In particular the normal distribution $N(0,1)$ is called the standard normal distribution.
+
+It seems possible to approximate the histogram of the average dice rolls by an “appropriately chosen” normal distribution
+
+```{r}
+hist(R1, freq = FALSE, xlim = c(2,5), ylim = c(0,2.5))
+par(new = T)
+curve(dnorm(x, 3.5, 0.171), xlim = c(2,5), ylim = c(0,2.5), col = "red")
+```
+
+The same is true for the coin flipping experiment
+
+```{r}
+hist(R2, freq= FALSE, xlim = c(0.2,0.8), ylim = c(0,10))
+par(new = T)
+curve(dnorm(x, 0.5, 0.05), xlim = c(0.2,0.8), ylim = c(0,10), col = "red")
+```
+
+Dice rolling and coin flipping experiments have different probability distributions, but the distribution of the sample mean can be approximated by a normal distribution in both cases.
+
+This surprising result is due to the central limit theorem.
+
+The central limit theorem states that the distribution of the sample mean of a large number of independent, identically distributed random variables approaches a normal distribution, regardless of the shape of the original distribution.
+
+Suppose we have data $X_1, X_2, ..., X_n$ of sample size $n$ randomly drawn from the same population. Let pop mean of $X_i$ be $\mu$ and pop variance of $X_i$ be $\sigma^2$. Then the sample mean $\bar{X}$ and sample variance $S^2$ are given by:
+
+$$\bar{X} = \frac{1}{n}\sum_{i=1}^{n}X_i$$
+
+Then if $n$ is large, the distribution of $\bar{X}$ is approximately normal with mean $\mu$ and variance $\frac{\sigma^2}{n}$.
+
+## Convergence in distribution
+
+A sequence of random variables $(v_n)^\infty_{n^= 1}$ is said to converge in distribution to $N(\mu, \sigma^2)$ if
+
+$$\lim_{n \to \infty} P(v_n \leq x) = \phi(x;u,\sigma)$$
+
+for any $x$.
+
+When $v_n$ converges in distribution to $N(\mu, \sigma^2)$, we write $v_n \xrightarrow{d} N(\mu, \sigma^2)$.
+
+The following are equivalent:
+
+1. $v_n \xrightarrow{d} N(\mu, \sigma^2)$
+
+$\mu$ and $\sigma$ are the mean and standard deviation of $v_n$, respectively
+
+A formal statement of CLT is the following: under the aforementioned
+assumptions,
+
+$$\sqrt{n}(\bar{X} - \mu) \xrightarrow{d} N(0, \sigma^2)$$
+
+where $\bar{X}$ is the sample mean of $X_i$.
+
+What is remarkable about the central limit theorem is that it does not require the underlying distribution to be normal. The central limit theorem is a fundamental result in probability theory and statistics, and it is the reason why the normal distribution is so important in the field of statistics.
+
+The proof is very hard and omitted.
+
+## Convergence in distribution
+
+Dice roll simulation
+
+$E[X] = 3.5$
+
+$Var[X] = \frac{35}{12} = \sqrt{Var[X]} = 1.71$
+
+```{r}
+plot_Dice <- function(n){
+ R <- numeric(10000)
+ for(i in 1:10000) R[i] <- Dice(n)
+ hist(sqrt(n)*(R - 3.5)/1.71, freq = FALSE, xlim = c(-3,3), ylim = c(0, 0.5))
+ par(new = T)
+ curve(dnorm(x), xlim = c(-3,3), ylim = c(0, 0.5), col = "red")
+ }
+par(mfrow = c(1,3))
+plot_Dice(3); plot_Dice(8); plot_Dice(500)
+```
