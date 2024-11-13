@@ -9,36 +9,9 @@ format:
     documentclass: scrartcl
     papersize: a4
     toccolor: black
-echo: false
 warning: false
-toc: true
-lof: true
-bibliography: documentobjects/texstuff/references.bib
-csl: documentobjects/texstuff/apa.csl
-header-includes:
-  - \usepackage{wrapfig}
-  - \usepackage{subcaption}
-  - \usepackage{amsmath}
-  - \usepackage{cancel}
-  - \usepackage{hyperref}
-  - \usepackage{tikz}
-  - \usepackage{tabularx}
-  - \usepackage{colortbl}
-  - \usepackage{xcolor}
-  - \renewcommand{\maketitle}{}
-  - \definecolor{cornflowerblue}{RGB}{100,149,237}
-  - \definecolor{darkgrey}{RGB}{220,220,220}
-  - \usepackage{fancyhdr}
-  - \pagestyle{fancy}
-  - \fancyhf{} 
-  - \fancyhead[L]{\rightmark}
-  - \fancyhead[R]{\thepage}
-  - \fancyfoot[C]{\thepage}
-nocite: |
-  @*
+echo: false
 ---
-
-\newpage 
 
 # Home assignment 5: The Melitz effect
 
@@ -96,150 +69,52 @@ round(industry_labor_productivity, 2)
 # the middle will be marked as "domestic" and the most efficient firms as "exporters"
 data <- data %>%
   mutate(Export = ifelse(row_number() <= 15, "Dropouts",
-                          ifelse(row_number() <= 54, "Domestic", "Exporters")))
+                          ifelse(row_number() <= 53, "Domestic", "Exporters")))
 
-```
+# Calculate the new quantity produced under trade
+data <- data %>%
+  mutate(`Quantity produced under trade` = ifelse(Export == "Dropouts", 0,
+                                                  ifelse(Export == "Domestic", `Quantity produced under autarky.` * 0.9, 
+                                                         `Quantity produced under autarky.` * 1.1)))
 
+# Calculate the labor under trade
+data <- data %>%
+  mutate(Labor_trade = ifelse(Export == "Dropouts", 0,
+                              ifelse(Export == "Domestic", f + `Quantity produced under autarky.` * 0.9 / `Marginal product of labor, Φ.`,
+                                     f + g + `Quantity produced under autarky.` * 1.1 / `Marginal product of labor, Φ.`)))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```{r}
-# Plotting average openness over the years
-fig_openness<-data %>%
-  select(Average_1971, Average_1981, Average_1991, Average_2001, Average_2011, Average_2021) %>%
-  pivot_longer(everything(), names_to = "Year", values_to = "Openness") %>%
-  ggplot(aes(x = Year, y = Openness, group = 1)) +
-  geom_line(color = "cornflowerblue", linewidth = 1.2) +
-  geom_point(color = "cornflowerblue", size = 3) +
-  labs(title = "",
-       x = "Year",
-       y = "Openness") +
-  # annotate the plot with the values of the years
-  geom_text(aes(label = Openness), nudge_y = 0.03, check_overlap = TRUE, size = 7) +
-    theme_bw()+
-  # make text for x and y points bigger
-  theme(axis.text.x = element_text(size = 14),
-        axis.text.y = element_text(size = 14),
-        axis.title.x = element_text(size = 20),
-        axis.title.y = element_text(size = 20))
-
-#ggsave("documentobjects/figures/openness.png", plot = fig_openness, width = 10, height = 6, dpi = 300)
-fig_openness
-```
-
-
-```{=tex}
-\begin{figure}[H]
-\centering
-\includegraphics{documentobjects/figures/openness.png}
-\caption{Average openness over the years}
-\end{figure}
-```
-
-The average openness over the years has increased from 1971 to 2021 but has had a small decrease the last 10 years after a peak of 0.87 in 2011.
-
-
-## (2) How many countries experienced an increase in openness between 2011 and 2021?
-
-```{r}
-# Count the countries with an increase in opennes from 2011 to 2021
-data %>%
-  filter(Change_2011_2021 > 0) %>%
-  count()
-```
-
-Thirty six countries experienced an increase in openness between 2011 and 2021.
-
-\newpage
-
-```{r}
-# Calculate gdp per capita
-data <- data %>% 
-  mutate(
-    GDP_per_capita_1971 = GDP_1971 / Population_1971,
-    GDP_per_capita_1981 = GDP_1981 / Population_1981,
-    GDP_per_capita_1991 = GDP_1991 / Population_1991,
-    GDP_per_capita_2001 = GDP_2001 / Population_2001,
-    GDP_per_capita_2011 = GDP_2011 / Population_2011,
-    GDP_per_capita_2021 = GDP_2021 / Population_2021
-  )
-```
-
-## (3) Compare the average openness of the 20 largest countries (measured in terms of population) and the 20 smallest countries in 2011. Which is more open?
-
-
-```{r}
-# Calculate the average openness of the 20 largest and 20 smallest countries in 2011
-sjekk_3 <-data %>%
-  arrange(desc(Population_2011)) %>%
-  slice_head(n = 20) %>%
-  summarise(Average_openness_largest = mean(Openness_2011))
-
-round(sjekk_3,2)
+# Show the last 10 rows of the data
+tail(data, 10)
 ```
 
 ```{r}
-data %>%
-  arrange(Population_2011) %>%
-  slice_head(n = 20) %>%
-  summarise(Average_openness_smallest = mean(Openness_2011))
+# Calculate the industry's labor productivity under trade
+industry_labor_productivity_trade <- sum(data$`Quantity produced under trade`) / sum(data$Labor_trade)
+
+# Round the result to 2 decimals
+round(industry_labor_productivity_trade, 2)
+
 ```
-The smallest countries are more open than the largest countries in 2011.
+(d) Draw a graph to illustrate these results.
 
+```{r, fig.width=10, fig.height=6}
+# Plotting the labor productivity under autarky and trade with a line plot
 
-## (4) Now compare the average openness of the 20 richest countries (measured in terms of per capita GDP) and the 20 poorest countries in 2011. Which is more open?
+fig <-data %>%
+  ggplot(aes(x = 1:nrow(data), y = Labor_autarky, color = "Autarky")) +
+  geom_line(linewidth = 1.5) +
+  geom_point(aes(y = Labor_trade, color = "Trade")) +
+  labs(title = "Labor productivity under autarky and trade",
+       x = "Firm number",
+       y = "Labor productivity") +
+  scale_color_manual(values = c("Autarky" = "cornflowerblue", "Trade" = "palevioletred")) +
+  # Draw vertical dashed segments with fixed x, xend, y, and yend values
+  geom_segment(x = 1, xend = 1, y = 0, yend = data$Labor_autarky[1], linetype = "dashed", color = "black", linewidth = 1) +
+  geom_segment(x = 15, xend = 15, y = 0, yend = data$Labor_trade[16], linetype = "dashed", color = "black", linewidth = 1) +
+  geom_segment(x = 53, xend = 53, y = 0, yend = data$Labor_trade[54], linetype = "dashed", color = "black", linewidth = 1) +
+  theme_minimal()
 
-```{r}
-# Calculate the average openness of the 20 richest and 20 poorest countries in 2011
-sjekk_1 <- data %>%
-  arrange(desc(GDP_per_capita_2011)) %>%
-  slice_head(n = 20) %>%
-  summarise(Average_openness_richest = mean(Openness_2011))
-
-round(sjekk_1,2)
+fig
 ```
-
-```{r}
-sjekk <-data %>%
-  arrange(GDP_per_capita_2011) %>%
-  slice_head(n = 20) %>%
-  summarise(Average_openness_poorest = mean(Openness_2011))
-
-round(sjekk,2)
-```
-The richest countries are more open than the poorest countries in 2011.
-
-## (5) Now, the most important part of your empirical analysis! Based on your results, what kind of countries tend to be more open and what kind tend to be less open.
-
-The results show that the smallest and richest countries tend to be more open than the largest and poorest countries.
-
-\newpage
 
 
