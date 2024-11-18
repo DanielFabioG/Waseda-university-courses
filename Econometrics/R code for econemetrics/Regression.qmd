@@ -1,0 +1,139 @@
+---
+title: "Regression"
+format: pdf
+editor: visual
+---
+
+## Regression
+
+state.x77: an R built-in data on economic and social characteristics of 50 states in the US as of 19771
+
+```{r}
+
+rm(list = ls())
+library(tidyverse)
+library(extraDistr)
+data <- as.data.frame(state.x77)
+
+head(data, 4)
+```
+
+```{r}
+dim(data)
+```
+
+Suppose we would like to know how illiteracy affects income (note: Income is a per-capita income).
+
+Firstly, we visually check the relationship between these variables:
+
+```{r}
+ggplot(data, aes(x = Illiteracy, y = Income)) + geom_point()
+
+```
+
+From this figure, we can observe that there is a negative relationship between illiteracy and income, as expected.
+
+Indeed, the (sample) correlation coefficient is
+
+```{r}
+with(data, cor(Illiteracy, Income))
+
+#or
+
+cor(data$Illiteracy, data$Income)
+```
+Using with() function we can omit the data$ part.
+
+How much does an additional 1 point increase in illiteracy rate decrease the state’s income level, on average?
+
+Here we assume a "model" that depicts the relationship between illiteracy and income:
+
+$$Income = \beta_0 + \beta_1 \times Illiteracy + \epsilon$$
+
+where $\beta_0$ is the intercept, $\beta_1$ is the slope, and $\epsilon$ is the error term.
+
+Under this model, Illiteracy and Income have a linear relationship.
+
+Since it is generally impossible that all observations are exactly on the straight line, we need an “error” term 𝜖 for adjustment.
+
+We can answer to the above question by estimating the slope parameter $\beta_1$ from the data:
+
+$Income + \beta_0 = \beta_1 \times Illiteracy + \epsilon$
+
+We can estimate 𝛽1 by finding the best-fitting line to the data:
+
+```{r}  
+fit <- lm(Income ~ Illiteracy, data = data)
+
+ggplot(data, aes(x = Illiteracy, y = Income)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
+
+```
+The estimated regression model (the red line in the figure) is
+
+$$Income = 4951.3 - 440.6\times Illiteracy \ + error$$
+Thus we can conclude that, on average, a 1% increase in illiteracy = 440.6 decrease in per-capita income.
+
+
+## Formal definition of of Regression
+
+Outcome variable of interest is the dependent variable, denoted by Y.
+
+Variables that determine the value of the dependant variable are called explanatory variables, denoted by X.
+
+The purpose of regression analysis is to estimate the relationship between the dependent variable and the explanatory variables. Or as in notes to estimate a function 𝑔(⋅) of X that predicts the value of 𝑌 .
+
+Linear regression model with a single explanatory variable:
+
+$$Y = \beta_0 + \beta_1 \times X + \epsilon$$
+
+where $\beta_0$ is the intercept, $\beta_1$ is the slope, and $\epsilon$ is the error term.
+
+Multiple regression model with multiple explanatory variables:
+
+$$Y = \beta_0 + \beta_1 \times X_1 + \beta_2 \times X_2 + \ldots + \beta_k \times X_k + \epsilon$$
+
+where $\beta_0$ is the intercept, $\beta_1, \beta_2, \ldots, \beta_k$ are the slopes, and $\epsilon$ is the error term.
+
+Example 1:
+
+A linear regression model of annual income:
+
+$$Income = \beta_0 + \beta_1 \times Education + \beta_2 \times Experience + \epsilon$$
+
+where Income is the dependent variable, Education and Experience are the explanatory variables, and $\epsilon$ is the error term.
+
+More formally:
+
+$$\frac{\Delta{Income}}{\Delta{Education}} = \beta_1$$
+
+Thus, $\beta_1$ is the change in Income for a one-unit change in Education, holding Experience constant.
+
+Example 2:
+
+A randomized experiment with binary treatment:
+
+$$Outcome = \beta_0 + X \beta_1  + \epsilon$$
+where $X = {0, 1}$ is the treatment variable.
+
+Assume that $E(\epsilon) = 0$ <= Randomly assigning the treatment ensures this assumption.
+
+Then the average treatment effect (ATE) is:
+
+$$E(Outcome|X=1) - E(Outcome|X=0) = (\beta_0+\beta_1)-\beta_0 = \beta_1$$
+”Linear” regression is a regression analysis based on a linear regression function:
+
+$$g(X) = \beta_0 +X_1 \beta_1 + ... X_k\beta_k $$
+One may consider a more general "nonlinear" regression model:
+
+$$g(X) = (\beta_0 +X_1 \beta_1 + ... X_k\beta_k)^\alpha$$
+
+```{r}
+fit <- lm(Illiteracy ~ Illiteracy, data = data)
+
+
+
+summary(fit)
+
+ggplot(data, aes(x = `Life Exp`, y = Illiteracy)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
+
+```
