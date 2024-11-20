@@ -30,7 +30,8 @@ library(janitor)
 # outcomes of elections - i.e., do people partially base their vote choices just
 # on an assessment of the candidate's face?
 
-face <- read_csv("face.csv")
+url <- "https://raw.githubusercontent.com/DanielFabioG/data/refs/heads/main/face.csv"
+face <- read_csv(url)
 head(face)
 
 # d.comp and r.comp are the average "competency" score given to the Democratic
@@ -72,7 +73,7 @@ ggplot(data = face, mapping = aes(x = diff.share, y = d.comp)) +
 # the data frame we want to work on and the columns whose relationship we wish
 # to model. It produces an object containing the "fitted model", which we can
 # examine in various ways.
-
+options(scipen = 999)
 fit <- lm(diff.share ~ d.comp, data = face)
 
 summary(fit)
@@ -191,8 +192,8 @@ ggplot(data = face, mapping = aes(x = diff.share, y = d.comp)) +
 # The file who_lifeexp.csv contains data from the World Health Organisation 
 # with a number of indicators about life expectancy, infant mortality, and 
 # national health systems.
-
-lifeexp <- read_csv("who_lifeexp.csv")
+url <- "https://raw.githubusercontent.com/DanielFabioG/data/refs/heads/main/who_lifeexp.csv"
+lifeexp <- read_csv(url)
 head(lifeexp)
 
 # First things first - as often happens, this data has a bunch of column
@@ -206,6 +207,8 @@ colnames(lifeexp)
 # "opinionated", in the sense that the authors of tidyverse have strong 
 # ideas about the correct format for variable names, but that's generally fine.
 
+
+# janitor hack for fixing names
 lifeexp <- lifeexp %>%
   clean_names()
 
