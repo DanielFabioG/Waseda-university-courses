@@ -152,6 +152,7 @@ par(mfrow = c(1,3))
 
 plot_Coin(3); plot_Coin(8); plot_Coin(500)
 ```
+
 Confidence interval
 
 Let Z be distributed as the standard normal N(0,1). Then it holds that $P(-1.96 \leq Z \leq 1.96) = 0.95$.
@@ -165,6 +166,7 @@ polygon(c(-1.96, seq(-1.96, 1.96, 0.01), 1.96), c(0, dnorm(seq(-1.96, 1.96, 0.01
 
 
 ```
+
 Similarly, the 99% confidence interval is $(-2.58, 2.58)$.
 
 ```{r}
@@ -172,6 +174,7 @@ curve(dnorm(x), xlim = c(-3,3), ylim = c(0, 0.5))
 # density of standard normal distribution
 polygon(c(-2.58, seq(-2.58, 2.58, 0.01), 2.58), c(0, dnorm(seq(-2.58, 2.58, 0.01)), 0), col = "gray", title("99 percent"))
 ```
+
 ```{r}
 integrate(dnorm, -1.96, 1.96)
 integrate(dnorm, -2.58, 2.58)
@@ -238,8 +241,7 @@ $$\hat{\sigma} = \sqrt{\frac{1}{n-1}} \sum_{i=1}^{n} (X_i - \bar{X_n})^2 $$
 
 and estimate the CI by:
 
-$$\hat{CI}_n = [\bar{X}_n - 1.96 \frac{\hat{\sigma}}{\sqrt{n}}, \bar{X}_n + 1.96 \frac{\hat{\sigma}}{\sqrt{n}}]  $$
-When $\sigma$ is replaced by $\hat{\sigma}_n$, the distribution of the standardized sample mean follows the t-distribution with n-1 degrees of freedom.
+$$\hat{CI}_n = [\bar{X}_n - 1.96 \frac{\hat{\sigma}}{\sqrt{n}}, \bar{X}_n + 1.96 \frac{\hat{\sigma}}{\sqrt{n}}]  $$ When $\sigma$ is replaced by $\hat{\sigma}_n$, the distribution of the standardized sample mean follows the t-distribution with n-1 degrees of freedom.
 
 The t-distribution has a similar shape as the standard normal distribution, and converges to 𝑁(0, 1) as 𝑛 increases.
 
@@ -253,5 +255,5 @@ legend("topright", legend = c("Normal", "t, df=1", "t, df=2", "t, df=100"),
        col = c("black", "red", "blue", "green"), lty = 1)
 
 ```
-Thus as n increases, the t-distribution converges to the standard normal distribution.
 
+Thus as n increases, the t-distribution converges to the standard normal distribution.

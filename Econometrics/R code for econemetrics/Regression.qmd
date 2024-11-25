@@ -42,7 +42,8 @@ with(data, cor(Illiteracy, Income))
 
 cor(data$Illiteracy, data$Income)
 ```
-Using with() function we can omit the data$ part.
+
+Using with() function we can omit the data\$ part.
 
 How much does an additional 1 point increase in illiteracy rate decrease the state’s income level, on average?
 
@@ -62,17 +63,16 @@ $Income + \beta_0 = \beta_1 \times Illiteracy + \epsilon$
 
 We can estimate 𝛽1 by finding the best-fitting line to the data:
 
-```{r}  
+```{r}
 fit <- lm(Income ~ Illiteracy, data = data)
 
 ggplot(data, aes(x = Illiteracy, y = Income)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
 
 ```
+
 The estimated regression model (the red line in the figure) is
 
-$$Income = 4951.3 - 440.6\times Illiteracy \ + error$$
-Thus we can conclude that, on average, a 1% increase in illiteracy = 440.6 decrease in per-capita income.
-
+$$Income = 4951.3 - 440.6\times Illiteracy \ + error$$ Thus we can conclude that, on average, a 1% increase in illiteracy = 440.6 decrease in per-capita income.
 
 ## Formal definition of of Regression
 
@@ -112,18 +112,15 @@ Example 2:
 
 A randomized experiment with binary treatment:
 
-$$Outcome = \beta_0 + X \beta_1  + \epsilon$$
-where $X = {0, 1}$ is the treatment variable.
+$$Outcome = \beta_0 + X \beta_1  + \epsilon$$ where $X = {0, 1}$ is the treatment variable.
 
-Assume that $E(\epsilon) = 0$ <= Randomly assigning the treatment ensures this assumption.
+Assume that $E(\epsilon) = 0$ \<= Randomly assigning the treatment ensures this assumption.
 
 Then the average treatment effect (ATE) is:
 
-$$E(Outcome|X=1) - E(Outcome|X=0) = (\beta_0+\beta_1)-\beta_0 = \beta_1$$
-”Linear” regression is a regression analysis based on a linear regression function:
+$$E(Outcome|X=1) - E(Outcome|X=0) = (\beta_0+\beta_1)-\beta_0 = \beta_1$$ ”Linear” regression is a regression analysis based on a linear regression function:
 
-$$g(X) = \beta_0 +X_1 \beta_1 + ... X_k\beta_k $$
-One may consider a more general "nonlinear" regression model:
+$$g(X) = \beta_0 +X_1 \beta_1 + ... X_k\beta_k $$ One may consider a more general "nonlinear" regression model:
 
 $$g(X) = (\beta_0 +X_1 \beta_1 + ... X_k\beta_k)^\alpha$$
 
@@ -133,7 +130,48 @@ fit <- lm(Illiteracy ~ Illiteracy, data = data)
 
 
 summary(fit)
+```
+
+```{r}
 
 ggplot(data, aes(x = `Life Exp`, y = Illiteracy)) + geom_point() + geom_smooth(method = "lm", se = FALSE, color = "red")
+```
 
+
+## Conditional Expectation Function
+
+No code for this part so read the notes.
+
+## Model Misspecification
+
+```{r}
+X <- -200:200/100
+Y <- X^2 + 0.3*rnorm(100)
+print(lm(Y ~ X)$coef)
+```
+
+```{r}
+library(jtools)
+reg <- lm(Y ~ X)
+effect_plot(reg, pred = X, main = "Linear reg", plot.points = TRUE)
+```
+
+```{r}
+reg <- lm(Y ~ poly(X,2)) # poly(X, k) = X + X^2 + ... + X^k
+ effect_plot(reg, pred = X, main = "Polynomial reg", plot.points = TRUE)
+```
+
+```{r}
+library(ISLR)
+data(Wage)
+data <- filter(Wage, education == "4. College Grad")
+
+result <- lm(logwage ~ age, data)
+effect_plot(result, pred = age, main = "Linear: cl grad", plot.points = TRUE)
+
+```
+
+```{r}
+result <- lm(logwage ~ poly(age, 2), data)
+ effect_plot(result, pred = age, main = "Mincer: cl grad", plot.points = TRUE)
 ```
