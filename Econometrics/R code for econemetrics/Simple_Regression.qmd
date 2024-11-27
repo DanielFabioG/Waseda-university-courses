@@ -5,3 +5,34 @@ editor: visual
 ---
 
 ## Simple Regression
+
+```{r}
+rm(list=ls())
+data <- as.data.frame(state.x77)
+library(tidyverse)
+
+```
+
+```{r}
+X <- data$Illiteracy
+Y <- data$Income
+plot(X,Y)
+```
+
+```{r}
+beta_1 <- cov(X, Y)/var(X)
+beta_0 <- mean(Y) - mean(X)*beta_1
+reg <- function(x) beta_0 + beta_1*x
+plot(X, Y, xlim = c(0.5,3), ylim = c(3000, 6500))
+par(new = T)
+curve(reg(x), col = "red", xlim = c(0.5,3), ylim = c(3000, 6500))
+```
+
+```{r}
+c(beta_0, beta_1)
+
+lm(Y ~ X)$coef
+```
+
+## Evaluation of Estimators
+
