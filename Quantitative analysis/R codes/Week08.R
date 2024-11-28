@@ -6,16 +6,8 @@
 
 
 # WEEK 8: Regression Analysis (2)
-
-
-# As ever, set up your R environment and your working directory; make sure you
-# edit the directory below to whereever you put the files for this class.
-
-Sys.setlocale("LC_ALL", 'en_GB.UTF-8')
-Sys.setenv(LANG = "en_GB.UTF-8")
-setwd("~/Dropbox/Waseda/Quantitative Analysis 2024/Week 08/")   
-
-
+options(scipen=999)
+rm(list=ls())
 library(tidyverse)
 library(stargazer)
 
@@ -27,7 +19,8 @@ library(stargazer)
 # The "prof_salaries.csv" file contains about 400 observations of data about 
 # salaries for university professors in California.
 
-salaries <- read_csv(file = "prof_salaries.csv")
+url <- "https://raw.githubusercontent.com/DanielFabioG/data/refs/heads/main/prof_salaries.csv"
+salaries <- read_csv(file = url)
 
 # Let's take a quick look at the column specifications...
 
