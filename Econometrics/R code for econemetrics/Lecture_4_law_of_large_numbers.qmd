@@ -333,7 +333,7 @@ ggplot(data, aes(x = n, y = mean)) +
   xlab("N")
 ```
 
-Dependent data 
+Dependent data
 
 ```{r}
 

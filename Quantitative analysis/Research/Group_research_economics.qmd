@@ -1,0 +1,21 @@
+---
+title: "Quantitative Analysis - Economics research"
+format: pdf
+editor: visual
+---
+
+## Title 1
+
+This will be the final document for the economics research group.
+
+Lets load the data and look at it
+
+```{r}
+rm(list = ls())
+library(tidyverse)
+library(stargazer)
+
+
+url <- "https://raw.githubusercontent.com/DanielFabioG/data/refs/heads/main/NFCS_2021_DATA.csv"
+data <- read.csv(url)
+```
