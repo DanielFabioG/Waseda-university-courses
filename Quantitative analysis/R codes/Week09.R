@@ -11,11 +11,7 @@
 # As ever, set up your R environment and your working directory; make sure you
 # edit the directory below to whereever you put the files for this class.
 
-Sys.setlocale("LC_ALL", 'en_GB.UTF-8')
-Sys.setenv(LANG = "en_GB.UTF-8")
-setwd("~/Dropbox/Waseda/Quantitative Analysis 2023/Week 09/")   
-
-
+rm(list=ls())
 library(tidyverse)
 library(stargazer)
 
@@ -87,7 +83,7 @@ stargazer(linear_model, type = "text")
 
 ggplot(data = gdp_life, mapping = aes(x = gdpPercap_t, y = lifeExp)) +
   geom_point() +
-  geom_smooth(method = "lm", color = "red") +
+  geom_smooth(method = lm, color = "red") +
   xlab("GDP Per Capita ($1000 units)") +
   ylab("Life Expectancy (years)") +
   ggtitle("Linear Model")
@@ -146,6 +142,8 @@ ggplot(data = linear_model.output, mapping = aes(x = fitted_vals, y = residuals)
 # To add a quadratic component, we can use the I() function inside the
 # model definition. This lets us do maths functions on the variables within
 # the model definition - in this case, using ^2 to square the value.
+
+
 
 quad_model <- lm(lifeExp ~ gdpPercap_t + I(gdpPercap_t^2), data = gdp_life)
 stargazer(linear_model, quad_model, type = "text")
