@@ -1,0 +1,62 @@
+---
+format: 
+  pdf:
+    geometry:
+      - top=20mm
+      - left=20mm
+      - heightrounded
+    fontsize: 12pt
+    documentclass: scrartcl
+    papersize: a4
+    toccolor: black
+echo: true
+warning: false
+bibliography: documentobjects/texstuff/references.bib
+csl: documentobjects/texstuff/apa.csl
+header-includes:
+  - \usepackage{wrapfig}
+  - \usepackage{subcaption}
+  - \usepackage{amsmath}
+  - \usepackage{cancel}
+  - \usepackage{hyperref}
+  - \usepackage{tikz}
+  - \usepackage{tabularx}
+  - \usepackage{colortbl}
+  - \usepackage{xcolor}
+  - \renewcommand{\maketitle}{}
+  - \definecolor{cornflowerblue}{RGB}{100,149,237}
+  - \definecolor{darkgrey}{RGB}{220,220,220}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{} 
+  - \fancyhead[L]{\rightmark}
+  - \fancyhead[R]{\thepage}
+  - \fancyfoot[C]{\thepage}
+nocite: |
+  @*
+---
+
+\newgeometry{left=0cm, right=0cm, top=0cm, bottom=0cm}
+\vspace*{0.5cm} 
+
+
+\begin{flushleft}
+    \vspace*{0.5cm}
+    \hspace*{2.5cm}{\color{black}\fontsize{11}{13.2}\selectfont Waseda University \\[0.2em]
+    \hspace*{2.5cm}\color{black}\fontsize{8}{13.2}\selectfont School of Political Science and Economics \\[0.2em]
+    \hspace*{2.5cm}\large{\color{black}\textbf{Homework 2}}  \\[0.5em]
+\hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Daniel Fabio Groth \\[0.5em]
+    \hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Econometrics, Fall 2024 \\[0.5em]
+    \hspace*{2.0cm}
+    \par}
+\end{flushleft} 
+\restoregeometry
+\tableofcontents
+\newpage
+
+```{r, include=FALSE}
+library(extraDistr)
+library(tidyverse)
+``` 
+
+#
