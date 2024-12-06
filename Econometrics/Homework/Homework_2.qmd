@@ -61,17 +61,60 @@ library(tidyverse)
 
 Solve excercise 1,3 and 5 in Problem set 2.
 
-## **Excercise 1**
+## **Excercise 1:** Show the following equalities hold:
 
-Show the following equalities hold:
 
-1)  $\frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X_n})^2 = \frac{1}{n} \sum_{i=1}^{n} X_i(X_i - \bar{X}_n)$
+$$\frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X_n})^2 = \frac{1}{n} \sum_{i=1}^{n} X_i(X_i - \bar{X}_n) \tag {1}$$
 
-Proof:
 
-2)  $\frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X_n})(Y_i-\bar{Y_n}) = \frac{1}{n} \sum_{i=1}^{n} X_i (Y_i - \bar{Y_n}) = \frac{1}{n} \sum_{i=1}^{n} Y_i (X_i - \bar{X_n})$
+Let's start by looking at the left side of the equation:
 
-Proof:
+$$ \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X}_n)^2 \rightarrow (X_i - \hat{X}_n)^2  \tag {1.1} $$ 
+
+Then we can expand the equation:
+
+$$ (X_i - \hat{X}_n)^2 = X_i^2 - 2X_i\hat{X}_n + \hat{X}_n^2 \tag {1.2} $$
+
+thus, we can rewrite the equation as:
+
+$$ \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})_n^2 = \frac{1}{n} \sum_{i=1}^{n} X_i^2 - 2X_i\hat{X}_n + \hat{X}_n^2 \tag {1.3} $$ 
+
+Then we separate the terms:
+
+$$ \frac{1}{n} \sum_{i=1}^{n} X_i^2 - \frac{2 \hat{X}_n}{n} \sum_{i=1}^{n} X_i+ \frac{\hat{X}_n^2}{n} \sum_{i=1}^{n} 1 \tag {1.4} $$
+
+Then since $\sum_{i=1}^{n} X_i = n\hat{X}_n$, and $\sum_{i=1}^{n} 1 = n$, this just becomes:
+
+$$ \frac{1}{n} \sum_{i=1}^{n} X_i^2 - 2\hat{X}_n \hat{X}_n + \hat{X}_n^2 = \frac{1}{n} \sum_{i=1}^{n} X_i^2 - \hat{X}_n^2 \tag {1.5} $$ 
+
+Now we can look at the right side of the equation:
+
+$$ \frac{1}{n} \sum_{i=1}^{n} X_i(X_i - \bar{X}_n) \rightarrow X_i(X_i - \hat{X}_n) \tag {1.6} $$ 
+
+Then we can expand the equation:
+
+$$ X_i(X_i - \hat{X}_n) = X_i^2 - X_i\hat{X}_n \tag {1.7} $$
+
+thus, we can rewrite the equation as:
+
+$$ \frac{1}{n} \sum_{i=1}^{n} X_i(X_i - \bar{X}_n) = \frac{1}{n} \sum_{i=1}^{n} X_i^2 - \frac{\hat{X}_n}{n} \sum_{i=1}^{n} X_i \tag {1.8} $$ 
+Then we can use the same logic as before:
+
+$$ \frac{1}{n} \sum_{i=1}^{n} X_i^2 - \hat{X}_n \hat{X_n} = \frac{1}{n} \sum_{i=1}^{n} X_i^2 - \hat{X}_n^2 \tag {1.9} $$ 
+
+Thus, we have shown that the left side of the equation is equal to the right side of the equation.
+
+$$\frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X_n})^2 = \frac{1}{n} \sum_{i=1}^{n} X_i(X_i - \bar{X}_n) \tag {1}$$
+
+\newpage
+
+## Excersice 1 cont: Showing that the second equality holds:
+
+
+$$\frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X}_n)(Y_i-\bar{Y}_n) = \frac{1}{n} \sum_{i=1}^{n} X_i (Y_i - \bar{Y}_n) = \frac{1}{n} \sum_{i=1}^{n} Y_i (X_i - \bar{X}_n) \tag {2}$$
+
+\newpage
+
 
 ## **Excercise 3**
 
@@ -118,6 +161,20 @@ where you need to input the last two digits of your student number for A. Here w
 
 Obtain the OLS estimators for these two models **without using the lm() function** and compare the results with those given by the lm function.
 
-2) For the two models, visually compare the distribution of the data and the lines obtained by OLS as we did in p.16 in the Lecture 6 slides. Discuss which results look more reasonable
+2)  For the two models, visually compare the distribution of the data and the lines obtained by OLS as we did in p.16 in the Lecture 6 slides. Discuss which results look more reasonable
 
-3) Based on the "more reasonable" model you chose, explain what the estimated value of $\beta_1$ implies about the relationship between the illiteracy rate and the life expectancy.
+3)  Based on the "more reasonable" model you chose, explain what the estimated value of $\beta_1$ implies about the relationship between the illiteracy rate and the life expectancy.
+
+\newpage
+
+# Usage of AI
+
+## Copilot
+
+As I am writing this document in Rstudio, there is an integration of copilot which sometimes automatically suggests code snippets. Sometimes it works great and my latex math gets written perfectly, and other times it just gives me a bunch of random unrelevant latex math or code.
+
+Here is a [Link to copilot](https://copilot.microsoft.com/).
+
+## ChatGPT
+
+Here is the link to the conversation where I asked questions:
