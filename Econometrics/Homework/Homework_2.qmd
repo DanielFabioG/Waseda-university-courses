@@ -173,7 +173,35 @@ $$ \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X}_n)(Y_i-\bar{Y}_n) = \frac{1}{n} \su
 
 Consider a regression model that has no intercept term:
 
-$$ Y_i = X_i \beta_1 + \epsilon_i = 1 ,...,n. $$ Derive the least squares estimator for $\beta_1$.
+$$ Y_i = X_i \beta_1 + \epsilon_i = 1 ,...,n. $$ 
+
+### Derive the least squares estimator for $\beta_1$:
+
+
+The least squares estimator for $\beta_1$ is given by:
+
+$$ \hat{\beta}_1 = \frac{\sum_{i=1}^{n} X_iY_i}{\sum_{i=1}^{n} X_i^2} $$
+
+Then we can substitute the equation for $Y_i$:
+
+$$ \hat{\beta}_1 = \frac{\sum_{i=1}^{n} X_i(X_i\beta_1 + \epsilon_i)}{\sum_{i=1}^{n} X_i^2} $$
+
+Then we can expand the equation:
+
+$$ \hat{\beta}_1 = \frac{\sum_{i=1}^{n} X_i^2\beta_1 + X_i\epsilon_i}{\sum_{i=1}^{n} X_i^2} $$
+
+Then we can factor out the $\beta_1$:
+
+$$ \hat{\beta}_1 = \frac{\beta_1\sum_{i=1}^{n} X_i^2 + \sum_{i=1}^{n} X_i\epsilon_i}{\sum_{i=1}^{n} X_i^2} $$
+$$ \hat{\beta}_1 = \beta_1 + \frac{\sum_{i=1}^{n} X_i\epsilon_i}{\sum_{i=1}^{n} X_i^2} $$
+
+Thus, the least squares estimator for $\beta_1$ is given by:
+
+$$ \hat{\beta}_1 = \beta_1 + \frac{\sum_{i=1}^{n} X_i\epsilon_i}{\sum_{i=1}^{n} X_i^2} $$
+
+
+\newpage
+
 
 ## **Excercise 5**
 
@@ -181,7 +209,49 @@ Let ($\hat{\beta}_0, \hat{\beta}_1$) be the ordinary least squares estimator of
 
 $$ Y_i = \beta_0 + X_i \beta_1  + \epsilon_i, i = 1,...,n. $$
 
-The prediction error (i.e, residual) for each i is given by $\hat{e_i} = Y_i - \hat{\beta}_0n - X_i \hat{\beta}_1n$. Show that the sum of the residuals is zero, i.e, $\sum_{i=1}^{n} \hat{e_i} = 0$.
+The prediction error (i.e, residual) for each i is given by $\hat{e_i} = Y_i - \hat{\beta}_0n - X_i \hat{\beta}_1n$. 
+
+### First show that:
+
+$\sum_{i=1}^{n} \hat{e}_i = 0$
+
+Proof:
+
+$$ \sum_{i=1}^{n} \hat{e}_i = \sum_{i=1}^{n} (Y_i - \hat{\beta}_0 - X_i \hat{\beta}_1) $$
+Expanding the equation:
+
+$$ \sum_{i=1}^{n} \hat{e}_i = \sum_{i=1}^{n} Y_i - \sum_{i=1}^{n} \hat{\beta}_0 - \sum_{i=1}^{n} X_i \hat{\beta}_1 $$
+
+Then since $\hat{\beta}_0$ and $\hat{\beta}_1$ are constants, we can factor them out:
+
+$$ \sum_{i=1}^{n} \hat{e}_i = \sum_{i=1}^{n} Y_i - n\hat{\beta}_0 - \hat{\beta}_1 \sum_{i=1}^{n} X_i $$
+Recall that $\hat{\beta}_0$ and $\hat{\beta}_1$ are the least squares estimators, thus they satisfy the normal equations:
+
+$$ \sum_{i=1}^{n} Y_i - n\hat{\beta}_0 - \hat{\beta}_1 \sum_{i=1}^{n} X_i = 0 $$
+$$ \sum_{i=1}^{n} \hat{e}_i = 0 $$
+Thus, we have shown that $\sum_{i=1}^{n} \hat{e}_i = 0$
+
+### Second, show that:
+
+$$ \sum_{i=1}^{n} X_i \hat{e}_i = 0 $$
+
+Proof:
+
+$$ \sum_{i=1}^{n} X_i \hat{e}_i = \sum_{i=1}^{n} X_i (Y_i - \hat{\beta}_0 - X_i \hat{\beta}_1) $$
+
+Expanding the equation:
+
+$$ \sum_{i=1}^{n} X_i \hat{e}_i = \sum_{i=1}^{n} X_i Y_i - \sum_{i=1}^{n} X_i \hat{\beta}_0 - \sum_{i=1}^{n} X_i X_i \hat{\beta}_1 $$
+
+Then since $\hat{\beta}_0$ and $\hat{\beta}_1$ are constants, we can factor them out:
+
+$$ \sum_{i=1}^{n} X_i \hat{e}_i = \sum_{i=1}^{n} X_i Y_i - \hat{\beta}_0 \sum_{i=1}^{n} X_i - \hat{\beta}_1 \sum_{i=1}^{n} X_i^2 $$
+
+Recall that $\hat{\beta}_0$ and $\hat{\beta}_1$ are the least squares estimators, thus they satisfy the normal equations:
+
+$$ \sum_{i=1}^{n} X_i Y_i - \hat{\beta}_0 \sum_{i=1}^{n} X_i - \hat{\beta}_1 \sum_{i=1}^{n} X_i^2 = 0 $$
+$$ \sum_{i=1}^{n} X_i \hat{e}_i = 0 $$
+Thus, we have shown that $\sum_{i=1}^{n} X_i \hat{e}_i = 0$
 
 \newpage
 
@@ -189,7 +259,9 @@ The prediction error (i.e, residual) for each i is given by $\hat{e_i} = Y_i - \
 
 Show that under Assumptions 1-3 in the L.6 slides, the variance of $\hat{\beta}_{n1}$ is given by $X_1,....,X_n$ is given by:
 
-$$ \frac{\sigma^2}{n} = \frac{1}{\frac{1}{n}\sum_{i=1}^{n} (X_i - \bar{X}_n)^2} $$ Proof:
+$$ \frac{\sigma^2}{n} = \frac{1}{\frac{1}{n}\sum_{i=1}^{n} (X_i - \bar{X}_n)^2} $$ 
+
+Proof:
 
 \newpage
 
@@ -231,3 +303,5 @@ Here is a [Link to copilot](https://copilot.microsoft.com/).
 ## ChatGPT
 
 Here is the link to the conversation where I asked questions:
+
+[Link to ChatGPT](https://chatgpt.com/share/67611abd-96b0-8001-ab5a-dff64c961a0f)
