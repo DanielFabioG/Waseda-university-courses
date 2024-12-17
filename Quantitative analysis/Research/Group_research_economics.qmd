@@ -1,14 +1,106 @@
 ---
-title: "Quantitative Analysis - Economics research"
-format: pdf
-editor: visual
+format: 
+  pdf:
+    geometry:
+      - top=20mm
+      - left=20mm
+      - heightrounded
+    fontsize: 12pt
+    documentclass: scrartcl
+    papersize: a4
+    toccolor: black
+echo: true
+warning: false
+bibliography: documentobjects/texstuff/references.bib
+csl: documentobjects/texstuff/apa.csl
+header-includes:
+  - \usepackage{wrapfig}
+  - \usepackage{subcaption}
+  - \usepackage{amsmath}
+  - \usepackage{cancel}
+  - \usepackage{hyperref}
+  - \usepackage{tikz}
+  - \usepackage{tabularx}
+  - \usepackage{colortbl}
+  - \usepackage{xcolor}
+  - \renewcommand{\maketitle}{}
+  - \definecolor{cornflowerblue}{RGB}{100,149,237}
+  - \definecolor{darkgrey}{RGB}{220,220,220}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{} 
+  - \fancyhead[L]{\rightmark}
+  - \fancyhead[R]{\thepage}
+  - \fancyfoot[C]{\thepage}
+nocite: |
+  @*
 ---
 
-## Title 1
+\newgeometry{left=0cm, right=0cm, top=0cm, bottom=0cm}
+\vspace*{0.5cm}
+\begin{flushleft}
+    \vspace*{0.5cm}
+    \hspace*{2.5cm}{\color{black}\fontsize{11}{13.2}\selectfont Waseda University \\[0.2em]
+    \hspace*{2.5cm}\color{black}\fontsize{8}{13.2}\selectfont School of Political Science and Economics \\[0.2em]
+    \hspace*{2.5cm}\large{\color{black}\textbf{Research project}}  \\[0.5em]
+\hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Economic Policy 4 \\[0.5em]
+    \hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Quantitative Analysis, Fall 2024 \\[0.5em]
+    \hspace*{2.0cm}
+    \par}
+\end{flushleft} 
+\restoregeometry
+\tableofcontents
+\newpage
 
-This will be the final document for the economics research group.
+```{r, include=FALSE}
+# Packages
+library(extraDistr)
+library(tidyverse)
+```
 
-Lets load the data and look at it
+## Research question
+
+How does the level of financial literacy influence individual investment choices and portfolio diversification among young adults?
+
+
+
+## Feedback
+
+I like this idea for the project, and I think it would work very well as an international comparison as you suggest, especially if you can find some specific cases of countries that have tried to implement education policies to improve financial literacy. My one concern is that while you say there is a reasonable amount of survey data, some of the ideas you suggest could be quite hard to operationalise - you need variables to measure the level of people's financial literacy, as well as their success in investment. Your most important task therefore is to find a clear, high-quality source for those variables. You should also think about what other factors might have an impact - for example, if you are doing a cross-national comparison, the availability of certain investment products may differ between countries, and currency trends could also impact people's potential investment returns, so it would be good to include that in your analysis.
+
+In line with this feedback, your next step for this research should be to operationalise your questions and hypothesis, specifying exactly which variables you plan to use for your analysis and where you are going to get them from. This will ensure that you are in a good position to actually start gathering that data and putting it into R.
+
+
+## Finalized research question after feedback
+
+How does objective financial literacy (as measured by quiz-style questions on interest, inflation, and compounding) relate to young adults’ annual household income and willingness to take financial risks in the United States, and does ethnicity moderate these relationships?
+
+## Some different hypotheses
+
+H1 (Income Relationship):
+Young adults in the U.S. who demonstrate higher objective financial literacy will report higher annual household income.
+
+H2 (Risk Relationship):
+Young adults in the U.S. who demonstrate higher objective financial literacy will exhibit a greater willingness to take financial risks.
+
+H3 (Ethnicity as Moderator):
+The positive relationships in H1 and H2 will differ by ethnicity, such that the effect of financial literacy on income and risk tolerance is stronger (or weaker) for certain ethnic groups.
+
+## Data
+
+We are going to look at the variables Objective Measure: M6, M7, M8, and M31 test concrete knowledge and are widely recognized as a legitimate indicator of financial literacy which will be the independent variable.
+
+The dependent variables will be the annual household income and the willingness to take financial risks.
+
+These three variables in the dataset are the following:
+
+M6, M7, M8, and M31 (Objective Measure: M6, M7, M8, and M31 test concrete knowledge and are widely recognized as a legitimate indicator of financial literacy)
+
+A8_2021 (Annual household income)
+
+J2, which is risk tolerance.
+
+A4A_new_w , if we also include ethnicity this will be the moderator variable.
 
 ```{r}
 rm(list = ls())
@@ -18,4 +110,6 @@ library(stargazer)
 
 url <- "https://raw.githubusercontent.com/DanielFabioG/data/refs/heads/main/NFCS_2021_DATA.csv"
 data <- read.csv(url)
+
+glimpse(data)
 ```
