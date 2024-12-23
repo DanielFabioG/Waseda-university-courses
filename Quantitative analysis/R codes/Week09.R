@@ -504,3 +504,4 @@ ggplot(data = gdp_life, mapping = aes(x = gdpPercap_t, y = lifeExp)) +
   xlab("GDP Per Capita ($1000 units)") +
   ylab("Life Expectancy (years)") +
   ggtitle("Reciprocal Transformation Model")
+
