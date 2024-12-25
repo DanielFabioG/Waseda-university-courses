@@ -1,0 +1,107 @@
+---
+format: 
+  pdf:
+    geometry:
+      - top=20mm
+      - left=20mm
+      - heightrounded
+    fontsize: 12pt
+    documentclass: scrartcl
+    papersize: a4
+    toccolor: black
+echo: true
+warning: false
+bibliography: documentobjects/texstuff/references.bib
+csl: documentobjects/texstuff/apa.csl
+header-includes:
+  - \usepackage{wrapfig}
+  - \usepackage{subcaption}
+  - \usepackage{amsmath}
+  - \usepackage{cancel}
+  - \usepackage{hyperref}
+  - \usepackage{tikz}
+  - \usepackage{tabularx}
+  - \usepackage{colortbl}
+  - \usepackage{xcolor}
+  - \renewcommand{\maketitle}{}
+  - \definecolor{cornflowerblue}{RGB}{100,149,237}
+  - \definecolor{darkgrey}{RGB}{220,220,220}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{} 
+  - \fancyhead[L]{\rightmark}
+  - \fancyhead[R]{\thepage}
+  - \fancyfoot[C]{\thepage}
+nocite: |
+  @*
+---
+
+\newgeometry{left=0cm, right=0cm, top=0cm, bottom=0cm}
+\vspace*{0.5cm}
+\begin{flushleft}
+    \vspace*{0.5cm}
+    \hspace*{2.5cm}{\color{black}\fontsize{11}{13.2}\selectfont Waseda University \\[0.2em]
+    \hspace*{2.5cm}\color{black}\fontsize{8}{13.2}\selectfont School of Political Science and Economics \\[0.2em]
+    \hspace*{2.5cm}\large{\color{black}\textbf{Empirical report: title here}}  \\[0.5em]
+\hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Daniel Fabio Groth, student ID: Student id here \\[0.5em]
+    \hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Econometrics, Fall 2024 \\[0.5em]
+    \hspace*{2.0cm}
+    \par}
+\end{flushleft} 
+\restoregeometry
+\tableofcontents
+\newpage
+
+
+✓ ✏Requirements:
+The paper must be typed in English, 4-5 pages in body length (not including
+the title and reference page), 11-12 pt. font, and single-authored.
+The paper must have its Title (in a separate page) and Conclusions. The title
+page contains the title of your paper, your name, and ID.
+Before presenting the estimation results, clearly write the regression model(s)
+you estimate in equation form.
+The estimation results should be summarized in a table. Do not include a
+screenshot or a photocopy of your PC screen.
+The script file used in your analysis must be attached to the paper as
+Appendix (just copy-and-paste the commands from the script file). 
+
+Data
+Data taken from the GSS (General Social Survey) 2018.
+For details of the data, see data description.pdf.
+What variables to be included in the model as dependent or
+explanatory variables are all up to you. The variables may be
+transformed according to your research interests.
+Evaluation
+The purpose of the assignment is to check your ability
+to perform regression analysis and statistical hypothesis testing with R,
+to correctly interpret the estimation results,
+and to describe the obtained results in a research-paper style
+
+Submission deadline: To be added in a future version. Submit a pdf
+file of your paper through Waseda Moodle.
+
+
+Due: Thursday, 16 January 2025, 11:59 PM
+
+```{r, include=FALSE}
+rm(list = ls())
+library(extraDistr)
+library(tidyverse)
+library(stargazer)
+
+# Load data
+url <- "https://raw.githubusercontent.com/DanielFabioG/data/refs/heads/main/GSSdata2018_cleaned.csv"
+
+data <- read.csv(url)
+```
+
+# Introduction
+
+The General Social Survey (GSS) is a survey conducted in the United States to monitor social change and study the growing complexity of American society. The survey is conducted every two years and is designed to provide a snapshot of the opinions and behaviors of the American people. The GSS collects data on a wide range of topics, including attitudes towards social issues, political beliefs, and demographic characteristics. 
+
+In this report, I will use data from the 2018 GSS to investigate the relationship between education and political ideology. Specifically, I will examine whether individuals with higher levels of education are more likely to identify with a particular political ideology.
+
+## Literature Review
+
+Previous research has found a positive relationship between education and political ideology. For example, a study by Smith and Jones (2010) found that individuals with higher levels of education are more likely to identify 
+
