@@ -9,7 +9,7 @@ format:
     documentclass: scrartcl
     papersize: a4
     toccolor: black
-echo: true
+echo: false
 warning: false
 bibliography: documentobjects/texstuff/references.bib
 csl: documentobjects/texstuff/apa.csl
@@ -40,68 +40,278 @@ nocite: |
 \vspace*{0.5cm}
 \begin{flushleft}
     \vspace*{0.5cm}
-    \hspace*{2.5cm}{\color{black}\fontsize{11}{13.2}\selectfont Waseda University \\[0.2em]
-    \hspace*{2.5cm}\color{black}\fontsize{8}{13.2}\selectfont School of Political Science and Economics \\[0.2em]
-    \hspace*{2.5cm}\large{\color{black}\textbf{Empirical report: title here}}  \\[0.5em]
+    \hspace*{2.5cm}\large{\color{black}\textbf Waseda University \\[0.2em]
+    \hspace*{2.5cm}\color{black}\fontsize{10}{13.2}\selectfont School of Political Science and Economics \\[0.5em]
+    \hspace*{2.5cm}\large{\color{black}\textbf{Empirical report: Does education effect happiness in America?}}  \\[0.5em]
 \hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Daniel Fabio Groth, student ID: Student id here \\[0.5em]
     \hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Econometrics, Fall 2024 \\[0.5em]
     \hspace*{2.0cm}
     \par}
+    \in
+    \begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=center, inner sep=0] at (current page.center) {\includegraphics[width=\paperwidth]{documentobjects/texstuff/front.jpg}};
+\end{tikzpicture}
+
 \end{flushleft} 
 \restoregeometry
 \tableofcontents
+\listoftables
+\listoffigures
 \newpage
-
-
-✓ ✏Requirements:
-The paper must be typed in English, 4-5 pages in body length (not including
-the title and reference page), 11-12 pt. font, and single-authored.
-The paper must have its Title (in a separate page) and Conclusions. The title
-page contains the title of your paper, your name, and ID.
-Before presenting the estimation results, clearly write the regression model(s)
-you estimate in equation form.
-The estimation results should be summarized in a table. Do not include a
-screenshot or a photocopy of your PC screen.
-The script file used in your analysis must be attached to the paper as
-Appendix (just copy-and-paste the commands from the script file). 
-
-Data
-Data taken from the GSS (General Social Survey) 2018.
-For details of the data, see data description.pdf.
-What variables to be included in the model as dependent or
-explanatory variables are all up to you. The variables may be
-transformed according to your research interests.
-Evaluation
-The purpose of the assignment is to check your ability
-to perform regression analysis and statistical hypothesis testing with R,
-to correctly interpret the estimation results,
-and to describe the obtained results in a research-paper style
-
-Submission deadline: To be added in a future version. Submit a pdf
-file of your paper through Waseda Moodle.
-
-
-Due: Thursday, 16 January 2025, 11:59 PM
 
 ```{r, include=FALSE}
 rm(list = ls())
 library(extraDistr)
 library(tidyverse)
 library(stargazer)
-
+library(summarytools)
 # Load data
 url <- "https://raw.githubusercontent.com/DanielFabioG/data/refs/heads/main/GSSdata2018_cleaned.csv"
 
 data <- read.csv(url)
 ```
 
+```{r}
+# Clean the dataset for only the variables I need for the analysis
+data <- data %>% 
+  select(ID,SEX,AGE,RACE,EDUC,HAPPY)
+```
+
 # Introduction
 
-The General Social Survey (GSS) is a survey conducted in the United States to monitor social change and study the growing complexity of American society. The survey is conducted every two years and is designed to provide a snapshot of the opinions and behaviors of the American people. The GSS collects data on a wide range of topics, including attitudes towards social issues, political beliefs, and demographic characteristics. 
+In this report, I will use data from the 2018 GSS to investigate the relationship between education and happiness. Specifically, I will examine whether individuals with higher levels of education are more likely to report being happy. I will also explore whether this relationship varies between different demographic groups, such as age, sex and race.
 
-In this report, I will use data from the 2018 GSS to investigate the relationship between education and political ideology. Specifically, I will examine whether individuals with higher levels of education are more likely to identify with a particular political ideology.
+## Research background
+
+These questions are important because they can help us understand the factors that contribute to well-being and happiness. Previous research has found that education is positively associated with well-being, with individuals with higher levels of education reporting higher levels of happiness and life satisfaction. However, the relationship between education and happiness is complex and may vary between different groups of people. For example, some studies have found that the relationship between education and happiness is stronger for individuals because of social networks and involvement with the wider world, and that having higher educations means being employed and having higher income levels which are positively related with happiness.
 
 ## Literature Review
 
-Previous research has found a positive relationship between education and political ideology. For example, a study by Smith and Jones (2010) found that individuals with higher levels of education are more likely to identify 
+Previous research has found a positive relationship between education and political ideology. For example, a study by @chen2012education says that "In short, individuals who receive more education have more extensive social networks as well as greater involvement with the wider world; these life conditions are positively related with happiness". Another study by @cunado2012does says that "we find that people with a higher education level have higher income levels and a higher probability of being employed, and thus, report higher levels of happiness". In my research, I will build on this previous work by examining the relationship between education and happiness on americans but also include different demographic groups with data from the 2018 GSS exploring.
 
+## Hypothesis
+
+I hypothesize that individuals in america with higher levels of education will be more likely to report being happy. This hypothesis is based on previous research that has found a positive relationship between education and well-being. I also expect that this relationship will be stronger for certain demographic groups, such as younger individuals, and individuals who identify as white.
+
+\newpage
+
+## Preview of findings
+
+Here I will type what I find later in the empirical report.
+
+## Roadmap
+
+The report is structured as follows. In the next section, I will describe the data and variables used in the analysis. In the following section, I will present the results of the analysis, including descriptive statistics and regression analysis. Finally, I will discuss the implications of the findings and suggest directions for future research.
+
+# Data
+
+The General Social Survey (GSS) is a survey conducted in the United States to monitor social change and study the growing complexity of American society. The survey is conducted every two years and is designed to provide a snapshot of the opinions and behaviors of the American people. The GSS collects data on a wide range of topics, including attitudes towards social issues, political beliefs, and demographic characteristics. The data is publicly available for download from the GSS website [here](https://gssdataexplorer.norc.org/).
+
+```{r}
+# Making the happy variable binary
+data$happy_binary <- ifelse(data$HAPPY == 1, 0, 1)
+
+# Change the happy_binary variable to a categorical "YES, NO" variable
+data$happy_categorical <- factor(data$happy_binary, levels = c(0, 1), labels = c("Not Happy", "Happy"))
+
+# Descriptive statistics
+#descr(data, style = "rmarkdown")
+```
+## Variables
+
+The variables going to be used in this analysis can be seen in the following \autoref{tab:variables_gss2018}.
+
+```{=tex}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\textbf{Variable} & \textbf{Definition} \\
+\hline
+\hline
+Id    & Unique respondent ID code \\
+Sex   & Sex of respondent (1 = Male, 2 = Female) \\
+Age   & Age in years at time of interview \\
+Race  & Race (1 = White, 2 = Black, 3 = Other) \\
+Education  & Highest year of school completed \\
+Happy & Self-rated happiness (0 = Not happy, 1 = Happy) \\
+\hline
+\end{tabular}
+\caption{Variables and Definitions (GSS 2018)}
+\label{tab:variables_gss2018}
+\end{table}
+
+
+```
+
+Education is measured as the highest year of school completed, ranging from 0 to 20 years. Happiness is measured as a self-rated happiness score, ranging from 1 to 3, with 1 being "Very Happy", 2 being "Pretty Happy", and 3 being "Not Too Happy". In this analysis, I will use education as the independent variable and happiness as the dependent variable. I will also transform the happiness variable into a binary variable for the regression analysis, which will consist of "Not Happy" and "Happy".
+
+
+## Descriptive Statistics
+
+In this section, I will present descriptive statistics for the variables used in the analysis. This will provide an overview of the sample and help to identify any patterns or trends in the data.
+
+```{=tex}
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrrrrr}
+\hline
+\hline
+           & \textbf{AGE} & \textbf{EDUC} & \textbf{HAPPY} & \textbf{ID} & \textbf{RACE} & \textbf{SEX} \\
+\hline
+\textbf{Mean}         & 48.93   & 13.63   & 1.71   & 1216.14  & 1.42   & 1.55   \\
+\textbf{Std.Dev}      & 18.11   & 2.83    & 0.45   & 673.31   & 0.69   & 0.50   \\
+\textbf{Min}          & 18.00   & 0.00    & 1.00   & 11.00    & 1.00   & 1.00   \\
+\textbf{Q1}           & 34.00   & 12.00   & 1.00   & 651.00   & 1.00   & 1.00   \\
+\textbf{Median}       & 48.00   & 13.00   & 2.00   & 1255.50  & 1.00   & 2.00   \\
+\textbf{Q3}           & 63.00   & 16.00   & 2.00   & 1799.00  & 2.00   & 2.00   \\
+\textbf{Max}          & 89.00   & 20.00   & 2.00   & 2345.00  & 3.00   & 2.00   \\
+\textbf{MAD}          & 22.24   & 1.48    & 0.00   & 858.43   & 0.00   & 0.00   \\
+\textbf{IQR}          & 29.00   & 4.00    & 1.00   & 1145.50  & 1.00   & 1.00   \\
+\textbf{CV}           & 0.37    & 0.21    & 0.27   & 0.55     & 0.49   & 0.32   \\
+\textbf{Skewness}     & 0.29    & -0.42   & -0.93   & -0.09    & 1.37   & -0.20  \\
+\textbf{SE.Skewness}  & 0.11    & 0.11    & 0.11   & 0.11     & 0.11   & 0.11   \\
+\textbf{Kurtosis}     & -0.87   & 1.87    & -1.14  & -1.18    & 0.41   & -1.96  \\
+\textbf{N.Valid}      & 536.00  & 536.00  & 536.00 & 536.00   & 536.00 & 536.00 \\
+\textbf{Pct.Valid}    & 100.00  & 100.00  & 100.00 & 100.00   & 100.00 & 100.00 \\
+\hline
+\end{tabular}
+\caption{Descriptive Statistics for GSS 2018 (N = 536)}
+\label{tab:descriptive_gss2018}
+\end{table}
+
+
+```
+
+The mean age of the sample is 48.93 years, with a standard deviation of 18.11. The mean education level is 13.63 years, with a standard deviation of 2.83. The mean happiness score is 1.7, with a standard deviation of 0.45. The sample is predominantly white, which can make the results biased, if the sample is not representative of the population. The Skewness is negative for the happiness variable, which indicates that the distribution is left-skewed, this is also true for education. The Kurtosis is negative for the happiness variable, which indicates that the distribution is platykurtic. The sample size is 536, with no missing values for any of the variables used in the analysis.
+
+## Data Visualization
+
+In this section, I will present visualizations of the data to help illustrate the relationships between the variables. This will provide a more intuitive understanding of the data and help to identify any patterns or trends.
+
+```{r}
+# Plot the distribution of the happiness variable
+fig1 <-  ggplot(data, aes(x = happy_categorical, fill = happy_categorical)) +
+  geom_bar() +
+  labs(title = "",
+       x = "Happiness Score",
+       y = "Frequency",
+       fill = "")+
+  theme_minimal()+
+  # need to fix the sizes of all text for ggsave so it gets bigger
+  theme(text = element_text(size = 20))+
+  scale_fill_manual(values = c("cornflowerblue", "palevioletred"))+
+  theme(legend.position = "none")
+
+ggsave("documentobjects/figures/happiness_distribution.png", plot = fig1, width = 8, height = 4.5, dpi = 300)
+```
+
+```{=tex}
+
+\begin{figure}[H]
+\centering
+\includegraphics{documentobjects/figures/happiness_distribution.png}
+\caption{Distribution of Happiness Scores}
+\label{fig:happiness_distribution}
+\end{figure}
+
+```
+
+
+\autoref{fig:happiness_distribution} shows the two categories of the happiness variable, with the majority of respondents reporting being happy. This is consistent with previous research that has found that the majority of people report being happy. The distribution of the happiness variable is left-skewed, and this could be shown better before merging the "Happy" variable with "Pretty Happy" and "Very Happy". I acknowledge that this could be a limitation of the analysis, and that the results may be biased because of merging the categories.
+
+```{r}
+# Create a histogram of the education variable
+fig2 <- data %>% 
+ggplot(aes(x = EDUC, fill = happy_categorical, color = happy_categorical)) +
+  geom_histogram(bins = 20, position = "dodge") +
+  labs(title = "",
+       x = "Education Level",
+       y = "Frequency",
+       color = "",
+       fill = "")+
+  theme_minimal()+
+  scale_fill_manual(values = c("cornflowerblue", "palevioletred"))+
+  scale_color_manual(values = c("cornflowerblue", "palevioletred"))+
+  theme(legend.position = "bottom")+
+  scale_x_continuous(breaks = seq(0, 20, by = 2))+
+  theme(text = element_text(size = 20))
+
+ggsave("documentobjects/figures/education_distribution.png", plot = fig2, width = 8, height = 4.5, dpi = 300)
+```
+
+```{=tex}
+
+\begin{figure}[H]
+\centering
+\includegraphics{documentobjects/figures/education_distribution.png}
+\caption{Distribution of Education Levels}
+\label{fig:education_distribution}
+\end{figure}
+
+```
+
+
+\autoref{fig:education_distribution} shows that the distribution of education levels is roughly normal, with a peak around 12 years of education. This is consistent with the fact that most people in the sample have completed high school, which is typically 12 years of education. As the distribution of education levels is right-modal, the normality assumption for the regression analysis is not violated.
+
+Lets look at the relationship between education and happiness.
+
+
+```{r}
+# Create a scatterplot of education and happiness
+fig3 <- ggplot(data, aes(x = EDUC, y = happy_binary)) +
+  geom_jitter(width = 0.1, height = 0.1, alpha = 0.5) +
+  labs(title = "",
+       x = "Education Level",
+       y = "Happiness Score")+
+  stat_smooth(method="glm", method.args=list(family="binomial"))+
+  theme_minimal()+
+  theme(text = element_text(size = 20))
+
+ggsave("documentobjects/figures/education_happiness.png", plot = fig3, width = 8, height = 5, dpi = 300)
+```
+
+```{=tex}
+
+\begin{figure}[H]
+\centering
+\includegraphics{documentobjects/figures/education_happiness.png}
+\caption{Relationship between Education and Happiness}
+\label{fig:education_happiness}
+\end{figure}
+
+```
+
+\autoref{fig:education_happiness} shows the relationship between education and happiness. The scatterplot shows that there is a negative relationship between education and happiness, with individuals with higher levels of education being less likely to report being happy. This is contrary to what I expected, and could be due to the fact that the sample is not representative of the population, or that there are other factors influencing the relationship between education and happiness. More analysis is needed to understand this relationship better.
+
+
+# Regression Analysis
+
+In this section, I will present the results of the regression analysis examining the relationship between education and happiness. I will estimate a logistic regression model to determine whether education is a significant predictor of happiness, controlling for demographic variables.
+
+
+
+```{r}
+
+```
+
+
+\newpage
+
+# Usage of AI
+
+## Copilot
+
+As I am writing this document in Rstudio, there is an integration of copilot which sometimes automatically suggests code snippets. Sometimes it works great and my latex math gets written perfectly, and other times it just gives me a bunch of random unrelevant latex math or code.
+
+Here is a [Link to copilot](https://copilot.microsoft.com/).
+
+## ChatGPT
+
+Here is the link to the conversation where I asked questions:
+
+[Link to ChatGPT]()
+
+# Appendix
+
+# References
