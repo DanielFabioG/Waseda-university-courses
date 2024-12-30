@@ -43,7 +43,7 @@ nocite: |
     \hspace*{2.5cm}\large{\color{black}\textbf Waseda University \\[0.2em]
     \hspace*{2.5cm}\color{black}\fontsize{10}{13.2}\selectfont School of Political Science and Economics \\[0.5em]
     \hspace*{2.5cm}\large{\color{black}\textbf{Empirical report: Does education effect happiness in America?}}  \\[0.5em]
-\hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Daniel Fabio Groth, student ID: Student id here \\[0.5em]
+\hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Daniel Fabio Groth, student ID: 1A249134-9 \\[0.5em]
     \hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Econometrics, Fall 2024 \\[0.5em]
     \hspace*{2.0cm}
     \par}
