@@ -61,10 +61,8 @@ nocite: |
 
 ```{r, include=FALSE}
 rm(list = ls())
-library(extraDistr)
 library(tidyverse)
 library(stargazer)
-library(summarytools)
 # Load data
 url <- "https://raw.githubusercontent.com/DanielFabioG/data/refs/heads/main/GSSdata2018_cleaned.csv"
 
@@ -74,12 +72,12 @@ data <- read.csv(url)
 ```{r}
 # Clean the dataset for only the variables I need for the analysis
 data <- data %>% 
-  select(ID,SEX,AGE,RACE,EDUC,HAPPY)
+  select(SEX,AGE,RACE,EDUC,HAPPY, MARITAL, RINCOME)
 ```
 
 # Introduction
 
-In this report, I will use data from the 2018 GSS to investigate the relationship between education and happiness. Specifically, I will examine whether individuals with higher levels of education are more likely to report being happy. I will also explore whether this relationship varies between different demographic groups, such as age, sex and race.
+In this report, I will use data from the 2018 GSS to investigate the relationship between education and happiness. Specifically, I will examine whether individuals with higher levels of education are more likely to report being happy. I will also explore whether this relationship varies between different demographic groups.
 
 ## Research background
 
@@ -91,13 +89,11 @@ Previous research has found a positive relationship between education and politi
 
 ## Hypothesis
 
-I hypothesize that individuals in america with higher levels of education will be more likely to report being happy. This hypothesis is based on previous research that has found a positive relationship between education and well-being. I also expect that this relationship will be stronger for certain demographic groups, such as younger individuals, and individuals who identify as white.
-
-\newpage
+I hypothesize that individuals in america with higher levels of education will be more likely to report being happy. This hypothesis is based on previous research that has found a positive relationship between education and well-being. I also expect that this relationship will be stronger for certain demographic groups, such as younger individuals.
 
 ## Preview of findings
 
-Here I will type what I find later in the empirical report.
+Using the 2018 GSS data, and a logistic regression model, I will examine the relationship between education and happiness. I will also control for demographic variables such as age, sex, marital status and respondents income to see if the relationship between education and happiness holds after controlling for these variables. I expect to find that individuals with higher levels of education are more likely to report being happy, and that this relationship is stronger for certain demographic groups. What I did find was that the relationship between education and happiness was negative, which was contrary to what I expected. Interestingly, it seems that being divorced or never married is a significant predictor of happiness. This could be due to the fact that individuals who are divorced or never married have more freedom and autonomy, which could contribute to their happiness.
 
 ## Roadmap
 
@@ -114,6 +110,12 @@ data$happy_binary <- ifelse(data$HAPPY == 1, 0, 1)
 # Change the happy_binary variable to a categorical "YES, NO" variable
 data$happy_categorical <- factor(data$happy_binary, levels = c(0, 1), labels = c("Not Happy", "Happy"))
 
+# Make marital status a factor
+data$MARITAL <- factor(data$MARITAL, levels = c(1, 2, 3, 4, 5), labels = c("Married", "Widowed", "Divorced", "Separated", "Never married"))
+
+# Make race factor
+data$RACE <- factor(data$RACE, levels = c(1, 2, 3), labels = c("White", "Black", "Other"))
+
 # Descriptive statistics
 #descr(data, style = "rmarkdown")
 ```
@@ -129,12 +131,13 @@ The variables going to be used in this analysis can be seen in the following \au
 \textbf{Variable} & \textbf{Definition} \\
 \hline
 \hline
-Id    & Unique respondent ID code \\
 Sex   & Sex of respondent (1 = Male, 2 = Female) \\
 Age   & Age in years at time of interview \\
 Race  & Race (1 = White, 2 = Black, 3 = Other) \\
 Education  & Highest year of school completed \\
 Happy & Self-rated happiness (0 = Not happy, 1 = Happy) \\
+Marital    & Marital status (From 0-5) \\
+Respondents Income    & (Income variable from 0-12) \\
 \hline
 \end{tabular}
 \caption{Variables and Definitions (GSS 2018)}
@@ -144,7 +147,9 @@ Happy & Self-rated happiness (0 = Not happy, 1 = Happy) \\
 
 ```
 
-Education is measured as the highest year of school completed, ranging from 0 to 20 years. Happiness is measured as a self-rated happiness score, ranging from 1 to 3, with 1 being "Very Happy", 2 being "Pretty Happy", and 3 being "Not Too Happy". In this analysis, I will use education as the independent variable and happiness as the dependent variable. I will also transform the happiness variable into a binary variable for the regression analysis, which will consist of "Not Happy" and "Happy".
+Education is measured as the highest year of school completed, ranging from 0 to 20 years. Happiness is measured as a self-rated happiness score, ranging from 1 to 3, with 1 being "Very Happy", 2 being "Pretty Happy", and 3 being "Not Too Happy". In this analysis, I will use education as the independent variable and happiness as the dependent variable. I will also transform the happiness variable into a binary variable for the regression analysis, which will consist of "Not Happy" and "Happy", as is seen above in \autoref{tab:variables_gss2018}. 
+
+Marital status are measured from 0 to 5 where 1 is "Married", 2 is "Widowed", 3 is "Divorced", 4 is "Separated" and 5 is "Never married". Respondents income is measured from 0 to 12 where 0 is "Under 1000", 1 is "1000-2999", 2 is "3000-3999", 3 is "4000-4999", 4 is "5000-5999", 5 is "6000-6999", 6 is "7000-7999", 7 is "8000-9999", 8 is "10000-12499", 9 is "12500-14999", 10 is "15000-17499", 11 is "17500-19999" and 12 is "20000 and over".
 
 
 ## Descriptive Statistics
@@ -154,26 +159,26 @@ In this section, I will present descriptive statistics for the variables used in
 ```{=tex}
 \begin{table}[h]
 \centering
-\begin{tabular}{lrrrrrr}
+\begin{tabular}{lrrrrrrr}
 \hline
 \hline
-           & \textbf{AGE} & \textbf{EDUC} & \textbf{HAPPY} & \textbf{ID} & \textbf{RACE} & \textbf{SEX} \\
+           & \textbf{AGE} & \textbf{EDUC} & \textbf{HAPPY} & \textbf{MARITAL} & \textbf{RACE} & \textbf{SEX} & \textbf{RINCOME} \\
 \hline
-\textbf{Mean}         & 48.93   & 13.63   & 1.71   & 1216.14  & 1.42   & 1.55   \\
-\textbf{Std.Dev}      & 18.11   & 2.83    & 0.45   & 673.31   & 0.69   & 0.50   \\
-\textbf{Min}          & 18.00   & 0.00    & 1.00   & 11.00    & 1.00   & 1.00   \\
-\textbf{Q1}           & 34.00   & 12.00   & 1.00   & 651.00   & 1.00   & 1.00   \\
-\textbf{Median}       & 48.00   & 13.00   & 2.00   & 1255.50  & 1.00   & 2.00   \\
-\textbf{Q3}           & 63.00   & 16.00   & 2.00   & 1799.00  & 2.00   & 2.00   \\
-\textbf{Max}          & 89.00   & 20.00   & 2.00   & 2345.00  & 3.00   & 2.00   \\
-\textbf{MAD}          & 22.24   & 1.48    & 0.00   & 858.43   & 0.00   & 0.00   \\
-\textbf{IQR}          & 29.00   & 4.00    & 1.00   & 1145.50  & 1.00   & 1.00   \\
-\textbf{CV}           & 0.37    & 0.21    & 0.27   & 0.55     & 0.49   & 0.32   \\
-\textbf{Skewness}     & 0.29    & -0.42   & -0.93   & -0.09    & 1.37   & -0.20  \\
-\textbf{SE.Skewness}  & 0.11    & 0.11    & 0.11   & 0.11     & 0.11   & 0.11   \\
-\textbf{Kurtosis}     & -0.87   & 1.87    & -1.14  & -1.18    & 0.41   & -1.96  \\
-\textbf{N.Valid}      & 536.00  & 536.00  & 536.00 & 536.00   & 536.00 & 536.00 \\
-\textbf{Pct.Valid}    & 100.00  & 100.00  & 100.00 & 100.00   & 100.00 & 100.00 \\
+\textbf{Mean}         & 48.93   & 13.63   & 1.71   & 2.72  & 1.42   & 1.55   & 6.49\\
+\textbf{Std.Dev}      & 18.11   & 2.83    & 0.45   & 1.67    & 0.69   & 0.50   & 5.55\\
+\textbf{Min}          & 18.00   & 0.00    & 1.00   & 1.00     & 1.00   & 1.00   & 0.00\\
+\textbf{Q1}           & 34.00   & 12.00   & 1.00   & 1.00    & 1.00   & 1.00   & 0.00\\
+\textbf{Median}       & 48.00   & 13.00   & 2.00   & 3.00   & 1.00   & 2.00   & 9.00\\
+\textbf{Q3}           & 63.00   & 16.00   & 2.00   & 5.00   & 2.00   & 2.00   & 12.00\\
+\textbf{Max}          & 89.00   & 20.00   & 2.00   & 5.00   & 3.00   & 2.00   & 12.00\\
+\textbf{MAD}          & 22.24   & 1.48    & 0.00   & 2.97   & 0.00   & 0.00   & 4.45\\
+\textbf{IQR}          & 29.00   & 4.00    & 1.00   & 4.00  & 1.00   & 1.00   & 12.00\\
+\textbf{CV}           & 0.37    & 0.21    & 0.27   & 0.61      & 0.49   & 0.32   & 0.85\\
+\textbf{Skewness}     & 0.29    & -0.42   & -0.93   & 0.30     & 1.37   & -0.20  & -0.20\\
+\textbf{SE.Skewness}  & 0.11    & 0.11    & 0.11   & 0.11     & 0.11   & 0.11   & 0.11\\
+\textbf{Kurtosis}     & -0.87   & 1.87    & -1.14  & -1.53     & 0.41   & -1.96  & -1.85\\
+\textbf{N.Valid}      & 536.00  & 536.00  & 536.00 & 536.00   & 536.00 & 536.00 & 536.00\\
+\textbf{Pct.Valid}    & 100.00  & 100.00  & 100.00 & 100.00   & 100.00 & 100.00 & 100.00\\
 \hline
 \end{tabular}
 \caption{Descriptive Statistics for GSS 2018 (N = 536)}
@@ -289,11 +294,106 @@ ggsave("documentobjects/figures/education_happiness.png", plot = fig3, width = 8
 
 In this section, I will present the results of the regression analysis examining the relationship between education and happiness. I will estimate a logistic regression model to determine whether education is a significant predictor of happiness, controlling for demographic variables.
 
+## Model Specification
+
+The model I am going to use is called an Logistic Regression model, which is a type of regression analysis used to predict the probability of a binary outcome. In this case, the dependent variable is happiness, which is a binary variable indicating whether an individual is happy or not happy. The independent variable of interest is education, which is a continuous variable representing the highest year of school completed.
+
+The logistic regression model I am going to use is specified as follows:
+
+$$ \text{Happy} = \beta_0 + \beta_1 \times \text{Education} + \epsilon $$
+
+where $\beta_0$ is the intercept, $\beta_1$ is the coefficient for education, and $\epsilon$ is the error term. The coefficient $\beta_1$ represents the change in the log-odds of being happy for a one-unit increase in education. A positive coefficient indicates that higher levels of education are associated with a higher probability of being happy, while a negative coefficient indicates the opposite.
+
+
+```{r, warning=FALSE}
+# fix SEX variable to be a factor
+data <- data %>%
+  mutate(SEX = factor(SEX, levels = c(1, 2), labels = 1:2))
+
+# Fit the ordered logistic regression model
+model.fit1 <- glm(happy_binary ~ EDUC, data = data, family = "binomial")
+
+# Display the results
+stargazer(model.fit1, type = "text")
+```
+
+The results of the logistic regression model are presented in the table above. The coefficient for education is negative, which is statistically significant at the 0.01 level. This indicates that for a one-unit increase in education, the log-odds of being happy decrease by 0.106. This is contrary to what I expected, and suggests that higher levels of education are associated with a lower probability of being happy. However, it is important to note that this relationship may be influenced by other factors, and further analysis is needed to understand the relationship between education and happiness better.
+
+
+## Adding Demographic Variables
+
+In this section, I will control for demographic variables such as age, sex, marital status and respondents income to see if the relationship between education and happiness holds after controlling for these variables.
+
+The new model is specified as follows:
+
+$$ \text{Happy} = \beta_0 + \beta_1 \times \text{Education} + \beta_2 \times \text{Age} + \beta_3 \times \text{Marital status} + \beta_4 \times \text{Respondents income} + \epsilon $$
+
+where $\beta_0$ is the intercept, $\beta_1$ is the coefficient for education, $\beta_2$ is the coefficient for age, $\beta_3$ is the coefficient for marital status, $\beta_4$ is the coefficient for respondents income, and $\epsilon$ is the error term. The coefficients $\beta_1$ represents the change in the log-odds of being happy for a one-unit increase in education, holding all other variables constant. A positive coefficient indicates that higher levels of education are associated with a higher probability of being happy, while a negative coefficient indicates the opposite.
+
+
+```{r, warning=FALSE}
+# Fit the ordered logistic regression model with demographic variables
+
+model.fit2 <- glm(happy_binary ~ EDUC * SEX + AGE + MARITAL + RINCOME, data = data, family = "binomial")
+
+# Display the results
+stargazer(model.fit1, model.fit2, type = "text")
+```
 
 
 ```{r}
+fig3 <- ggplot(data = data, mapping = aes(x = EDUC, y = happy_binary, color = SEX)) +
+  geom_jitter(width = 0.1, height = 0.1, alpha = 0.5) +
+  stat_smooth(method="glm", method.args=list(family="binomial"), se = FALSE)+
+  theme_minimal()+
+  theme(text = element_text(size = 20))+
+  labs(title = "Relationship between Education and Happiness",
+       x = "Education Level",
+       y = "Happiness Score",
+       color = "",
+       )+
+  scale_color_manual(values = c("cornflowerblue", "palevioletred"),
+                     labels = c("Male", "Female"))+
+  theme(legend.position = "bottom")
+
+ggsave("documentobjects/figures/education_sex.png", plot = fig3, width = 8, height = 5, dpi = 300)
+```
+
+
+The results of the logistic regression model with demographic variables are presented in the table above. The coefficient for education is still negative, but now only statistically significant at the 0.1 level.
+
+By using an interaction term between education and sex we can see if the relationship between education and happiness is different for the two genders, while both are not statistically significant, the coefficient for the interaction term is negative for male and positive for females which could indicate that the relationship between education and happiness is different for the two genders, but not by much which can be seen in \autoref{fig:education_sex}.
+
+```{=tex}
+
+\begin{figure}[H]
+\centering
+\includegraphics{documentobjects/figures/education_sex.png}
+\caption{Relationship between Education and genders}
+\label{fig:education_sex}
+\end{figure}
 
 ```
+
+Age does not seem to be a significant predictor of happiness, with a coefficient of 0.002, and the same can be said for being separated and the respondents income. But looking at marital status, being divorced and never married seems to be significant predictors of happiness, with a positive coefficient of 1.461 and 1.413 respectively. This indicates that individuals who are divorced or never married are more likely to report being happy, compared to individuals who are married. Albeit not what I was looking for, it is interesting to see that being divorced or never married is a significant predictor of happiness.
+
+## Model Comparison
+
+
+```{r}
+# Anova
+anova(model.fit1, model.fit2, test = "Chisq")
+
+```
+Doing an ANOVA test between the two models, we can see that the second model is a better fit for the data, with a p-value of 0.001. This indicates that the second model, which includes demographic variables, is a better predictor of happiness than the first model, which only includes education. But the model might be overfitted, because of adding too many variables and splitting the sample size into smaller groups.
+
+# Conclusion
+
+In this report, I have examined the relationship between education and happiness using data from the 2018 GSS. I found that individuals with higher levels of education are less likely to report being happy, which is contrary to what I expected. This relationship holds even after controlling for demographic variables. Some weaknesses of the analysis is that the sample size is predominantly white, which can make the results biased, if the sample is not representative of the population. That is also why I did not include race in the model, because the samples would be too small for each group. Another weakness is that I transformed the happiness variable into a binary variable, which could have biased the results when they were merged.
+
+Overall, the results of the analysis suggest that the relationship between education and happiness is complex and may be influenced by other factors not included in this analysis. 
+
+Interestingly, I found that being divorced or never married is a significant predictor of happiness, with individuals who are divorced or never married being more likely to report being happy compared to individuals who are married. This is an unexpected finding, and further research is needed to understand the relationship between marital status and happiness better.
 
 
 \newpage
@@ -310,8 +410,128 @@ Here is a [Link to copilot](https://copilot.microsoft.com/).
 
 Here is the link to the conversation where I asked questions:
 
-[Link to ChatGPT]()
+[Link to ChatGPT](https://chatgpt.com/share/67728f6b-e2c8-8001-a992-dd53a122c26f)
 
 # Appendix
+```{r, echo=TRUE, eval=FALSE}
+rm(list = ls())
+library(tidyverse)
+library(stargazer)
+# Load data
+url <- "https://raw.githubusercontent.com/DanielFabioG/data/refs/heads/main/GSSdata2018_cleaned.csv"
+
+data <- read.csv(url)
+
+# Clean the dataset for only the variables I need for the analysis
+data <- data %>% 
+  select(SEX,AGE,RACE,EDUC,HAPPY, MARITAL, RINCOME)
+  
+  # Making the happy variable binary
+data$happy_binary <- ifelse(data$HAPPY == 1, 0, 1)
+
+# Change the happy_binary variable to a categorical "YES, NO" variable
+data$happy_categorical <- factor(data$happy_binary, 
+                                 levels = c(0, 1), labels = c("Not Happy", "Happy"))
+
+# Make marital status a factor
+data$MARITAL <- factor(data$MARITAL, 
+                       levels = c(1, 2, 3, 4, 5), 
+                       labels = c("Married", "Widowed", "Divorced", "Separated", "Never married"))
+
+# Make race factor
+data$RACE <- factor(data$RACE, 
+                    levels = c(1, 2, 3), 
+                    labels = c("White", "Black", "Other"))
+
+# Descriptive statistics
+#descr(data, style = "rmarkdown")
+
+# Plot the distribution of the happiness variable
+fig1 <-  ggplot(data, aes(x = happy_categorical, 
+                          fill = happy_categorical)) +
+  geom_bar() +
+  labs(title = "",
+       x = "Happiness Score",
+       y = "Frequency",
+       fill = "")+
+  theme_minimal()+
+  # need to fix the sizes of all text for ggsave so it gets bigger
+  theme(text = element_text(size = 20))+
+  scale_fill_manual(values = c("cornflowerblue", "palevioletred"))+
+  theme(legend.position = "none")
+
+ggsave("documentobjects/figures/happiness_distribution.png", 
+       plot = fig1, width = 8, height = 4.5, dpi = 300)
+
+# Create a histogram of the education variable
+fig2 <- data %>% 
+ggplot(aes(x = EDUC, fill = happy_categorical, color = happy_categorical)) +
+  geom_histogram(bins = 20, position = "dodge") +
+  labs(title = "",
+       x = "Education Level",
+       y = "Frequency",
+       color = "",
+       fill = "")+
+  theme_minimal()+
+  scale_fill_manual(values = c("cornflowerblue", "palevioletred"))+
+  scale_color_manual(values = c("cornflowerblue", "palevioletred"))+
+  theme(legend.position = "bottom")+
+  scale_x_continuous(breaks = seq(0, 20, by = 2))+
+  theme(text = element_text(size = 20))
+
+ggsave("documentobjects/figures/education_distribution.png", 
+       plot = fig2, width = 8, height = 4.5, dpi = 300)
+
+# Create a scatterplot of education and happiness
+fig3 <- ggplot(data, aes(x = EDUC, y = happy_binary)) +
+  geom_jitter(width = 0.1, height = 0.1, alpha = 0.5) +
+  labs(title = "",
+       x = "Education Level",
+       y = "Happiness Score")+
+  stat_smooth(method="glm", method.args=list(family="binomial"))+
+  theme_minimal()+
+  theme(text = element_text(size = 20))
+
+ggsave("documentobjects/figures/education_happiness.png", 
+       plot = fig3, width = 8, height = 5, dpi = 300)
+
+# fix SEX variable to be a factor
+data <- data %>%
+  mutate(SEX = factor(SEX, levels = c(1, 2), labels = 1:2))
+
+# Fit the ordered logistic regression model
+model.fit1 <- glm(happy_binary ~ EDUC, data = data, family = "binomial")
+
+# Display the results
+stargazer(model.fit1, type = "text")
+
+# Fit the ordered logistic regression model with demographic variables
+
+model.fit2 <- glm(happy_binary ~ EDUC * SEX + AGE + MARITAL + RINCOME,
+                  data = data, family = "binomial")
+
+# Display the results
+stargazer(model.fit1, model.fit2, type = "text")
+
+fig3 <- ggplot(data = data, mapping = aes(x = EDUC, y = happy_binary, color = SEX)) +
+  geom_jitter(width = 0.1, height = 0.1, alpha = 0.5) +
+  stat_smooth(method="glm", method.args=list(family="binomial"), se = FALSE)+
+  theme_minimal()+
+  theme(text = element_text(size = 20))+
+  labs(title = "Relationship between Education and Happiness",
+       x = "Education Level",
+       y = "Happiness Score",
+       color = "",
+       )+
+  scale_color_manual(values = c("cornflowerblue", "palevioletred"),
+                     labels = c("Male", "Female"))+
+  theme(legend.position = "bottom")
+
+ggsave("documentobjects/figures/education_sex.png",
+       plot = fig3, width = 8, height = 5, dpi = 300)
+
+# Anova
+anova(model.fit1, model.fit2, test = "Chisq")
+```
 
 # References
