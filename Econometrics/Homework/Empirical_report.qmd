@@ -300,10 +300,9 @@ The model I am going to use is called an Logistic Regression model, which is a t
 
 The logistic regression model I am going to use is specified as follows:
 
-$$ \text{Happy} = \beta_0 + \beta_1 \times \text{Education} + \epsilon $$
+$$ log(\frac{P(\text{Happy}=1)}{1-P\text{(Happy=1)}}) = \beta_0 + \beta_1 \times \text{Education} $$
 
-where $\beta_0$ is the intercept, $\beta_1$ is the coefficient for education, and $\epsilon$ is the error term. The coefficient $\beta_1$ represents the change in the log-odds of being happy for a one-unit increase in education. A positive coefficient indicates that higher levels of education are associated with a higher probability of being happy, while a negative coefficient indicates the opposite.
-
+where $\beta_0$ is the intercept, $\beta_1$ is the coefficient for education. The coefficient $\beta_1$ represents the change in the log-odds of being happy for a one-unit increase in education. A positive coefficient indicates that higher levels of education are associated with a higher probability of being happy, while a negative coefficient indicates the opposite. The left side of the equation is the log-odds of being happy, which is transformed to a probability using the logistic function. This model has no error term as it is captured by the binoimal distribution, not by an error term.
 
 ```{r, warning=FALSE}
 # fix SEX variable to be a factor
@@ -326,9 +325,9 @@ In this section, I will control for demographic variables such as age, sex, mari
 
 The new model is specified as follows:
 
-$$ \text{Happy} = \beta_0 + \beta_1 \times \text{Education} + \beta_2 \times \text{Age} + \beta_3 \times \text{Marital status} + \beta_4 \times \text{Respondents income} + \epsilon $$
+$$ log(\frac{P(\text{Happy}=1)}{1-P\text{(Happy=1)}}) = \beta_0 + \beta_1 \times \text{Education} + \beta_2 \times \text{Age} + \beta_3 \times \text{Marital status} + \beta_4 \times \text{Respondents income}$$
 
-where $\beta_0$ is the intercept, $\beta_1$ is the coefficient for education, $\beta_2$ is the coefficient for age, $\beta_3$ is the coefficient for marital status, $\beta_4$ is the coefficient for respondents income, and $\epsilon$ is the error term. The coefficients $\beta_1$ represents the change in the log-odds of being happy for a one-unit increase in education, holding all other variables constant. A positive coefficient indicates that higher levels of education are associated with a higher probability of being happy, while a negative coefficient indicates the opposite.
+where $\beta_0$ is the intercept, $\beta_1$ is the coefficient for education, $\beta_2$ is the coefficient for age, $\beta_3$ is the coefficient for marital status, and $\beta_4$ is the coefficient for respondents income. The coefficients $\beta_1$ represents the change in the log-odds of being happy for a one-unit increase in education, holding all other variables constant. A positive coefficient indicates that higher levels of education are associated with a higher probability of being happy, while a negative coefficient indicates the opposite. The same goes for the other coefficients. The left side of the equation represents the log-odds of being happy, and the model has no error term as it is modeled through the binomial distribution.
 
 
 ```{r, warning=FALSE}
@@ -360,7 +359,7 @@ ggsave("documentobjects/figures/education_sex.png", plot = fig3, width = 8, heig
 ```
 
 
-The results of the logistic regression model with demographic variables are presented in the table above. The coefficient for education is still negative, but now only statistically significant at the 0.1 level.
+The results of the logistic regression model with demographic variables are presented in the table above. The coefficient for education is still negative, but now only statistically significant at the 0.1 level. Which means that the relationship between education and happiness is not as strong as before.
 
 By using an interaction term between education and sex we can see if the relationship between education and happiness is different for the two genders, while both are not statistically significant, the coefficient for the interaction term is negative for male and positive for females which could indicate that the relationship between education and happiness is different for the two genders, but not by much which can be seen in \autoref{fig:education_sex}.
 
@@ -378,6 +377,8 @@ By using an interaction term between education and sex we can see if the relatio
 Age does not seem to be a significant predictor of happiness, with a coefficient of 0.002, and the same can be said for being separated and the respondents income. But looking at marital status, being divorced and never married seems to be significant predictors of happiness, with a positive coefficient of 1.461 and 1.413 respectively. This indicates that individuals who are divorced or never married are more likely to report being happy, compared to individuals who are married. Albeit not what I was looking for, it is interesting to see that being divorced or never married is a significant predictor of happiness.
 
 ## Model Comparison
+
+I will do an ANOVA test which is a statistical test used to compare the fit of two or more models to determine which model is the best fit for the data. In this case, I will compare the first model, which only includes education, with the second model, which includes demographic variables. The null hypothesis is that the two models are equally good fits for the data, while the alternative hypothesis is that the second model is a better fit for the data.
 
 
 ```{r}
