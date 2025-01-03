@@ -116,6 +116,7 @@ data$MARITAL <- factor(data$MARITAL, levels = c(1, 2, 3, 4, 5), labels = c("Marr
 # Make race factor
 data$RACE <- factor(data$RACE, levels = c(1, 2, 3), labels = c("White", "Black", "Other"))
 
+library()
 # Descriptive statistics
 #descr(data, style = "rmarkdown")
 ```

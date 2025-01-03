@@ -1,0 +1,99 @@
+---
+format: 
+  pdf:
+    geometry:
+      - top=20mm
+      - left=20mm
+      - heightrounded
+    fontsize: 12pt
+    documentclass: scrartcl
+    papersize: a4
+    toccolor: black
+echo: false
+warning: false
+bibliography: documentobjects/texstuff/references.bib
+csl: documentobjects/texstuff/apa.csl
+header-includes:
+  - \usepackage{wrapfig}
+  - \usepackage{subcaption}
+  - \usepackage{amsmath}
+  - \usepackage{cancel}
+  - \usepackage{hyperref}
+  - \usepackage{tikz}
+  - \usepackage{tabularx}
+  - \usepackage{colortbl}
+  - \usepackage{xcolor}
+  - \renewcommand{\maketitle}{}
+  - \definecolor{cornflowerblue}{RGB}{100,149,237}
+  - \definecolor{darkgrey}{RGB}{220,220,220}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{} 
+  - \fancyhead[L]{\rightmark}
+  - \fancyhead[R]{\thepage}
+  - \fancyfoot[C]{\thepage}
+nocite: |
+  @*
+---
+
+\newgeometry{left=0cm, right=0cm, top=0cm, bottom=0cm}
+\vspace*{0.5cm}
+\begin{flushleft}
+    \vspace*{0.5cm}
+    \hspace*{2.5cm}\large{\color{black}\textbf Waseda University \\[0.2em]
+    \hspace*{2.5cm}\color{black}\fontsize{10}{13.2}\selectfont School of Political Science and Economics \\[0.5em]
+    \hspace*{2.5cm}\large{\color{black}\textbf{Essay about tax system in Norway compared to Japan}}  \\[0.5em]
+\hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Daniel Fabio Groth, Norway, student ID: 1A249134-9 \\[0.5em]
+    \hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Public Finance, Fall 2024 \\[0.5em]
+    \hspace*{2.0cm}
+    \par}
+    \in
+    \begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=center, inner sep=0] at (current page.center) {\includegraphics[width=\paperwidth]{documentobjects/texstuff/front.jpg}};
+\end{tikzpicture}
+
+\end{flushleft} 
+\restoregeometry
+\tableofcontents
+\listoftables
+\listoffigures
+\newpage
+
+```{r, include=FALSE}
+rm(list = ls())
+library(tidyverse)
+```
+
+This course explained the public finance system in Japan: (1) budget process of the central government, (2) local public finance system, (3) tax system, (4) public pension, and (5) public health insurance. Pick up one of these topics, and compare the Japanese one with the one in your home country. Explain the similarities and differences and their (possible) effects or evaluations.
+
+The format is:
+
+Write down your name, your student ID at Waseda, and the name of your home country. 
+About 1,000 words, excluding figures and tables.
+Include at least one figure or table. It may be statistical graphs or other figures.
+
+\newpage
+
+
+# Introduction
+
+This essay will compare the public finance system in Japan with the one in Norway. The comparison will focus on the tax system of both countries. The tax system is a crucial part of public finance, as it is the main source of revenue for the government. The tax system in Japan and Norway has some similarities, but also some significant differences. This essay will explore these similarities and differences and discuss their possible effects and evaluations.
+
+# Tax System in Japan
+
+The tax system in Japan consists of several different taxes, including consumption tax, income tax, corporate tax, and inheritance tax. Income tax is levied on individuals and corporations based on their income. Consumption tax is a value-added tax levied on the sale of goods and services. Corporate tax is levied on the profits of corporations. Inheritance tax is levied on the transfer of assets from one person to another after death.
+
+## Income Tax
+
+Income tax in Japan is progressive, with higher-income individuals paying a higher rate of tax. The tax rates range from 5% to 45%, depending on the level of income. There are also deductions and exemptions available to reduce the amount of tax payable.
+
+## Consumption Tax
+
+Consumption tax in Japan is currently set at 10%. It is levied on the sale of goods and services and is included in the price paid by consumers. The tax revenue is used to fund public services and infrastructure.
+
+## Corporate Tax
+
+Corporate tax in Japan is levied on the profits of corporations. The tax rate is currently set at 23.2% over 8 million yen and 15% if the company has revene under 4 million yen, which is relatively high compared to other countries. There are also deductions and exemptions available to reduce the amount of tax payable.
+
+# Tax System in Norway
+
