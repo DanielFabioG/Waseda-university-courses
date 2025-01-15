@@ -1,0 +1,101 @@
+---
+title: "Tariffs"
+format: pdf
+editor: visual
+---
+
+# International economics
+
+## Optimal tariffs and lobbying
+
+```{r}
+rm(list = ls())
+library(tidyverse)
+library(readxl)
+# data
+tariff <- read_excel("C:/Users/danie/Downloads/tariff.xlsx")
+```
+
+Use the spreadsheet ‘tariff.xls’ for the following questions:
+
+(a) Suppose that the Home government maximizes the social welfare which is a
+sum of consumer surplus, producer surplus and tariff revenue, CS+PS+TR
+
+
+
+```{r}
+# Variables I have are: `Home tariff`, HOME CS`, `HOME PS`, `HOME imports`
+
+tariff <- tariff %>%
+  mutate(
+    SW = `HOME CS` + `HOME PS` + `Home tariff` * `HOME imports`
+  )
+```
+
+Create a figure that plots Home social welfare on the vertical axis against the tariff level on the horizontal axis. Using this visual aide and data, find the optimal tariff
+
+```{r}
+ggplot(tariff, aes(x = `Home tariff`, y = SW)) +
+  geom_line() +
+  geom_point()+
+  labs(title = "Social welfare vs. tariff level",
+       x = "Tariff level",
+       y = "Social welfare")+
+  theme_minimal()+
+  # Add a vertical line at the optimal tariff
+  geom_vline(aes(xintercept = `Home tariff`[which.max(SW)]), linetype = "dashed", color = "red")+
+  # Add a point at the optimal tariff
+  geom_point(aes(x = `Home tariff`[which.max(SW)], y = max(SW)), color = "red", size = 3)+
+  # fix the x-axis ticks
+  scale_x_continuous(breaks = seq(0, 33.5, 1))
+
+# Optimal tariff
+tariff %>%
+  filter(SW == max(SW))
+
+
+
+
+```
+Optimal tariff is when the social welfare is maximized. Social welfare is maximized at 1360.01 when the tariff is 9 cents.
+
+Now you are told that the actual policy is the tariff level of 11 cents. What can
+you learn from this comparison?
+
+When the actual policy is the tariff level of 11 cents, the social welfare is 1359.99. This is very close to the optimal tariff level of 9 cents. This means that the actual policy is very close to the optimal policy.
+
+(b) Next, examine how the ‘optimal’ tariff might change with a different
+priority of the government. 
+
+Suppose that the government is biased towards producers and puts an extra weight on PS. That is, the government maximizes CS+7PS+TR. What is the optimal tariff in this case?
+
+```{r}
+
+tariff <- tariff %>%
+  mutate(
+    SW2 = `HOME CS` + 7 * `HOME PS` + `Home tariff` * `HOME imports`
+  )
+
+ggplot(tariff, aes(x = `Home tariff`, y = SW2)) +
+  geom_line() +
+  geom_point()+
+  labs(title = "Social welfare vs. tariff level",
+       x = "Tariff level",
+       y = "Social welfare")+
+  theme_minimal()+
+  # Add a vertical line at the optimal tariff
+  geom_vline(aes(xintercept = `Home tariff`[which.max(SW2)]), linetype = "dashed", color = "red")+
+  # Add a point at the optimal tariff
+  geom_point(aes(x = `Home tariff`[which.max(SW2)], y = max(SW2)), color = "red", size = 3)+
+  # fix the x-axis ticks
+  scale_x_continuous(breaks = seq(0, 33.5, 1))
+
+```
+
+
+```{r}
+# Optimal tariff
+tariff %>%
+  filter(SW2 == max(SW2))
+
+```

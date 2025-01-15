@@ -1,0 +1,283 @@
+---
+format: 
+  pdf:
+    geometry:
+      - top=20mm
+      - left=20mm
+      - heightrounded
+    fontsize: 12pt
+    documentclass: scrartcl
+    papersize: a4
+    toccolor: black
+echo: false
+warning: false
+bibliography: documentobjects/texstuff/references.bib
+csl: documentobjects/texstuff/apa.csl
+header-includes:
+  - \usepackage{wrapfig}
+  - \usepackage{subcaption}
+  - \usepackage{amsmath}
+  - \usepackage{cancel}
+  - \usepackage{hyperref}
+  - \usepackage{tikz}
+  - \usepackage{tabularx}
+  - \usepackage{colortbl}
+  - \usepackage{xcolor}
+  - \renewcommand{\maketitle}{}
+  - \definecolor{cornflowerblue}{RGB}{100,149,237}
+  - \definecolor{darkgrey}{RGB}{220,220,220}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{} 
+  - \fancyhead[L]{\rightmark}
+  - \fancyhead[R]{\thepage}
+  - \fancyfoot[C]{\thepage}
+nocite: |
+  @*
+---
+
+\newgeometry{left=0cm, right=0cm, top=0cm, bottom=0cm}
+\vspace*{0.5cm}
+\begin{flushleft}
+    \vspace*{0.5cm}
+    \hspace*{2.5cm}\large{\color{black}\textbf Waseda University \\[0.2em]
+    \hspace*{2.5cm}\color{black}\fontsize{10}{13.2}\selectfont School of Political Science and Economics \\[0.5em]
+    \hspace*{2.5cm}\large{\color{black}\textbf{Essay about tax system in Norway compared to Japan}}  \\[0.5em]
+\hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Daniel Fabio Groth, Norway, student ID: 1A249134-9 \\[0.5em]
+    \hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Public Finance, Fall 2024 \\[0.5em]
+    \hspace*{2.0cm}
+    \par}
+    \in
+    \begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=center, inner sep=0] at (current page.center) {\includegraphics[width=\paperwidth]{documentobjects/texstuff/front.jpg}};
+\end{tikzpicture}
+
+\end{flushleft} 
+\restoregeometry
+\tableofcontents
+\listoftables
+\listoffigures
+\newpage
+
+```{r, include=FALSE}
+rm(list = ls())
+library(readxl)
+library(tidyverse)
+library(devtools)
+library(OECD)
+```
+
+\newpage
+
+
+# Introduction
+
+This essay will compare the public finance system in Japan with the one in Norway. The comparison will focus on the tax system of both countries. The tax system is a crucial part of public finance, as it is the main source of revenue for the government. The tax system in Japan and Norway has some similarities, but also some significant differences. This essay will explore these similarities and differences and discuss their possible effects and evaluations.
+
+# Tax System in Japan
+
+The tax system in Japan consists of several different taxes, including consumption tax, income tax, corporate tax, and inheritance tax. Income tax is levied on individuals and corporations based on their income. Consumption tax is a value-added tax levied on the sale of goods and services. Corporate tax is levied on the profits of corporations. Inheritance tax is levied on the transfer of assets from one person to another after death.
+
+## Income Tax
+
+Income tax in Japan is progressive, with higher-income individuals paying a higher rate of tax. The tax rates range from 5% to 45%, depending on the level of income. There are also deductions and exemptions available to reduce the amount of tax payable.
+
+## Consumption Tax
+
+Consumption tax in Japan is currently set at 10%. It is levied on the sale of goods and services and is included in the price paid by consumers. The tax revenue is used to fund public services and infrastructure.
+
+## Corporate Tax
+
+Corporate tax in Japan is levied on the profits of corporations. The tax rate is currently set at 23.2% over 8 million yen and 15% if the company has revene under 4 million yen, which is relatively high compared to other countries. There are also deductions and exemptions available to reduce the amount of tax payable.
+
+# Tax System in Norway
+
+The tax system in Norway is also based on several different taxes, including income tax, value-added tax, corporate tax, and wealth tax. Income tax is levied on individuals and corporations based on their income. Value-added tax is a consumption tax levied on the sale of goods and services. Corporate tax is levied on the profits of corporations. Wealth tax is levied on the net wealth of individuals.
+
+## Income Tax
+
+Income tax in Norway is also progressive, with higher-income individuals paying a higher rate of tax. The tax rates range from 0% to 55.8 %, depending on the level of income according to [Skatteetaten](https://www.skatteetaten.no/en/rates/maximum-effective-marginal-tax-rates/). There are also deductions and exemptions available to reduce the amount of tax payable.
+
+## Value-Added Tax
+
+Value-added tax in Norway is currently set at 25%. It is levied on the sale of goods and services and is included in the price paid by consumers. The tax revenue is used to fund public services and infrastructure.
+
+## Corporate Tax
+
+Corporate tax in Norway is levied on the profits of corporations. The tax rate is currently set at 22%, and enterprises involved in financial activities have a rate of 25%,  which is relatively high compared to other countries. There are also deductions and exemptions available to reduce the amount of tax payable.
+
+## Wealth Tax
+
+Wealth tax in Norway is levied on the net wealth of individuals. There are two different types, one is for the municipality and the other is for the state. The tax rate is 0% for individuals under 1,700,000 NOK and 0.7% for individials above for the municipality. \autoref{tab:wealth_tax} shows the wealth tax rates for the municipality in Norway.
+
+
+```{=tex}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\textbf{Wealth} & \textbf{Tax} \\
+\hline
+\hline
+0 - 1,700,000 & 0.0\% \\
+1,700,001 and above & 0.7\% \\
+\hline
+\end{tabular}
+\caption{Definition of wealth tax in Norway}
+\label{tab:wealth_tax}
+\end{table}
+
+
+```
+
+
+
+To the state the tax is 0% for individuals under 1,700,000 NOK and 0.3% for individuals above. There is also an addidiotal tax for individuals with a net wealth above 20,000,000 NOK where it increases to 0.4%. \autoref{tab:wealth_tax_state} shows the wealth tax rates for the state in Norway.
+
+```{=tex}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\textbf{Wealth} & \textbf{Tax} \\
+\hline
+\hline
+0 - 1,700,000 & 0.0\% \\
+1,700,001 - 20,000,000 & 0.3\% \\
+20,000,001 and above & 0.4\% \\
+\hline
+\end{tabular}
+\caption{Definition of wealth tax in Norway to the state}
+\label{tab:wealth_tax_state}
+\end{table}
+
+```
+
+# Comparison
+
+The tax systems in Japan and Norway have some similarities, such as progressive income tax rates and value-added tax on the sale of goods and services. Both countries also have deductions and exemptions available to reduce the amount of tax payable. However, there are also some significant differences between the two tax systems.
+
+One of the main differences is the tax rates. The tax rates in Norway are generally higher than in Japan. For example, the top income tax rate in Norway is 55.8%, while in Japan, it is 45%. The corporate tax rate in Norway is 22%, while in Japan, it is 23.2%. The value-added tax rate in Norway is 25%, while in Japan, it is 10%. The wealth tax in Norway is also higher than in Japan, with rates of 0.7% and 0.3% for the municipality and the state, respectively.
+
+Another difference is the wealth tax in Norway. Norway has a wealth tax on the net wealth of individuals, while Japan does not have a wealth tax. The wealth tax in Norway is used to redistribute wealth and reduce income inequality. The wealth tax has been very controversial in Norway, with some arguing that it discourages investment and entrepreneurship. And alot of people have moved out of Norway because of the wealth tax, specifically to Switzerland, which is known for its low taxes compared to Norway.
+
+## Excise Tax
+
+Another difference is the excise tax. Japan has a relatively low excise tax compared to Norway. Norway has a high excise tax on alcohol, tobacco, and fuel. The excise tax is used to reduce consumption of harmful products and to fund public services and infrastructure. The excise tax in Norway is one of the highest in the world, and it has been very effective in reducing consumption of harmful products.
+
+## Toll Roads
+
+Another difference is the toll roads. Norway has a lot of toll roads compared to Japan. The toll roads in Norway are used to fund public services and infrastructure. The toll roads in Norway are relatively expensive, and they have been very controversial. Some argue that the toll roads are necessary to fund public services and infrastructure, while others argue that they are a burden on the people, and they are differently taxed compared to what municipality you live in.
+
+## Data visualization
+
+```{r}
+# Create a bar plot of the tax rates in Japan and Norway
+
+tax_rates <- data.frame(
+  Country = c("Japan", "Norway"),
+  Income_tax = c(45, 55.8),
+  Corporate_tax = c(23.2, 22),
+  Value_added_tax = c(10, 25)
+)
+
+tax_fig <- tax_rates %>%
+  pivot_longer(cols = -Country, names_to = "Tax", values_to = "Rate") %>%
+  ggplot(aes(x = Country, y = Rate, fill = Tax)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "",
+       x = "",
+       y = "Rate (%)",
+       fill = "Tax") +
+  theme_minimal()+
+  # colors
+  scale_fill_manual(values = c("Income_tax" = "cornflowerblue", "Corporate_tax" = "palevioletred", "Value_added_tax" = "darkgrey"))+
+  theme(legend.position = "bottom", text = element_text(size = 20))
+
+ggsave("documentobjects/figures/tax_fig.png", plot = tax_fig, width = 10, height = 6, dpi = 300)
+
+```
+
+In \autopageref{fig:tax_fig}, we can see a bar plot of the tax rates in Japan and Norway. The tax rates in Norway are generally higher than in Japan, with higher income tax, corporate tax, and value-added tax rates. This difference in tax rates reflects the different tax systems in the two countries.
+
+```{=tex}
+
+\begin{figure}[H]
+\centering
+\includegraphics{documentobjects/figures/tax_fig.png}
+\caption{Tax Rates in Japan and Norway}
+\label{fig:tax_fig}
+\end{figure}
+
+```
+
+Differences in VAT-rate between OECD countries can be seen in \autoref{fig:vat_rate}. Japan has a VAT rate of 10% and Norway has a VAT rate of 25%. This is a significant difference in VAT rates between the two countries.
+
+
+```{r}
+# Use the method above to download the data
+
+tax <- read_excel("C:/Users/danie/Downloads/tax.xlsx", 
+    skip = 3)
+# rename variables
+tax <- tax %>%
+  rename(
+    Country = "Territory",
+    VAT = `Standard VAT rate (%)`
+  )
+
+# remove the characters in VAT
+tax$VAT <- gsub("[^0-9.]", "", tax$VAT)
+
+# gsub . with , in VAT
+tax$VAT <- gsub("\\.", ",", tax$VAT)
+
+# convert VAT to numeric
+tax$VAT <- as.numeric(tax$VAT)
+
+# Remove NA and values over 100
+tax <- tax %>%
+  filter(!is.na(VAT), VAT <= 100)
+
+# make me a list of all OECD countries
+oecd_countries <- c("Australia", "Austria", "Belgium", "Canada", "Chile", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Japan", "Norway")
+
+# filter the data for OECD countries
+tax <- tax %>%
+  filter(Country %in% oecd_countries)
+
+
+# Create a bar plot of the VAT rates in OECD countries
+bar_plot <- tax %>%
+  ggplot(aes(x = reorder(Country, VAT), y = VAT)) +
+  geom_bar(stat = "identity", fill = "cornflowerblue") +
+  labs(title = "VAT Rates in OECD Countries",
+       x = "Country",
+       y = "VAT Rate (%)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), text = element_text(size = 20), legend.position = "none")+
+  geom_text(aes(label = VAT), nudge_y = 1, size = 5)
+
+
+ggsave("documentobjects/figures/vat_rate.png", plot = bar_plot, width = 10, height = 6, dpi = 300)
+```
+
+```{=tex}
+
+\begin{figure}[H]
+\centering
+\includegraphics{documentobjects/figures/vat_rate.png}
+\caption{VAT Rates in OECD Countries}
+\label{fig:vat_rate}
+\end{figure}
+
+```
+
+# Conclusion
+
+In conclusion, the tax systems in Japan and Norway have some similarities, such as progressive income tax rates and value-added tax on the sale of goods and services. However, there are also some significant differences between the two tax systems. The tax rates in Norway are generally higher than in Japan, with higher income tax, corporate tax, and value-added tax rates. Norway also has a wealth tax on the net wealth of individuals, while Japan does not have a wealth tax. These differences in tax rates and tax systems reflect the different priorities and values of the two countries. The tax system in Norway is used to redistribute wealth and reduce income inequality, while the tax system in Japan is used to fund public services and infrastructure. Both tax systems have their strengths and weaknesses, and it is important to consider these when evaluating the effectiveness of the tax system in each country.
+
+\newpage
+
+# References
+
