@@ -1,0 +1,103 @@
+---
+format: 
+  pdf:
+    geometry:
+      - top=20mm
+      - left=20mm
+      - heightrounded
+    fontsize: 12pt
+    documentclass: scrartcl
+    papersize: a4
+    toccolor: black
+echo: false
+warning: false
+bibliography: documentobjects/texstuff/references.bib
+csl: documentobjects/texstuff/apa.csl
+header-includes:
+  - \usepackage{wrapfig}
+  - \usepackage{subcaption}
+  - \usepackage{amsmath}
+  - \usepackage{cancel}
+  - \usepackage{hyperref}
+  - \usepackage{tikz}
+  - \usepackage{tabularx}
+  - \usepackage{colortbl}
+  - \usepackage{xcolor}
+  - \renewcommand{\maketitle}{}
+  - \definecolor{cornflowerblue}{RGB}{100,149,237}
+  - \definecolor{darkgrey}{RGB}{220,220,220}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{} 
+  - \fancyhead[L]{\rightmark}
+  - \fancyhead[R]{\thepage}
+  - \fancyfoot[C]{\thepage}
+nocite: |
+  @*
+---
+
+\newgeometry{left=0cm, right=0cm, top=0cm, bottom=0cm}
+\vspace*{0.5cm}
+\begin{flushleft}
+    \vspace*{0.5cm}
+    \hspace*{2.5cm}\large{\color{black}\textbf Waseda University \\[0.2em]
+    \hspace*{2.5cm}\color{black}\fontsize{10}{13.2}\selectfont School of Political Science and Economics \\[0.5em]
+    \hspace*{2.5cm}\large{\color{black}\textbf{Research Diary}}  \\[0.5em]
+\hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Daniel Fabio Groth, student ID: 1A249134-9 \\[0.5em]
+    \hspace*{2.5cm}\color{black}\fontsize{11}{13.2}\selectfont Quantitative Analysis, Fall 2024 \\[0.5em]
+    \hspace*{2.0cm}
+    \par}
+    \in
+    \begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=center, inner sep=0] at (current page.center) {\includegraphics[width=\paperwidth]{documentobjects/texstuff/front.jpg}};
+\end{tikzpicture}
+
+\end{flushleft} 
+\restoregeometry
+\newpage
+
+## Wednesday 4th of december:
+
+We talked a bit on discord last week and had a meeting about what research question we were gonna have.
+
+I suggested after brainstorming around my interests that we try and formulate a question around financial literacy. And we ended up formulating a research question around it. Kenta made a google doc and I asked him to submit the question and the research we found on google scholar. I found one recent study on it and it had some good data, I also went and made an R project and loaded the data in to the project, but im not sure if we are gonna use it yet, since its just the beginning and we might need to fix and formulate the research question more precise, or even change it maybe.
+
+## Wednesday 11th of december:
+
+Caught a bad case of flu so did not attend the lecture.
+
+Saturday 14th of december:
+
+The group didnt really say much but we had a deadline this Sunday and finally sat down on Saturday when I felt a bit better from flu and we agreed that it would be too hard for a small research project to look at two different datasets to measure financial literacy between two countries. Also we could not find any japanese data so we ended up looking at the data I found last meeting and specified the research question thourougly so that it fitted with what data we had and we made some hypotheses for now, not sure what we are going to end up with. I think all three are good to be honest. I mashed it up fast in Rstudio and sent it to the group to look after I finished writing the document, they agreed it looked good so far and then I submitted it.
+
+## Wednesday 22nd of december:
+
+Still had flu so didnt attend the lecture. But I worked on the group assignment a little bit.
+
+Thursday 2nd of January:
+
+During the break the group havent said or done much, I think most of them went back to their parents during christmas vacation. As I have the document with the data I will continue a little bit on my own on the group assignment, and probably just fix the variables we need to do the analysis, and when I have done this and written a little bit of the introduction I will share the document with the group so they can continue working on it without thinking too much about what variables they need to use and what transformation to do, it will be fully cleaned.
+
+## Monday 6th of Januray:
+
+Cleaned the dataset, fixed the variables for the analysis and presented some tables of the final dataset. I sent the group the project so they could look at it, but it seems like they wont do anything until after winter break as I had no reseponse for three days. Looking at the feedback we should already start looking at testing some models, so I will start testing some models today and see what the data says.
+
+## Tuesday 7th of Januray:
+
+Group answered and since I did most of what was written to now it is hard for them to know how to continue, I will instead of testing the model write the document as clear as possible for what is needed to do for each section to finalize the report, in both writing, plots and code and send the new revised document to the group so they can clearly see the roadmap of what we need to do and they can more easily take part to finalize the project.
+
+## Wednesday 9th of january:
+
+I forgot that we actually dont have to deliver a paper but actually present the group project, looks like I have to revise the project a bit since we do not really need to explain too much but rather present what we did and found in a quick 5 minutes. I will revise the document again and structure it more like a presentation, and then delegate the work to the rest of the group.
+
+## Wednesday 15th of January:
+
+We all met and sat together in class, everyone had been delegated their share of the work needed to finish and the project was finalized. Since the presentation is only 5 minutes, some parts of the analysis were shortened down since it would become too long, and some of the graphs were not included, we also left out descriptive statistics and a full description of variables, these things will be added to appendix. I delegated some work around for the presentation and just overlooked people writing different slides for the presentation in case they needed some help, while I wrote the appendix. Right before class ended we nearly finished the presentation, we had just to rewrite it better and finalize the conclusion slide which we did not start on. Me and Kenta decided we are going to be the ones presenting for the class next week so we scheduled to present together this week so we could time the presentation, he will be presenting first and I will take over for the analysis part.
+
+## Tuesday 21th of january:
+
+Presented twice and ended up with 7 minutes and 6 minutes, for the second, ended up revising the presentation so it would flow more nicely, found some parts that were said twice and small stuff that needed to be removed or added.
+
+## Wednesday 22nd of January, final thoughts:
+
+Presented with Kenta, he had the introduction and I took over from the analysis part. Presentation went pretty well, did not take the time but felt that we got through it pretty fast and went over most of the important parts with the limited time we had. Overall impression of all the presentations was that some people were little bit unprepared and some very very nervous as expected, dont really think I saw any other researches that seemed "wow" I wish I thought of that topic or whatnot. One of the researches I thought was nice was the one where they did the log-model, the charts were nice and informative and they did the regression correctly and interpretated it in a good way. Final thoughts, great course and a good teacher, which I never got to speak to because people had so many questions after class I never got the time. Had some interesting ideas I would of liked to talk about for the research and other stuff, but did not feel like taking up the time when it was not neccesary because I would figure it out eventually anyways.

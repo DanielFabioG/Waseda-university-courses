@@ -1,0 +1,257 @@
+---
+title: "Untitled"
+format: pdf
+editor: visual
+---
+
+# Important people and books
+
+**Karl Marx**
+
+-   **Das Kapital, manifesto of the communist party**
+
+He is the last classical economist
+
+Engels' pause - economic term for british work-class wages stagnating while gdp was increasing.
+
+Friedrich Engels.
+
+-   Wrote the conditions of the working classrinting of code (only output is displayed).
+
+Antonine Augustin Cournot
+
+-   Researches on Mathematical Principles of the Theory of Wealth
+
+William Stanley Jevons
+
+-   A Serious Fall in the Value of Gold ascertained
+
+Marie Esprit Léon Walras
+
+-   Éléments d’économie politique pure, ou théorie de la richesse sociale
+
+Carl Menger
+
+-   Principles of Economics
+
+Alfred Marshall
+
+-   The Economics of Industry
+
+Johan Gustav Knut Wicksell
+
+-   Value, Capital and Rent
+
+Irving Fisher
+
+-   Investigations in the Theory of Value and Prices
+
+John maynard Keynes
+
+-   A Tract on Monetary Reform
+
+-   The General Theory of Employment, Interest and Money, magnum opus
+
+Friedrich August von Hayek
+
+-   Monetary Theory and Business Cycles（1929）
+
+-   Prices and Production （1931）
+
+Joseph Alois Schumpeter
+
+-   Theory of Economic Development
+
+Lord William Henry Beveridge
+
+-   Unemployment: A problem of industry
+
+### 1. A Country with 100% Income Tax
+
+-   **National Income**: If all income is taxed at 100%, there is no financial incentive to work. Real national income would likely collapse because people would not produce goods/services if they cannot keep any earnings.
+
+-   **Tax Revenue**: At first glance, one might think the government collects everything. However, due to a sharp drop in labor supply and production, the tax base shrinks dramatically. In practice, total tax revenue would likely *fall* to near zero (the so-called “Laffer Curve” intuition).
+
+-   **Supply of Labor**: With no net pay, individuals have no monetary reason to work. Labor supply would plummet, possibly to zero in a purely theoretical scenario.
+
+### 2. Friedman on Freedom to Advocate Different Systems
+
+-   **Friedman’s Point**: In a truly free (capitalist) society, one is free to argue for socialism. Likewise, in a free socialist society, one should be allowed to advocate capitalism.
+
+-   **Challenge Under Socialism**: Friedman worries that once resources and media are controlled by the state, opposition voices might be suppressed. He questions how genuine freedom of speech and advocacy could exist if the government owns the means of production, thereby controlling the channels of persuasion.
+
+-   **Key Discussion**: How can a socialist state ensure the freedom of expression for dissenting views without centralized control stifling that freedom?
+
+### 3. J. S. Mill’s “Stationary State” and “Human Improvement”
+
+-   **Stationary State**: Mill imagined an economy where physical capital and population stop growing. However, he saw this not as stagnation but as a context for improving “higher pleasures” (e.g., arts, moral progress).
+
+-   **Consistency with Human Improvement**: Mill’s notion of progress was not just about material growth; it included moral, intellectual, and social advances. A stationary state could still harbor significant qualitative improvements in well-being and culture.
+
+-   **Debate**: Some see tension between Mill’s belief in progress and his acceptance of no GDP growth. Others argue he simply redefined “progress” to include non-material aspects.
+
+### 4. Degrowth: Should We Stop Economic Growth?
+
+-   **What is Degrowth?** A movement arguing that continuous economic growth is environmentally unsustainable and may not lead to greater well-being.
+
+-   **Arguments For**: Limits to environmental resources, concerns over climate change, the pursuit of well-being over consumption.
+
+-   **Arguments Against**: Technological innovation may decouple growth from environmental harm; growth can lift living standards worldwide.
+
+-   **Key Question**: Is it possible to have “sustainable growth” or must we embrace zero/negative growth to preserve the planet?
+
+### 5. Johan Norberg’s *Capitalist Manifesto* vs. Marx & Engels’ *Communist Manifesto*
+
+-   **Marx & Engels (1848)**: Critique of capitalism’s class exploitation; call for a proletarian revolution; central role of labor and the class struggle.
+
+-   **Norberg (21st Century)**: Defense of capitalism’s record on innovation, prosperity, individual freedom, and reduced poverty worldwide.
+
+-   **Comparison**:
+
+    -   *Communist Manifesto* sees capitalism as inherently exploitative and temporary.
+
+    -   *Capitalist Manifesto* celebrates market-based solutions and global wealth creation.
+
+    -   *Common Ground?* Both respond to social injustice but propose radically different remedies.
+
+### 6. Why Economics Took So Long to Adopt Mathematics
+
+-   **Historical Context**: Economics emerged from moral philosophy; early economists wrote in a literary style (e.g., Adam Smith).
+
+-   **Gradual Formalization**: Marginalism (late 19th century) introduced calculus; but only in the 20th century did advanced math become standard (think of Paul Samuelson in mid-20th century).
+
+-   **Relationship Between Analytical Tools and Ideology**:
+
+    -   *Positive Aspect*: Math can bring clarity, precision, and testable models.
+
+    -   *Concerns*: Overreliance on formalism can push aside ethical or real-world complexity.
+
+    -   *Examples*:
+
+        -   **Industrial Clustering**: Alfred Marshall used partial-equilibrium analysis and recognized external economies within geographic clusters, which can be shown with fairly simple math but also rests on real-world observations.
+
+### 7. Comparing Marshall’s Monetary Theory and Fisher’s Monetary Theory
+
+-   **Alfred Marshall**:
+
+    -   Focus on money demand from a microeconomic perspective (cash-balances approach).
+
+    -   Concerned with how changes in the money supply affect general price levels and interest rates over time.
+
+-   **Irving Fisher**:
+
+    -   Well-known for the Equation of Exchange: MV=PTMV = PTMV=PT (Money × Velocity = Price × Transactions).
+
+    -   Emphasized the mechanical relationship between money supply and price level in the long run.
+
+-   **Key Distinctions**: Marshall integrates real and monetary sectors more closely, whereas Fisher’s equation is more direct but can be seen as more “macro-mechanical.”
+
+### 8. The Wonderful Wizard of Oz and the Bimetallic Debate
+
+-   **Allegory**: Some scholars argue L. Frank Baum’s *The Wonderful Wizard of Oz* (1900) was a commentary on the late 19th-century debate over gold vs. silver. Dorothy’s silver shoes (in the original book, not ruby as in the movie) and the Yellow Brick Road (gold) are said to reflect monetary policy tensions.
+
+-   **Opinion**: Historians disagree on whether Baum intended it. Some claim it’s a neat historical coincidence. Others see direct references to economic populism (William Jennings Bryan, “Free Silver,” etc.).
+
+-   **Takeaway**: It is at least a colorful teaching device for the gold/silver/bimetallism debates of the era.
+
+### 9. The Gold Standard Controversies (1797–1821 and 1919–1925 in the UK)
+
+1.  **1797–1821**:
+
+    -   **Suspension of Gold Convertibility** during Napoleonic Wars.
+
+    -   Debate over “Bullionist” vs. “Anti-Bullionist” views. Eventually, the **Bullion Report (1810)** recommended resumption of the gold standard, but it took until 1821.
+
+2.  **1919–1925**:
+
+    -   Post–World War I deflationary pressures. Winston Churchill returned Britain to the gold standard in 1925 at the prewar parity.
+
+    -   Critiques: Overvalued the pound, contributed to unemployment, ultimately abandoned in 1931.
+
+-   **Why Return?** Policymakers believed the gold standard symbolized stability, discipline, and international financial credibility, even at the cost of internal economic strain.
+
+### 10. Hesitancy to Move Off Gold Standard During the Great Depression
+
+-   **Central Bank Orthodoxy**: Gold standard was seen as the anchor of monetary stability. Leaving gold was viewed as a sign of monetary irresponsibility.
+
+-   **Credibility Concerns**: Fear of currency crises, inflation, or capital flight.
+
+-   **Political Factors**: Some leaders worried about losing international prestige; they clung to a policy that (in retrospect) deepened deflation and unemployment.
+
+### 11. Keynesian Revolution and Paradigm Shift?
+
+-   **Was It a Revolution?**
+
+    -   *Keynes’s “General Theory” (1936)* challenged classical ideas about flexible prices and wages automatically restoring full employment.
+
+    -   It introduced a demand-driven view of the economy, with government intervention to manage aggregate demand.
+
+-   **Paradigm Shift?**
+
+    -   *Kuhnian sense*: It replaced classical orthodoxy with a new framework (macroeconomic management).
+
+    -   By mid-20th century, Keynesianism became mainstream, so many see it as a true shift, though aspects of classical thinking still persisted.
+
+### 12. Keynes on Ideas vs. Vested Interests
+
+-   **Quote**: “Soon or late, it is ideas, not vested interests, which are dangerous for good or evil.”
+
+-   **Discussion**:
+
+    -   Keynes believed that the intellectual frameworks guiding policymakers eventually shape outcomes—even if politics and interests slow the process.
+
+    -   In the long run, new economic ideas can radically reorient policy (e.g., Keynesian intervention post-Depression, neoliberalism in the 1980s).
+
+### 13. Socialist Calculation Debate
+
+-   **Major Papers**: Ludwig von Mises (1920) and Friedrich Hayek vs. Oskar Lange, Abba Lerner, etc.
+
+-   **Core Issue**: Can central planners allocate resources efficiently without market prices?
+
+    -   *Mises/Hayek*: No, because price signals in a market are essential for rational calculation.
+
+    -   *Lange/Lerner*: A form of “market simulation” within socialism could replicate price signals.
+
+-   **Form Your Opinion**: Which side better addresses real-world complexities (such as information problems, innovation, or incentives)?
+
+### 14. Development of Computers and Their Effect on Economics
+
+-   **Data Handling & Empirical Analysis**: Modern computing powers large-scale econometric models, big-data analytics, real-time forecasting, and computational methods (e.g., dynamic stochastic general equilibrium models).
+
+-   **Behavioral and Experimental**: Simulations, agent-based modeling, and lab/field experiments have become much more feasible.
+
+-   **Transformation**: Computers helped shift the discipline toward quantitative empirical work and away from purely theoretical or literary methods.
+
+### 15. Milton Friedman’s Relationship with the Chilean Military Regime (Edwards 2023)
+
+-   **Context**: Friedman gave lectures in Chile after Pinochet’s coup (1973). Critics say he legitimized the regime by advising on economic reforms. Supporters argue he merely gave technical advice on monetary policy and inflation control.
+
+-   **Edwards (2023)** likely discusses the historical record, clarifying:
+
+    -   Whether Friedman supported Pinochet’s political repression (he denied it).
+
+    -   The extent of his intellectual influence on Chile’s “Chicago Boys.”
+
+-   **Debate**: The moral responsibility of economists when advising controversial regimes.
+
+### 16. Keynesian vs. Monetarist Controversy Today
+
+-   **Key Points**:
+
+    -   *Monetarists* (following Friedman) emphasize control of the money supply to fight inflation, minimal government intervention, and stable rules-based policies.
+
+    -   *Keynesians* focus on active fiscal and monetary policy to stabilize output and employment, believing market adjustments can be slow or imperfect.
+
+-   **Current Assessment**:
+
+    -   Modern macro often blends both: central banks use rules (like inflation targeting), but also engage in discretionary stimulus.
+
+    -   Fiscal policy debate remains: some advocate robust government intervention; others prefer balanced budgets and caution about crowding out.
+
+#### Study Tips
+
+-   **Link Ideas**: Many of these topics interconnect (e.g., gold standard debates relate to monetary theory, and Keynesian vs. monetarist issues tie in with the role of ideas in shaping policy).
+
+-   **Historical Context**: Remember the timing (e.g., after major wars, during the Great Depression) to understand why certain policies were adopted.
+
+-   **Critical Thinking**: For each debate, consider both sides’ arguments—history of economic thought often revolves around unresolved or evolving controversies.

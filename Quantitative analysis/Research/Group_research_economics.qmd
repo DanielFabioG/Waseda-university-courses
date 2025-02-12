@@ -329,7 +329,7 @@ Financial literacy which is the sum of 4 financial literacy questions has a mean
 
 The the kurtosis is -0.72. A negative kurtosis means that the distribution is flatter than a normal distribution.
 
-
+Financial Literacy is a variable that was made by summing up the correct answers to 4 financial literacy questions, where the respondents ended up with a score between 0 and 4.
 
 ## Data Visualization
 
@@ -406,7 +406,6 @@ ggplot(data, aes(x = factor(Financial_literacy), fill = factor(Annual_household_
 ```
 
 
-
 # Regression Analysis
 
 Our group is going to use an ordinal logistic regression model to analyze the relationship between financial literacy, annual household income, and willingness to take financial risks in the United States for young adults. We will also investigate if financial literacy has a different effect on income and risk tolerance and moderate these relationships by sex, ethnicity (not sure yet), and expected future inheritance to see if the effect of financial literacy on income and risk tolerance is stronger (or weaker) for certain groups.
@@ -463,6 +462,8 @@ Model 2 with control variables and interaction terms shows that the effect of fi
 We also find that being female is strongly associated with lower income, with a coefficient of -1.106. The same can be said for non-white, but to a lower effect where the coefficient is -0.371.
 
 Maybe not so interestingly we find that the higher education of the person(s) that raised the respondant is also significantly associated with higher log odds of being in a higher income category. With 6.8% for Some college and up to 16.7% for a postgraduate degree.
+
+The regression model shows that financial literacy is negatively associated with annual household income, which is the opposite of what we expected. We also find that being a female is associated with lower income. The same can be said for non-white, but to a lower effect. We also find that higher education is associated with higher income.
 
 ## Model Comparison
 

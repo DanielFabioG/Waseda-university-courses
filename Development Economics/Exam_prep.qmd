@@ -1,0 +1,578 @@
+---
+title: "Untitled"
+format: pdf
+editor: visual
+---
+
+# Final exam preparation
+
+## Lecture 9
+
+# Currencies and Exchange Rates: Definitions
+
+## Different currencies
+
+-   **Own currencies:** Countries with their own national currencies.
+-   **Currencies with monetary union:** Examples include the European Union (EU) and the West African Economic and Monetary Union.
+-   **Dollar or Euro fixed currencies:** Some countries peg their currency to the U.S. Dollar (USD) or Euro (EUR) at fixed ratios, which can vary.
+
+## Different convertibility
+
+-   **Full convertibility:** No restrictions on currency exchange, applicable to major currencies like USD, EUR, and JPY.
+-   **Partial convertibility:** Some restrictions imposed by the government, as seen with the Chinese Yuan (CNY) and Indian Rupee (INR).
+
+## Nominal Exchange Rate
+
+The nominal exchange rate is the relative price of currencies.
+
+\[ e = \frac{\text{Local Currency Units (LCU)}}{\text{Foreign Currency (USD)}} \]
+
+The exchange rate can appreciate or depreciate based on the demand and supply of the foreign currency, and it may be influenced by central bank interventions.
+
+## Real Exchange Rate (RER)
+
+The real exchange rate represents the relative price of goods and services.
+
+### Internal RER
+
+\[ \text{RER} = \frac{P_t}{P_{nt}} \] Where: - $P_t$ = Price of tradable goods - $P_{nt}$ = Price of non-tradable goods
+
+### External RER
+
+\[ \text{RER} = \frac{e \cdot \text{WPI}_{\text{US}}}{\text{CPI}_{\text{LCU}}} \] Where: - $e$ = Nominal exchange rate - $\text{WPI}_{\text{US}}$ = Wholesale price index in the U.S. - $\text{CPI}_{\text{LCU}}$ = Consumer price index in the local currency
+
+## Real Effective Exchange Rate (REER)
+
+$REER$ combines the exchange rate with trade policies, incorporating the effects of tariffs and subsidies on exports and imports.
+
+## Effects of Trade Policies on Tradable Goods
+
+-   **Imported goods with a tariff** $t_M$: \[ p_d = e \cdot p\^\* (1 + t_M) \] Where:
+    -   $p_d$ = Domestic price
+    -   $p^*$ = Foreign price
+    -   $t_M$ = Import tariff rate
+-   **Exported goods with an export tax** $t_E: [ p_d = e \cdot p^* (1 - t_E)$\] Where:
+    -   $t_E$ = Export tax rate
+
+## REER with Trade Policy Adjustments
+
+-   **REER for imports:** \[ \text{REER}\_{\text{import}} = \text{RER} (1 + t_M - s_M) \] Where:
+    -   $s_M$ = Import subsidy
+-   **REER for exports:** \[ \text{REER}\_{\text{export}} = \text{RER} (1 - t_E + s_E) \] Where:
+    -   $s_E$ = Export subsidy
+
+![](Pictures/1.png)
+
+# Why Exchange Regime Matters? Case of Export-Led Asian Economies (2)
+
+## Dollar-Pegged Exchange Regime in East Asia
+
+-   Virtually fixed exchange rate in East Asia (EA)
+    -   The role of the U.S. market as an export absorber:
+        -   Export income in USD ($), import payments in USD ($) or JPY (¥) (limited)
+    -   Settlement in USD (\$) within EA, reducing exchange risks
+
+## As the Bubble Economy Continued...
+
+-   Overvaluation of the dollar-pegged exchange rate\
+    → Weaker export competitiveness\
+    → Rising risks for investors due to potential devaluation
+
+-   Easy, cheap money from abroad\
+    → Over-borrowing by banks and non-banks without proper supervisory (prudential regulations)\
+    → Over-borrowing by firms, leading to private debt rather than sovereign debt, without proper corporate governance (debt disciplines)\
+    ← Family business structures
+
+-   Maturity mismatch by banks\
+    → Borrowing short-term while issuing long-term loans/investments
+
+-   Currency mismatch by banks\
+    → Borrowing in USD (\$) while earning income in local currencies such as Baht, Rupiah, and Won
+
+-   Failures in defending the pegged regime
+
+## Official Development Assistance（ODA) AID, or “Economic Cooperation”
+
+# Two-Gap Model for ODA
+
+## Two Gaps Faced by Developing Countries
+
+-   **Investment-Savings gap** and **Foreign Reserve gap**, based on the Chenery-Strout model.
+-   Aid can cover both gaps through the national income identity:
+
+\[ Y (\text{GNI}) = C + I + (X - M) \]
+
+\[ Y = C + S \]
+
+Since government spending ($G$) is excluded, the gaps can be expressed as:
+
+\[ I - S \quad (\text{Saving gap}) = M - X \quad (\text{Forex gap}) \]
+
+## Aid Classification
+
+1.  **Grant:**
+    -   No reimbursement required.
+2.  **Concessional Loans:**
+    -   High **Grant Element (GE)** ratio, which should exceed 25% compared to market allocation.\
+    -   The formula for calculating the Grant Element is:
+
+\[ GE = 100 \times \left( 1 - \frac{r}{d} \right) \left[ 1 - \left( \frac{1}{(1+d)^G} - \frac{1}{(1+d)^M} \right) \div \frac{M - G}{d} \right]\]
+
+Where:\
+- $r$ = reimbursing interest rate\
+- $d$ = standard discount rate (typically 10%)\
+- $G$ = grace period\
+- $M$ = reimbursement period
+
+-   The **GE** increases with a lower interest rate ($r$) and a longer discount period ($d$).
+
+3.  **Technical Cooperation:**
+    -   Includes expert dispatch and trainee programs.
+
+# How to Offer Aid?
+
+## Traditionally: Project Aid
+
+-   Focuses on finding specific projects to assist with funding.
+
+-   Covers different cost components:
+
+    → **Investment costs** and **imported goods** provided by donors\
+    (e.g., construction costs and foreign goods).
+
+    → **Running costs** and **domestic goods** covered by recipients\
+    (domestic goods do not pose exchange rate risks).
+
+## Debt Problems in the 1980s → Shift to Non-Project (Program) Assistance
+
+-   Aimed at addressing debt repayment challenges.\
+-   Example: **Structural Adjustment Lending (SAL)** with conditionalities to build capacity for debt reimbursement.
+
+Key features of program assistance:\
+\* Controlling domestic currency issues.\
+\* Quick disbursement compared to project aid, as it does not require extensive estimation for domestic procedures.
+
+# Fungibility and Governance in ODA
+
+## Fungibility Issues
+
+-   The success of **program assistance** depends on how the funds are utilized.
+
+-   **Fungibility problems** arise when ODA (Official Development Assistance) is used for unintended purposes, such as **military expansion**, instead of the intended development goals.
+
+    → **Solution:** Common monitoring mechanisms to track expenditures and ensure proper allocation.
+
+## Good Governance and Aid Effectiveness
+
+-   Effective governance requires an efficient government, involving both politicians and bureaucrats.
+
+    → Efforts to combat corruption are crucial for aid success.\
+    → The effectiveness of aid has been widely debated:
+
+    -   **Burnside & Dollar (2000):** Aid contributes to economic growth when governance is strong and effective.\
+    -   **Easterly (2006):** The primary issue lies in how aid is utilized rather than the amount of aid provided.
+
+## Aid Bombardment and Coordination
+
+-   **Aid bombardment** refers to implementation constraints and costs arising from overly complicated aid structures.
+
+    → To address this, aid coordination efforts led by organizations such as **OECD-DAC** aim to streamline processes and reduce costs.
+
+# Japan’s ODA
+
+## Overview
+
+-   Traditionally a major donor, holding the position of **No.1 donor from 1983 to 2000**, but gradually declining to **No.4** in the 2000s.
+
+-   Despite being a major donor, Japan’s ODA expenditure relative to GDP remains lower than the Development Assistance Committee (DAC) goal:
+
+    \[ \text{DAC goal: } 0.7% \quad \> \quad \text{Japan's contribution: } 0.2% \]
+
+## Basic Characteristics
+
+1.  **First non-Western DAC member:**
+    -   Japan was the first country outside the Western bloc to join the DAC, bringing a unique perspective to development assistance.
+2.  **Unique Presence:**
+    -   Japan's aid has been influenced by its history, serving as **war-time compensation** for Asian countries.
+    -   Japanese aid is characterized by a preference for **loans over grants** and a **request-based approach**, meaning recipient countries play a larger role in aid decisions.
+    -   Japan follows a more neutral approach compared to Western donors:\
+        → **Weaker human rights fundamentalism** compared to the EU.\
+        → **Weaker democracy promotion** compared to the US.\
+        → Focus on an "ownership approach," allowing recipient countries to take the lead.
+3.  **Commercialism?:**
+    -   Japanese aid often acts as a **vanguard for foreign direct investment (FDI)** and trade expansion, aligning with Japan's economic interests.
+4.  **Technology Cooperation:**
+    -   Strong emphasis on **hardware-oriented** assistance, focusing on sectors such as civil engineering and agriculture.\
+    -   Japan also provides **software** support, but hardware remains the priority.
+
+# New Challenges for ODA
+
+## Emergence of New Donors (2000s–Present)
+
+-   The landscape of ODA has evolved with the entry of **new donors** outside the DAC framework, including:
+
+    -   **China:**
+        -   Through initiatives such as the **Belt and Road Initiative (BRI)** and the **Asian Infrastructure Investment Bank (AIIB)**.\
+    -   **India:** Expanding its influence in development aid.
+    -   **Middle Eastern countries:** Increasing contributions to global aid.
+    -   **Non-Profit Organizations (NPOs) and Non-Governmental Organizations (NGOs):** Providing alternative forms of development assistance.
+
+-   These new donors bring **different perspectives** on development but pose challenges in **coordination** with traditional donors, especially regarding adherence to standards such as:
+
+    → **Environmental regulations**\
+    → **Human rights protection**
+
+## Fiscal Constraints Faced by Traditional Donors
+
+Traditional donors are seeking innovative financial mechanisms to overcome budgetary constraints, including:
+
+-   **United Kingdom (UK):**
+    -   Implementing **Future Flow Securitization**, which involves issuing bonds based on future investment returns.
+-   **France:**
+    -   Introducing the **Tobin Tax**, a financial transaction tax aimed at funding development projects.
+-   **United States (US):**
+    -   Establishing the **Millennium Challenge Account (MCA)** to provide aid to least developed countries (LDCs) that demonstrate good governance.\
+    -   Promoting **Base of the Pyramid (BOP) business** models to encourage private sector involvement in development.
+
+## Lecture 11: Enviroment and growth
+
+![](Pictures/2.png)
+
+# Who is Responsible for Environmental Degradation?
+
+## The Richest vs. The Poorest: A Complex Relationship
+
+The responsibility for environmental degradation is often attributed to both the richest and the poorest segments of society, but the relationship is more complex. There exists a **bidirectional link** between poverty and environmental degradation, where:
+
+-   **Poverty leads to environmental degradation**, and\
+-   **Environmental degradation exacerbates poverty.**
+
+### How Poverty Leads to Environmental Degradation
+
+1.  **Overexploitation of Natural Resources:**
+    -   The poor often rely directly on natural resources (e.g., forests, fisheries, arable land) for survival.\
+    -   Due to lack of alternatives, they may engage in deforestation, overfishing, or unsustainable agricultural practices, leading to resource depletion.
+2.  **Lack of Access to Sustainable Practices:**
+    -   Limited financial and technological resources prevent the adoption of environmentally friendly methods.\
+    -   The absence of education and awareness about conservation further worsens the situation.
+3.  **Urbanization and Informal Settlements:**
+    -   Rapid rural-to-urban migration driven by poverty results in unplanned settlements, leading to pollution, waste mismanagement, and increased pressure on local ecosystems.
+4.  **Short-Term Survival Needs:**
+    -   Immediate survival takes precedence over long-term environmental sustainability, resulting in unsustainable practices such as slash-and-burn agriculture and illegal logging.
+
+### How Environmental Degradation Exacerbates Poverty
+
+1.  **Loss of Livelihoods:**
+    -   Degraded environments reduce agricultural productivity, fishery yields, and access to clean water, pushing communities further into poverty.
+2.  **Health Impacts:**
+    -   Pollution, deforestation, and water scarcity contribute to health problems, increasing healthcare costs and reducing labor productivity.
+3.  **Natural Disasters and Climate Vulnerability:**
+    -   Poor communities often live in disaster-prone areas with limited resilience, making them highly vulnerable to climate change effects such as floods, droughts, and soil erosion.
+4.  **Increased Costs of Living:**
+    -   Resource depletion leads to rising costs of food, water, and energy, disproportionately affecting the poor.
+
+### The Role of the Richest in Environmental Degradation
+
+1.  **High Consumption Patterns:**
+    -   Wealthier individuals and nations have high carbon footprints due to energy-intensive lifestyles, excessive consumption, and demand for luxury goods.
+2.  **Industrial Pollution:**
+    -   Large-scale industries, often owned or supported by the wealthiest, contribute significantly to pollution through emissions, waste disposal, and deforestation.
+3.  **Global Supply Chains:**
+    -   Demand for raw materials and cheap labor drives unsustainable practices in developing regions, further deepening environmental degradation.
+4.  **Exporting Environmental Costs:**
+    -   Richer countries often outsource pollution-intensive industries to poorer regions, leading to environmental harm without immediate local consequences.
+
+### Addressing the Issue
+
+-   **Sustainable Development Goals (SDGs):** Policies need to balance economic development with environmental protection.\
+-   **Inclusive Policies:** Ensuring access to clean technology, education, and fair economic opportunities for the poor.\
+-   **Corporate Responsibility:** Encouraging sustainable production and ethical sourcing in global supply chains.\
+-   **International Cooperation:** Richer nations must support sustainable initiatives in developing countries through technology transfer and fair trade practices.
+
+The relationship between wealth and environmental degradation is intricate, requiring a holistic approach to achieve sustainable development without exacerbating poverty.
+
+![](Pictures/3.png)
+
+# Addressing Externalities: Achieving Social Optimum Production
+
+## Problem Statement
+
+-   **Price signals** often lead individual producers to produce at $q^* < q_C$, where $q_C$ represents the socially optimal production level.
+-   When externalities exist, market failure occurs, leading to **excess production** and **excess pollution**.
+-   The challenge is to align private production levels with the social optimum ($q^* = q_C$).
+
+## Possible Policy Interventions
+
+1.  **Output or Externality Tax for Polluters (Pigouvian Tax):**
+    -   Introduces a tax on output or the externality itself to internalize the social cost.\
+    -   Encourages producers to reduce production to the socially efficient level.\
+    -   Example: Carbon tax on emissions.
+2.  **Output Reduction Subsidies:**
+    -   If polluters have the right to pollute, governments can provide subsidies to incentivize output reduction.\
+    -   Reduces the economic burden on polluters while achieving environmental goals.
+3.  **Output or Pollution Quota (Command-and-Control Approach):**
+    -   Government sets legal limits on the amount of output or pollution a producer can generate.\
+    -   Strict enforcement and monitoring are required to ensure compliance.\
+    -   Example: Emission limits for factories.
+4.  **Pollution Permits Trade (Cap-and-Trade Approach):**
+    -   A market-based solution where a total pollution cap is set, and permits are allocated or auctioned.\
+    -   Firms can trade permits, allowing more efficient polluters to sell excess allowances to others.\
+    -   Encourages cost-effective pollution reduction.
+5.  **Institutional Change in Producer Organization (Unitization or Cooperation):**
+    -   Encouraging firms to collaborate in production or resource management to internalize externalities collectively.\
+    -   Example: Joint initiatives for sustainable resource use in the agricultural sector.
+6.  **Private Negotiations Among Parties (Coase Theorem):**
+    -   If property rights are well-defined and transaction costs are low, private parties can negotiate solutions to externalities.\
+    -   Leads to efficient outcomes without government intervention.\
+    -   Example: Affected parties compensating polluters to reduce emissions.
+
+Each policy has advantages and limitations, and the choice of intervention depends on factors such as enforceability, administrative capacity, and economic efficiency.
+
+# Major Policy Responses: Tax
+
+## (1) Output or Externality Tax for Polluters (If No Property Rights for Polluters)
+
+-   When polluters do not have property rights, the government can impose a tax equal to the social cost to internalize the externality.
+-   The tax amount is set to **BF**, where the price adjustment leads to a shift from the market price ($p^*$) to the socially optimal price ($p_p$).
+-   As a result, production decreases from point **F** and consumption contracts to point **B**.
+
+### Welfare Implications:
+
+-   **Consumer Surplus (CS):**\
+    \[ -1 - 2 \< 0 \] Consumers experience a net loss due to higher prices and lower consumption.
+
+-   **Producer Surplus (PS):**\
+    \[ -3 - 4 \< 0 \] Producers face a net loss due to reduced production and higher compliance costs.
+
+-   **Government Revenue (G):**\
+    \[ +1 + 3 \> 0 \] The government collects tax revenue, leading to a positive fiscal impact.
+
+-   **Pollution Reduction:**\
+    \[ +2 + 4 + 5 \] Reduction in pollution generates social benefits, contributing to overall welfare.
+
+### Net Social Gain:
+
+\[ 5 \]
+
+The policy results in a net social welfare improvement, represented by area **5**, even though pollution is not entirely eliminated.
+
+------------------------------------------------------------------------
+
+### Key Observations:
+
+1.  **No Full Pollution Elimination:**
+    -   The policy does not completely remove pollution; rather, it reduces the production of polluting goods.
+2.  **Distributional Effects:**
+    -   Consumers and producers incur losses, while the government benefits through tax revenues.
+3.  **Government Efficiency Concerns:**
+    -   The success of this intervention depends on whether the government is "wise enough" to utilize the collected revenue effectively and fairly.
+
+This approach underscores the balance between environmental goals and economic impacts, highlighting the challenge of designing effective and fair environmental taxation policies.
+
+# Major Policy Responses: Subsidies
+
+## (2) Output Reduction Subsidies (If Property Rights for Polluters Exist)
+
+-   When polluters hold property rights, governments can introduce **output reduction subsidies** to encourage lower production levels and reduce pollution.
+-   The subsidy amount is set equal to $(p^* - p_p)$, leading to a shift in production to point **F** and consumption to point **B**.
+
+### Welfare Implications:
+
+-   **Consumer Surplus (CS):**\
+    \[ -1 - 2 \< 0 \] Consumers experience a net loss due to changes in market dynamics.
+
+-   **Producer Surplus (PS):**\
+    \[ (+1 - 4) + (2 + 4 + 5a + 6) \> 0 \] Producers gain from the subsidy, as it compensates them for reduced production and provides additional financial incentives.
+
+-   **Government Revenue (G):**\
+    \[
+
+    -   (2 + 4 + 5a + 6) \< 0 \] The government incurs a significant fiscal cost due to subsidy payments.
+
+-   **Pollution Reduction:**\
+    \[ +2 + 4 + 5 \] Pollution is reduced, leading to an improvement in social welfare.
+
+### Net Social Gain:
+
+\[ 5 \]
+
+The policy results in a net social welfare improvement of **5**, similar to the tax approach.
+
+------------------------------------------------------------------------
+
+### Key Observations:
+
+1.  **Highly Attractive Solution for Producers:**
+    -   Producers benefit from the subsidies, making it an appealing policy from their perspective.
+2.  **Potential for Market Distortion:**
+    -   The availability of subsidies might **attract new polluters**, potentially offsetting the environmental benefits.
+3.  **High Fiscal Burden on Government:**
+    -   Subsidies are **costly for the government**, requiring significant budget allocations and potentially leading to inefficiencies.
+
+This policy highlights the trade-offs between incentivizing pollution reduction and the fiscal sustainability of such measures.
+
+# Major Policy Responses: Quota
+
+## (3) Restricting Output to a Quota (Command-and-Control Approach)
+
+-   Under the **Command-and-Control** approach, the government sets a production quota at level **F**, with consumption adjusted to point **B**.\
+-   This policy directly limits production quantities to achieve the socially optimal outcome.
+
+### Welfare Implications:
+
+-   **Consumer Surplus (CS):**\
+    \[ -1 - 2 \< 0 \] Consumers experience a net loss due to higher prices and reduced consumption.
+
+-   **Producer Surplus (PS):**\
+    \[ (+1 - 4) \quad \text{generally} \> 0 \] Producers benefit compared to the taxation approach, as they can capitalize on the market scarcity created by the quota, leading to higher prices.
+
+-   **Government (G):**\
+    \[ 0 \quad \text{(no change)} \] The government does not gain or lose directly unless quotas are auctioned.
+
+-   **Pollution Reduction:**\
+    \[ +2 +4 +5 \] Effective reduction of pollution due to restricted production.
+
+### Net Social Gain:
+
+\[ 5 \]
+
+The overall social welfare improves by **5**, similar to other approaches.
+
+------------------------------------------------------------------------
+
+### Key Observations:
+
+1.  **Attractive for Producers:**
+    -   The quota creates market scarcity, allowing producers to benefit from higher prices.\
+    -   This effect is especially pronounced in markets with **inelastic demand**, such as gasoline.
+2.  **Government vs. Producer Interests:**
+    -   The government may prefer taxation, which generates revenue, while producers favor quotas, which allow them to benefit from higher prices without direct financial outflows.
+3.  **Quota Auctioning Opportunity:**
+    -   The government can auction quotas, allowing producers to bid up to a level where the quota price cancels out their extra market gains.\
+    -   This can generate government revenue while maintaining environmental objectives.
+
+This policy presents a trade-off between regulatory control, market efficiency, and government revenue potential.
+
+# Major Policy Responses: Private Negotiations (Coase Theorem)
+
+## Scenario 1: Polluter Has the Right to Pollute
+
+### Initial Condition:
+
+-   **Polluter welfare:**\
+    \[ 1 + 2 + 3 + 4 \]
+-   **Pollutee welfare:**\
+    \[ -3 - 4 - 5 - 6 \]
+-   **Social welfare:**\
+    \[ (1 + 2) - (5 + 6) \]
+
+### After Negotiation:
+
+-   **Pollution will continue, and the outcome will be:**
+    -   **Polluter welfare:**\
+        \[ (1 + 2 + 3) + (4 + 5) \quad \text{(gains 5)} \]
+    -   **Pollutee welfare:**\
+        \[ -3 - (4 + 5) \>
+
+## Lecture 12: Institutions for Development
+
+# What Are Institutions and Why Do They Matter in Development? (1): NIE Contributions
+
+## Definition of Institutions
+
+-   **Douglas North:**
+    -   Institutions are the **rules of the game** in a society.\
+    -   They provide **incentives** that shape human behavior in their interactions.
+-   **Masahiko Aoki:**
+    -   Institutions are the **equilibrium results** that emerge from strategic interactions in societal "games."
+
+## New Institutional Economics (NIE)
+
+-   NIE focuses on the role of institutions in addressing **information asymmetry** and related market failures, such as:
+    -   **Adverse selection** (hidden information problems).\
+    -   **Moral hazard** (hidden action problems).\
+    -   **Transaction costs** (barriers to market efficiency).
+-   **Institutional innovation** plays a critical role in development by facilitating market efficiency and reducing uncertainties.
+    -   Example: **Market-enhancing views**, which advocate for well-functioning institutions to support market operations.
+
+### Contributions to the Market Economy
+
+1.  **Influencing Market Interactions:**
+    -   Institutions shape the behavior of producers and consumers, creating a structured environment for economic activities.
+2.  **Reducing Transaction Costs:**
+    -   Lower transaction costs enable:\
+        ➯ Greater specialization and division of labor.\
+        ➯ Productivity gains and economic growth.
+
+    -   Examples of critical institutions include:\
+        ➯ **Property rights:** Secure ownership encourages investment and innovation.\
+        ➯ **Contract enforcement:** Ensures trust and reduces risk in transactions.
+
+### Institutional Quality and Economic Development
+
+-   **Properly functioning institutions:**
+    -   Promote transactions and economic development by ensuring fairness, transparency, and efficiency.
+-   **Weak or exploitative institutions:**
+    -   Increase transaction costs and discourage economic activity.\
+    -   Example: Government exploitation, corruption, or failure to enforce property rights.
+
+Effective institutions are fundamental to foste
+
+# What Are Institutions and Why They Matter in Development (3)
+
+## Institutional Darwinism: Survival of the Fittest?
+
+-   The idea that **dominating institutions** survive over time, similar to biological evolution.\
+-   However, the **survival of institutions** does not always guarantee **social efficiency**, as they may only serve the interests of certain stakeholders.\
+-   Example: **Sharecropping**, which is beneficial for risk-sharing but often leads to inefficiency.
+
+------------------------------------------------------------------------
+
+## Example: Sharecropping System
+
+In agricultural economies, sharecropping is a prevalent institutional arrangement where:
+
+-   **Principal:** Landlord (owns the land and rents it to the tenant).\
+
+-   **Agent:** Tenant (works on the land and pays rent to the landlord).\
+
+-   **Renting Systems:**
+
+    1.  **Wage Contract:**
+        -   Tenant is paid a fixed wage regardless of output.\
+        -   Incentives for effort are low, leading to potential inefficiency.
+    2.  **Fixed-Rent Contract:**
+        -   Tenant pays a predetermined amount ($R$) to the landlord.\
+        -   Strong incentives for effort, but higher risk borne by the tenant.
+    3.  **Sharecropping Contract:**
+        -   Tenant and landlord share the output in a fixed ratio ($r$).\
+        -   Balances risk and effort incentives but often leads to inefficiencies.
+
+------------------------------------------------------------------------
+
+## The Puzzle of Sharecropping: Marshallian Inefficiency
+
+-   According to **Marshallian inefficiency**, sharecropping results in suboptimal effort because:
+    -   The tenant does not receive the full benefit of their labor (only a fraction $r$ of the output), leading to **reduced work effort**.\
+    -   This creates an **inefficiency problem**, as the total output is lower compared to fixed-rent or wage contracts.
+
+### Trade-Offs in Sharecropping:
+
+1.  **Risk Sharing:**
+    -   Beneficial for tenants who cannot bear full production risks.
+2.  **Efficiency Loss:**
+    -   Effort levels are lower than socially optimal due to the lack of full ownership of returns.
+
+------------------------------------------------------------------------
+
+## Key Insights:
+
+-   **Institutional arrangements may persist even if they are not the most efficient option** due to historical, social, and risk-related factors.\
+-   **Institutions evolve not necessarily to maximize efficiency but to balance power dynamics, risks, and incentives among stakeholders.**\
+-   Policymakers must carefully consider institutional structures and their long-term implications for development.
+
+# Now im writing from her last lecture in class
+
+## Determinants of economic development
+
+![](Pictures/4.png)
